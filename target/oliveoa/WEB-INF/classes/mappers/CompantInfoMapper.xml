@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oliveoa.dao.CompantInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.oliveoa.pojo.CompantInfo" >
+    <constructor >
+      <arg column="username" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="password" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="fullname" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="telephone" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="fax" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="zipcode" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="address" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="website" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="email" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="introduction" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.oliveoa.pojo.CompantInfo" >
+    insert into tb_companyinfo (username, password, fullname, 
+      telephone, fax, zipcode, 
+      address, website, email, 
+      introduction)
+    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{fullname,jdbcType=VARCHAR}, 
+      #{telephone,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR}, #{zipcode,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{website,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{introduction,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.oliveoa.pojo.CompantInfo" >
+    insert into tb_companyinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="fullname != null" >
+        fullname,
+      </if>
+      <if test="telephone != null" >
+        telephone,
+      </if>
+      <if test="fax != null" >
+        fax,
+      </if>
+      <if test="zipcode != null" >
+        zipcode,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="website != null" >
+        website,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="introduction != null" >
+        introduction,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="fullname != null" >
+        #{fullname,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null" >
+        #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="website != null" >
+        #{website,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null" >
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

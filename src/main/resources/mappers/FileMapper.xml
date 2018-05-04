@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oliveoa.dao.FileMapper" >
+  <resultMap id="BaseResultMap" type="com.oliveoa.pojo.File" >
+    <constructor >
+      <idArg column="fid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="fname" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="fsrc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="orderBy" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="createtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="updatetime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    fid, fname, fsrc, orderBy, createtime, updatetime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_file
+    where fid = #{fid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_file
+    where fid = #{fid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.oliveoa.pojo.File" >
+    insert into tb_file (fid, fname, fsrc, 
+      orderBy, createtime, updatetime
+      )
+    values (#{fid,jdbcType=VARCHAR}, #{fname,jdbcType=VARCHAR}, #{fsrc,jdbcType=VARCHAR}, 
+      #{orderby,jdbcType=INTEGER}, now(), now()
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.oliveoa.pojo.File" >
+    insert into tb_file
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fid != null" >
+        fid,
+      </if>
+      <if test="fname != null" >
+        fname,
+      </if>
+      <if test="fsrc != null" >
+        fsrc,
+      </if>
+      <if test="orderby != null" >
+        orderBy,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fid != null" >
+        #{fid,jdbcType=VARCHAR},
+      </if>
+      <if test="fname != null" >
+        #{fname,jdbcType=VARCHAR},
+      </if>
+      <if test="fsrc != null" >
+        #{fsrc,jdbcType=VARCHAR},
+      </if>
+      <if test="orderby != null" >
+        #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        now(),
+      </if>
+      <if test="updatetime != null" >
+        now(),
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.oliveoa.pojo.File" >
+    update tb_file
+    <set >
+      <if test="fname != null" >
+        fname = #{fname,jdbcType=VARCHAR},
+      </if>
+      <if test="fsrc != null" >
+        fsrc = #{fsrc,jdbcType=VARCHAR},
+      </if>
+      <if test="orderby != null" >
+        orderBy = #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        now(),
+      </if>
+    </set>
+    where fid = #{fid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.oliveoa.pojo.File" >
+    update tb_file
+    set fname = #{fname,jdbcType=VARCHAR},
+      fsrc = #{fsrc,jdbcType=VARCHAR},
+      orderBy = #{orderby,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      now()
+    where fid = #{fid,jdbcType=VARCHAR}
+  </update>
+</mapper>

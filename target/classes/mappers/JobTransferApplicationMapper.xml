@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oliveoa.dao.JobTransferApplicationMapper" >
+  <resultMap id="BaseResultMap" type="com.oliveoa.pojo.JobTransferApplication" >
+    <constructor >
+      <idArg column="jtaid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="aeid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="eid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="aimdcid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="aimpcid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reason" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="orderBy" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="createtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="updatetime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    jtaid, aeid, eid, aimdcid, aimpcid, reason, orderBy, createtime, updatetime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_job_transfer_application
+    where jtaid = #{jtaid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_job_transfer_application
+    where jtaid = #{jtaid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.oliveoa.pojo.JobTransferApplication" >
+    insert into tb_job_transfer_application (jtaid, aeid, eid, 
+      aimdcid, aimpcid, reason, 
+      orderBy, createtime, updatetime
+      )
+    values (#{jtaid,jdbcType=VARCHAR}, #{aeid,jdbcType=VARCHAR}, #{eid,jdbcType=VARCHAR}, 
+      #{aimdcid,jdbcType=VARCHAR}, #{aimpcid,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR}, 
+      #{orderby,jdbcType=INTEGER}, now(), now()
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.oliveoa.pojo.JobTransferApplication" >
+    insert into tb_job_transfer_application
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="jtaid != null" >
+        jtaid,
+      </if>
+      <if test="aeid != null" >
+        aeid,
+      </if>
+      <if test="eid != null" >
+        eid,
+      </if>
+      <if test="aimdcid != null" >
+        aimdcid,
+      </if>
+      <if test="aimpcid != null" >
+        aimpcid,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+      <if test="orderby != null" >
+        orderBy,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="jtaid != null" >
+        #{jtaid,jdbcType=VARCHAR},
+      </if>
+      <if test="aeid != null" >
+        #{aeid,jdbcType=VARCHAR},
+      </if>
+      <if test="eid != null" >
+        #{eid,jdbcType=VARCHAR},
+      </if>
+      <if test="aimdcid != null" >
+        #{aimdcid,jdbcType=VARCHAR},
+      </if>
+      <if test="aimpcid != null" >
+        #{aimpcid,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="orderby != null" >
+        #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        now(),
+      </if>
+      <if test="updatetime != null" >
+        now(),
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.oliveoa.pojo.JobTransferApplication" >
+    update tb_job_transfer_application
+    <set >
+      <if test="aeid != null" >
+        aeid = #{aeid,jdbcType=VARCHAR},
+      </if>
+      <if test="eid != null" >
+        eid = #{eid,jdbcType=VARCHAR},
+      </if>
+      <if test="aimdcid != null" >
+        aimdcid = #{aimdcid,jdbcType=VARCHAR},
+      </if>
+      <if test="aimpcid != null" >
+        aimpcid = #{aimpcid,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="orderby != null" >
+        orderBy = #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = now(),
+      </if>
+    </set>
+    where jtaid = #{jtaid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.oliveoa.pojo.JobTransferApplication" >
+    update tb_job_transfer_application
+    set aeid = #{aeid,jdbcType=VARCHAR},
+      eid = #{eid,jdbcType=VARCHAR},
+      aimdcid = #{aimdcid,jdbcType=VARCHAR},
+      aimpcid = #{aimpcid,jdbcType=VARCHAR},
+      reason = #{reason,jdbcType=VARCHAR},
+      orderBy = #{orderby,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = now()
+    where jtaid = #{jtaid,jdbcType=VARCHAR}
+  </update>
+</mapper>

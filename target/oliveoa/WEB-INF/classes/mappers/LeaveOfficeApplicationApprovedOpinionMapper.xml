@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oliveoa.dao.LeaveOfficeApplicationApprovedOpinionMapper" >
+  <resultMap id="BaseResultMap" type="com.oliveoa.pojo.LeaveOfficeApplicationApprovedOpinion" >
+    <constructor >
+      <idArg column="loaaocid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="loaaopid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="loaid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="eid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="isApproved" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="opinion" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="orderBy" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="createtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="updatetime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    loaaocid, loaaopid, loaid, eid, isApproved, opinion, orderBy, createtime, updatetime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_leave_office_application_approved_opinion
+    where loaaocid = #{loaaocid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_leave_office_application_approved_opinion
+    where loaaocid = #{loaaocid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.oliveoa.pojo.LeaveOfficeApplicationApprovedOpinion" >
+    insert into tb_leave_office_application_approved_opinion (loaaocid, loaaopid, loaid, 
+      eid, isApproved, opinion, 
+      orderBy, createtime, updatetime
+      )
+    values (#{loaaocid,jdbcType=VARCHAR}, #{loaaopid,jdbcType=VARCHAR}, #{loaid,jdbcType=VARCHAR}, 
+      #{eid,jdbcType=VARCHAR}, #{isapproved,jdbcType=INTEGER}, #{opinion,jdbcType=VARCHAR}, 
+      #{orderby,jdbcType=INTEGER}, now(), now()
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.oliveoa.pojo.LeaveOfficeApplicationApprovedOpinion" >
+    insert into tb_leave_office_application_approved_opinion
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="loaaocid != null" >
+        loaaocid,
+      </if>
+      <if test="loaaopid != null" >
+        loaaopid,
+      </if>
+      <if test="loaid != null" >
+        loaid,
+      </if>
+      <if test="eid != null" >
+        eid,
+      </if>
+      <if test="isapproved != null" >
+        isApproved,
+      </if>
+      <if test="opinion != null" >
+        opinion,
+      </if>
+      <if test="orderby != null" >
+        orderBy,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="loaaocid != null" >
+        #{loaaocid,jdbcType=VARCHAR},
+      </if>
+      <if test="loaaopid != null" >
+        #{loaaopid,jdbcType=VARCHAR},
+      </if>
+      <if test="loaid != null" >
+        #{loaid,jdbcType=VARCHAR},
+      </if>
+      <if test="eid != null" >
+        #{eid,jdbcType=VARCHAR},
+      </if>
+      <if test="isapproved != null" >
+        #{isapproved,jdbcType=INTEGER},
+      </if>
+      <if test="opinion != null" >
+        #{opinion,jdbcType=VARCHAR},
+      </if>
+      <if test="orderby != null" >
+        #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        now(),
+      </if>
+      <if test="updatetime != null" >
+        now(),
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.oliveoa.pojo.LeaveOfficeApplicationApprovedOpinion" >
+    update tb_leave_office_application_approved_opinion
+    <set >
+      <if test="loaaopid != null" >
+        loaaopid = #{loaaopid,jdbcType=VARCHAR},
+      </if>
+      <if test="loaid != null" >
+        loaid = #{loaid,jdbcType=VARCHAR},
+      </if>
+      <if test="eid != null" >
+        eid = #{eid,jdbcType=VARCHAR},
+      </if>
+      <if test="isapproved != null" >
+        isApproved = #{isapproved,jdbcType=INTEGER},
+      </if>
+      <if test="opinion != null" >
+        opinion = #{opinion,jdbcType=VARCHAR},
+      </if>
+      <if test="orderby != null" >
+        orderBy = #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = now(),
+      </if>
+    </set>
+    where loaaocid = #{loaaocid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.oliveoa.pojo.LeaveOfficeApplicationApprovedOpinion" >
+    update tb_leave_office_application_approved_opinion
+    set loaaopid = #{loaaopid,jdbcType=VARCHAR},
+      loaid = #{loaid,jdbcType=VARCHAR},
+      eid = #{eid,jdbcType=VARCHAR},
+      isApproved = #{isapproved,jdbcType=INTEGER},
+      opinion = #{opinion,jdbcType=VARCHAR},
+      orderBy = #{orderby,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = now()
+    where loaaocid = #{loaaocid,jdbcType=VARCHAR}
+  </update>
+</mapper>

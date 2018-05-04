@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oliveoa.dao.IssueWorkMemberMapper" >
+  <resultMap id="BaseResultMap" type="com.oliveoa.pojo.IssueWorkMember" >
+    <constructor >
+      <idArg column="iwmid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="iwid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="eid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="orderBy" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="createtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="updatetime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    iwmid, iwid, eid, orderBy, createtime, updatetime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_issue_work_member
+    where iwmid = #{iwmid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_issue_work_member
+    where iwmid = #{iwmid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.oliveoa.pojo.IssueWorkMember" >
+    insert into tb_issue_work_member (iwmid, iwid, eid, 
+      orderBy, createtime, updatetime
+      )
+    values (#{iwmid,jdbcType=VARCHAR}, #{iwid,jdbcType=VARCHAR}, #{eid,jdbcType=VARCHAR}, 
+      #{orderby,jdbcType=INTEGER}, now(), now()
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.oliveoa.pojo.IssueWorkMember" >
+    insert into tb_issue_work_member
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="iwmid != null" >
+        iwmid,
+      </if>
+      <if test="iwid != null" >
+        iwid,
+      </if>
+      <if test="eid != null" >
+        eid,
+      </if>
+      <if test="orderby != null" >
+        orderBy,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="iwmid != null" >
+        #{iwmid,jdbcType=VARCHAR},
+      </if>
+      <if test="iwid != null" >
+        #{iwid,jdbcType=VARCHAR},
+      </if>
+      <if test="eid != null" >
+        #{eid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderby != null" >
+        #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        now(),
+      </if>
+      <if test="updatetime != null" >
+        now(),
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.oliveoa.pojo.IssueWorkMember" >
+    update tb_issue_work_member
+    <set >
+      <if test="iwid != null" >
+        iwid = #{iwid,jdbcType=VARCHAR},
+      </if>
+      <if test="eid != null" >
+        eid = #{eid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderby != null" >
+        orderBy = #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        now(),
+      </if>
+    </set>
+    where iwmid = #{iwmid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.oliveoa.pojo.IssueWorkMember" >
+    update tb_issue_work_member
+    set iwid = #{iwid,jdbcType=VARCHAR},
+      eid = #{eid,jdbcType=VARCHAR},
+      orderBy = #{orderby,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = now()
+    where iwmid = #{iwmid,jdbcType=VARCHAR}
+  </update>
+</mapper>

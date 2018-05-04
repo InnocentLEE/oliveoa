@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oliveoa.dao.LeaveApplicationMapper" >
+  <resultMap id="BaseResultMap" type="com.oliveoa.pojo.LeaveApplication" >
+    <constructor >
+      <idArg column="laid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="eid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="begintime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="endtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="type" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="normal_rest" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="swap_rest" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="should_rest" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="supplement_rest" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="orderBy" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="createtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="updatetime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    laid, eid, begintime, endtime, type, normal_rest, swap_rest, should_rest, supplement_rest, 
+    orderBy, createtime, updatetime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_leave_application
+    where laid = #{laid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_leave_application
+    where laid = #{laid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.oliveoa.pojo.LeaveApplication" >
+    insert into tb_leave_application (laid, eid, begintime, 
+      endtime, type, normal_rest, 
+      swap_rest, should_rest, supplement_rest, 
+      orderBy, createtime, updatetime
+      )
+    values (#{laid,jdbcType=VARCHAR}, #{eid,jdbcType=VARCHAR}, #{begintime,jdbcType=TIMESTAMP}, 
+      #{endtime,jdbcType=TIMESTAMP}, #{type,jdbcType=INTEGER}, #{normalRest,jdbcType=DATE}, 
+      #{swapRest,jdbcType=DATE}, #{shouldRest,jdbcType=DATE}, #{supplementRest,jdbcType=DATE}, 
+      #{orderby,jdbcType=INTEGER}, now(), now()
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.oliveoa.pojo.LeaveApplication" >
+    insert into tb_leave_application
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="laid != null" >
+        laid,
+      </if>
+      <if test="eid != null" >
+        eid,
+      </if>
+      <if test="begintime != null" >
+        begintime,
+      </if>
+      <if test="endtime != null" >
+        endtime,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="normalRest != null" >
+        normal_rest,
+      </if>
+      <if test="swapRest != null" >
+        swap_rest,
+      </if>
+      <if test="shouldRest != null" >
+        should_rest,
+      </if>
+      <if test="supplementRest != null" >
+        supplement_rest,
+      </if>
+      <if test="orderby != null" >
+        orderBy,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="laid != null" >
+        #{laid,jdbcType=VARCHAR},
+      </if>
+      <if test="eid != null" >
+        #{eid,jdbcType=VARCHAR},
+      </if>
+      <if test="begintime != null" >
+        #{begintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="normalRest != null" >
+        #{normalRest,jdbcType=DATE},
+      </if>
+      <if test="swapRest != null" >
+        #{swapRest,jdbcType=DATE},
+      </if>
+      <if test="shouldRest != null" >
+        #{shouldRest,jdbcType=DATE},
+      </if>
+      <if test="supplementRest != null" >
+        #{supplementRest,jdbcType=DATE},
+      </if>
+      <if test="orderby != null" >
+        #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        now(),
+      </if>
+      <if test="updatetime != null" >
+        now(),
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.oliveoa.pojo.LeaveApplication" >
+    update tb_leave_application
+    <set >
+      <if test="eid != null" >
+        eid = #{eid,jdbcType=VARCHAR},
+      </if>
+      <if test="begintime != null" >
+        begintime = #{begintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        endtime = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="normalRest != null" >
+        normal_rest = #{normalRest,jdbcType=DATE},
+      </if>
+      <if test="swapRest != null" >
+        swap_rest = #{swapRest,jdbcType=DATE},
+      </if>
+      <if test="shouldRest != null" >
+        should_rest = #{shouldRest,jdbcType=DATE},
+      </if>
+      <if test="supplementRest != null" >
+        supplement_rest = #{supplementRest,jdbcType=DATE},
+      </if>
+      <if test="orderby != null" >
+        orderBy = #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = now(),
+      </if>
+    </set>
+    where laid = #{laid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.oliveoa.pojo.LeaveApplication" >
+    update tb_leave_application
+    set eid = #{eid,jdbcType=VARCHAR},
+      begintime = #{begintime,jdbcType=TIMESTAMP},
+      endtime = #{endtime,jdbcType=TIMESTAMP},
+      type = #{type,jdbcType=INTEGER},
+      normal_rest = #{normalRest,jdbcType=DATE},
+      swap_rest = #{swapRest,jdbcType=DATE},
+      should_rest = #{shouldRest,jdbcType=DATE},
+      supplement_rest = #{supplementRest,jdbcType=DATE},
+      orderBy = #{orderby,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = now()
+    where laid = #{laid,jdbcType=VARCHAR}
+  </update>
+</mapper>

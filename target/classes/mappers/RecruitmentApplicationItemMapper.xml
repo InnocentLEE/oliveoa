@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oliveoa.dao.RecruitmentApplicationItemMapper" >
+  <resultMap id="BaseResultMap" type="com.oliveoa.pojo.RecruitmentApplicationItem" >
+    <constructor >
+      <idArg column="raiid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="raid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="pcid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="number" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="position_describe" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="position_request" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="salary" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="orderBy" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="createtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="updatetime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    raiid, raid, pcid, number, position_describe, position_request, salary, orderBy, 
+    createtime, updatetime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_recruitment_application_item
+    where raiid = #{raiid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_recruitment_application_item
+    where raiid = #{raiid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.oliveoa.pojo.RecruitmentApplicationItem" >
+    insert into tb_recruitment_application_item (raiid, raid, pcid, 
+      number, position_describe, position_request, 
+      salary, orderBy, createtime, 
+      updatetime)
+    values (#{raiid,jdbcType=VARCHAR}, #{raid,jdbcType=VARCHAR}, #{pcid,jdbcType=VARCHAR}, 
+      #{number,jdbcType=INTEGER}, #{positionDescribe,jdbcType=VARCHAR}, #{positionRequest,jdbcType=VARCHAR}, 
+      #{salary,jdbcType=VARCHAR}, #{orderby,jdbcType=INTEGER}, now(),
+      now())
+  </insert>
+  <insert id="insertSelective" parameterType="com.oliveoa.pojo.RecruitmentApplicationItem" >
+    insert into tb_recruitment_application_item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="raiid != null" >
+        raiid,
+      </if>
+      <if test="raid != null" >
+        raid,
+      </if>
+      <if test="pcid != null" >
+        pcid,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="positionDescribe != null" >
+        position_describe,
+      </if>
+      <if test="positionRequest != null" >
+        position_request,
+      </if>
+      <if test="salary != null" >
+        salary,
+      </if>
+      <if test="orderby != null" >
+        orderBy,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="raiid != null" >
+        #{raiid,jdbcType=VARCHAR},
+      </if>
+      <if test="raid != null" >
+        #{raid,jdbcType=VARCHAR},
+      </if>
+      <if test="pcid != null" >
+        #{pcid,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="positionDescribe != null" >
+        #{positionDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="positionRequest != null" >
+        #{positionRequest,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null" >
+        #{salary,jdbcType=VARCHAR},
+      </if>
+      <if test="orderby != null" >
+        #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        now(),
+      </if>
+      <if test="updatetime != null" >
+        now(),
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.oliveoa.pojo.RecruitmentApplicationItem" >
+    update tb_recruitment_application_item
+    <set >
+      <if test="raid != null" >
+        raid = #{raid,jdbcType=VARCHAR},
+      </if>
+      <if test="pcid != null" >
+        pcid = #{pcid,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="positionDescribe != null" >
+        position_describe = #{positionDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="positionRequest != null" >
+        position_request = #{positionRequest,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null" >
+        salary = #{salary,jdbcType=VARCHAR},
+      </if>
+      <if test="orderby != null" >
+        orderBy = #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = now(),
+      </if>
+    </set>
+    where raiid = #{raiid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.oliveoa.pojo.RecruitmentApplicationItem" >
+    update tb_recruitment_application_item
+    set raid = #{raid,jdbcType=VARCHAR},
+      pcid = #{pcid,jdbcType=VARCHAR},
+      number = #{number,jdbcType=INTEGER},
+      position_describe = #{positionDescribe,jdbcType=VARCHAR},
+      position_request = #{positionRequest,jdbcType=VARCHAR},
+      salary = #{salary,jdbcType=VARCHAR},
+      orderBy = #{orderby,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = now()
+    where raiid = #{raiid,jdbcType=VARCHAR}
+  </update>
+</mapper>

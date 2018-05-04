@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oliveoa.dao.JobTransferApplicationApprovedOpinionMapper" >
+  <resultMap id="BaseResultMap" type="com.oliveoa.pojo.JobTransferApplicationApprovedOpinion" >
+    <constructor >
+      <idArg column="jtaaocid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="jtaaopid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="jtaid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="eid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="isApproved" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="opinion" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="orderBy" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="createtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="updatetime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    jtaaocid, jtaaopid, jtaid, eid, isApproved, opinion, orderBy, createtime, updatetime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_job_transfer_application_approved_opinion
+    where jtaaocid = #{jtaaocid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_job_transfer_application_approved_opinion
+    where jtaaocid = #{jtaaocid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.oliveoa.pojo.JobTransferApplicationApprovedOpinion" >
+    insert into tb_job_transfer_application_approved_opinion (jtaaocid, jtaaopid, jtaid, 
+      eid, isApproved, opinion, 
+      orderBy, createtime, updatetime
+      )
+    values (#{jtaaocid,jdbcType=VARCHAR}, #{jtaaopid,jdbcType=VARCHAR}, #{jtaid,jdbcType=VARCHAR}, 
+      #{eid,jdbcType=VARCHAR}, #{isapproved,jdbcType=INTEGER}, #{opinion,jdbcType=VARCHAR}, 
+      #{orderby,jdbcType=INTEGER}, now(), now()
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.oliveoa.pojo.JobTransferApplicationApprovedOpinion" >
+    insert into tb_job_transfer_application_approved_opinion
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="jtaaocid != null" >
+        jtaaocid,
+      </if>
+      <if test="jtaaopid != null" >
+        jtaaopid,
+      </if>
+      <if test="jtaid != null" >
+        jtaid,
+      </if>
+      <if test="eid != null" >
+        eid,
+      </if>
+      <if test="isapproved != null" >
+        isApproved,
+      </if>
+      <if test="opinion != null" >
+        opinion,
+      </if>
+      <if test="orderby != null" >
+        orderBy,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="jtaaocid != null" >
+        #{jtaaocid,jdbcType=VARCHAR},
+      </if>
+      <if test="jtaaopid != null" >
+        #{jtaaopid,jdbcType=VARCHAR},
+      </if>
+      <if test="jtaid != null" >
+        #{jtaid,jdbcType=VARCHAR},
+      </if>
+      <if test="eid != null" >
+        #{eid,jdbcType=VARCHAR},
+      </if>
+      <if test="isapproved != null" >
+        #{isapproved,jdbcType=INTEGER},
+      </if>
+      <if test="opinion != null" >
+        #{opinion,jdbcType=VARCHAR},
+      </if>
+      <if test="orderby != null" >
+        #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        now(),
+      </if>
+      <if test="updatetime != null" >
+        now(),
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.oliveoa.pojo.JobTransferApplicationApprovedOpinion" >
+    update tb_job_transfer_application_approved_opinion
+    <set >
+      <if test="jtaaopid != null" >
+        jtaaopid = #{jtaaopid,jdbcType=VARCHAR},
+      </if>
+      <if test="jtaid != null" >
+        jtaid = #{jtaid,jdbcType=VARCHAR},
+      </if>
+      <if test="eid != null" >
+        eid = #{eid,jdbcType=VARCHAR},
+      </if>
+      <if test="isapproved != null" >
+        isApproved = #{isapproved,jdbcType=INTEGER},
+      </if>
+      <if test="opinion != null" >
+        opinion = #{opinion,jdbcType=VARCHAR},
+      </if>
+      <if test="orderby != null" >
+        orderBy = #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = now(),
+      </if>
+    </set>
+    where jtaaocid = #{jtaaocid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.oliveoa.pojo.JobTransferApplicationApprovedOpinion" >
+    update tb_job_transfer_application_approved_opinion
+    set jtaaopid = #{jtaaopid,jdbcType=VARCHAR},
+      jtaid = #{jtaid,jdbcType=VARCHAR},
+      eid = #{eid,jdbcType=VARCHAR},
+      isApproved = #{isapproved,jdbcType=INTEGER},
+      opinion = #{opinion,jdbcType=VARCHAR},
+      orderBy = #{orderby,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = now()
+    where jtaaocid = #{jtaaocid,jdbcType=VARCHAR}
+  </update>
+</mapper>

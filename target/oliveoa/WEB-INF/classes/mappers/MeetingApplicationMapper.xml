@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oliveoa.dao.MeetingApplicationMapper" >
+  <resultMap id="BaseResultMap" type="com.oliveoa.pojo.MeetingApplication" >
+    <constructor >
+      <idArg column="maid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="eid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="theme" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="begintime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="endtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="place" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="isApproved" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="opinion" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="orderBy" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="createtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="updatetime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    maid, eid, theme, begintime, endtime, place, isApproved, opinion, orderBy, createtime, 
+    updatetime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_meeting_application
+    where maid = #{maid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_meeting_application
+    where maid = #{maid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.oliveoa.pojo.MeetingApplication" >
+    insert into tb_meeting_application (maid, eid, theme, 
+      begintime, endtime, place, 
+      isApproved, opinion, orderBy, 
+      createtime, updatetime)
+    values (#{maid,jdbcType=VARCHAR}, #{eid,jdbcType=VARCHAR}, #{theme,jdbcType=VARCHAR}, 
+      #{begintime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, #{place,jdbcType=VARCHAR}, 
+      #{isapproved,jdbcType=INTEGER}, #{opinion,jdbcType=VARCHAR}, #{orderby,jdbcType=INTEGER}, 
+      now(), now())
+  </insert>
+  <insert id="insertSelective" parameterType="com.oliveoa.pojo.MeetingApplication" >
+    insert into tb_meeting_application
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="maid != null" >
+        maid,
+      </if>
+      <if test="eid != null" >
+        eid,
+      </if>
+      <if test="theme != null" >
+        theme,
+      </if>
+      <if test="begintime != null" >
+        begintime,
+      </if>
+      <if test="endtime != null" >
+        endtime,
+      </if>
+      <if test="place != null" >
+        place,
+      </if>
+      <if test="isapproved != null" >
+        isApproved,
+      </if>
+      <if test="opinion != null" >
+        opinion,
+      </if>
+      <if test="orderby != null" >
+        orderBy,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="maid != null" >
+        #{maid,jdbcType=VARCHAR},
+      </if>
+      <if test="eid != null" >
+        #{eid,jdbcType=VARCHAR},
+      </if>
+      <if test="theme != null" >
+        #{theme,jdbcType=VARCHAR},
+      </if>
+      <if test="begintime != null" >
+        #{begintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="place != null" >
+        #{place,jdbcType=VARCHAR},
+      </if>
+      <if test="isapproved != null" >
+        #{isapproved,jdbcType=INTEGER},
+      </if>
+      <if test="opinion != null" >
+        #{opinion,jdbcType=VARCHAR},
+      </if>
+      <if test="orderby != null" >
+        #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        now(),
+      </if>
+      <if test="updatetime != null" >
+        now(),
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.oliveoa.pojo.MeetingApplication" >
+    update tb_meeting_application
+    <set >
+      <if test="eid != null" >
+        eid = #{eid,jdbcType=VARCHAR},
+      </if>
+      <if test="theme != null" >
+        theme = #{theme,jdbcType=VARCHAR},
+      </if>
+      <if test="begintime != null" >
+        begintime = #{begintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        endtime = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="place != null" >
+        place = #{place,jdbcType=VARCHAR},
+      </if>
+      <if test="isapproved != null" >
+        isApproved = #{isapproved,jdbcType=INTEGER},
+      </if>
+      <if test="opinion != null" >
+        opinion = #{opinion,jdbcType=VARCHAR},
+      </if>
+      <if test="orderby != null" >
+        orderBy = #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = now(),
+      </if>
+    </set>
+    where maid = #{maid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.oliveoa.pojo.MeetingApplication" >
+    update tb_meeting_application
+    set eid = #{eid,jdbcType=VARCHAR},
+      theme = #{theme,jdbcType=VARCHAR},
+      begintime = #{begintime,jdbcType=TIMESTAMP},
+      endtime = #{endtime,jdbcType=TIMESTAMP},
+      place = #{place,jdbcType=VARCHAR},
+      isApproved = #{isapproved,jdbcType=INTEGER},
+      opinion = #{opinion,jdbcType=VARCHAR},
+      orderBy = #{orderby,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = now()
+    where maid = #{maid,jdbcType=VARCHAR}
+  </update>
+</mapper>

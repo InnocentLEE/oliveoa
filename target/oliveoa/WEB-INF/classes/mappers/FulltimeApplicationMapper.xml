@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oliveoa.dao.FulltimeApplicationMapper" >
+  <resultMap id="BaseResultMap" type="com.oliveoa.pojo.FulltimeApplication" >
+    <constructor >
+      <idArg column="faid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="eid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="begintime" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="endtime" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="personal_summary" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="orderBy" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="createtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="updatetime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    faid, eid, begintime, endtime, personal_summary, orderBy, createtime, updatetime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_fulltime_application
+    where faid = #{faid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_fulltime_application
+    where faid = #{faid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.oliveoa.pojo.FulltimeApplication" >
+    insert into tb_fulltime_application (faid, eid, begintime, 
+      endtime, personal_summary, orderBy, 
+      createtime, updatetime)
+    values (#{faid,jdbcType=VARCHAR}, #{eid,jdbcType=VARCHAR}, #{begintime,jdbcType=DATE}, 
+      #{endtime,jdbcType=DATE}, #{personalSummary,jdbcType=VARCHAR}, #{orderby,jdbcType=INTEGER}, 
+     now(), now())
+  </insert>
+  <insert id="insertSelective" parameterType="com.oliveoa.pojo.FulltimeApplication" >
+    insert into tb_fulltime_application
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="faid != null" >
+        faid,
+      </if>
+      <if test="eid != null" >
+        eid,
+      </if>
+      <if test="begintime != null" >
+        begintime,
+      </if>
+      <if test="endtime != null" >
+        endtime,
+      </if>
+      <if test="personalSummary != null" >
+        personal_summary,
+      </if>
+      <if test="orderby != null" >
+        orderBy,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="faid != null" >
+        #{faid,jdbcType=VARCHAR},
+      </if>
+      <if test="eid != null" >
+        #{eid,jdbcType=VARCHAR},
+      </if>
+      <if test="begintime != null" >
+        #{begintime,jdbcType=DATE},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=DATE},
+      </if>
+      <if test="personalSummary != null" >
+        #{personalSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="orderby != null" >
+        #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        now(),
+      </if>
+      <if test="updatetime != null" >
+        now(),
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.oliveoa.pojo.FulltimeApplication" >
+    update tb_fulltime_application
+    <set >
+      <if test="eid != null" >
+        eid = #{eid,jdbcType=VARCHAR},
+      </if>
+      <if test="begintime != null" >
+        begintime = #{begintime,jdbcType=DATE},
+      </if>
+      <if test="endtime != null" >
+        endtime = #{endtime,jdbcType=DATE},
+      </if>
+      <if test="personalSummary != null" >
+        personal_summary = #{personalSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="orderby != null" >
+        orderBy = #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = now(),
+      </if>
+    </set>
+    where faid = #{faid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.oliveoa.pojo.FulltimeApplication" >
+    update tb_fulltime_application
+    set eid = #{eid,jdbcType=VARCHAR},
+      begintime = #{begintime,jdbcType=DATE},
+      endtime = #{endtime,jdbcType=DATE},
+      personal_summary = #{personalSummary,jdbcType=VARCHAR},
+      orderBy = #{orderby,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = now()
+    where faid = #{faid,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oliveoa.dao.GoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.oliveoa.pojo.Goods" >
+    <constructor >
+      <idArg column="gid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="describe" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="total" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="remaining" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="pcid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="orderBy" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="createtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="updatetime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    gid, name, describe, total, remaining, pcid, orderBy, createtime, updatetime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_goods
+    where gid = #{gid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_goods
+    where gid = #{gid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.oliveoa.pojo.Goods" >
+    insert into tb_goods (gid, name, describe, 
+      total, remaining, pcid, 
+      orderBy, createtime, updatetime
+      )
+    values (#{gid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{describe,jdbcType=VARCHAR}, 
+      #{total,jdbcType=INTEGER}, #{remaining,jdbcType=INTEGER}, #{pcid,jdbcType=VARCHAR}, 
+      #{orderby,jdbcType=INTEGER}, now(), now()
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.oliveoa.pojo.Goods" >
+    insert into tb_goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="gid != null" >
+        gid,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="describe != null" >
+        describe,
+      </if>
+      <if test="total != null" >
+        total,
+      </if>
+      <if test="remaining != null" >
+        remaining,
+      </if>
+      <if test="pcid != null" >
+        pcid,
+      </if>
+      <if test="orderby != null" >
+        orderBy,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="gid != null" >
+        #{gid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="describe != null" >
+        #{describe,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null" >
+        #{total,jdbcType=INTEGER},
+      </if>
+      <if test="remaining != null" >
+        #{remaining,jdbcType=INTEGER},
+      </if>
+      <if test="pcid != null" >
+        #{pcid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderby != null" >
+        #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        now(),
+      </if>
+      <if test="updatetime != null" >
+        now(),
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.oliveoa.pojo.Goods" >
+    update tb_goods
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="describe != null" >
+        describe = #{describe,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null" >
+        total = #{total,jdbcType=INTEGER},
+      </if>
+      <if test="remaining != null" >
+        remaining = #{remaining,jdbcType=INTEGER},
+      </if>
+      <if test="pcid != null" >
+        pcid = #{pcid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderby != null" >
+        orderBy = #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = now(),
+      </if>
+    </set>
+    where gid = #{gid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.oliveoa.pojo.Goods" >
+    update tb_goods
+    set name = #{name,jdbcType=VARCHAR},
+      describe = #{describe,jdbcType=VARCHAR},
+      total = #{total,jdbcType=INTEGER},
+      remaining = #{remaining,jdbcType=INTEGER},
+      pcid = #{pcid,jdbcType=VARCHAR},
+      orderBy = #{orderby,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = now()
+    where gid = #{gid,jdbcType=VARCHAR}
+  </update>
+</mapper>

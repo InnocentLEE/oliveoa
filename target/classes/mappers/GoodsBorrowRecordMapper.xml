@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oliveoa.dao.GoodsBorrowRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.oliveoa.pojo.GoodsBorrowRecord" >
+    <constructor >
+      <idArg column="rid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="eid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="gid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="number" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="borrowtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="returntime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="limittime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="orderBy" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="createtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="updatetime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    rid, eid, gid, number, borrowtime, returntime, limittime, orderBy, createtime, updatetime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_goods_borrow_record
+    where rid = #{rid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_goods_borrow_record
+    where rid = #{rid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.oliveoa.pojo.GoodsBorrowRecord" >
+    insert into tb_goods_borrow_record (rid, eid, gid, 
+      number, borrowtime, returntime, 
+      limittime, orderBy, createtime, 
+      updatetime)
+    values (#{rid,jdbcType=VARCHAR}, #{eid,jdbcType=VARCHAR}, #{gid,jdbcType=VARCHAR}, 
+      #{number,jdbcType=INTEGER}, #{borrowtime,jdbcType=TIMESTAMP}, #{returntime,jdbcType=TIMESTAMP}, 
+      #{limittime,jdbcType=TIMESTAMP}, #{orderby,jdbcType=INTEGER}, now(),
+      now())
+  </insert>
+  <insert id="insertSelective" parameterType="com.oliveoa.pojo.GoodsBorrowRecord" >
+    insert into tb_goods_borrow_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rid != null" >
+        rid,
+      </if>
+      <if test="eid != null" >
+        eid,
+      </if>
+      <if test="gid != null" >
+        gid,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="borrowtime != null" >
+        borrowtime,
+      </if>
+      <if test="returntime != null" >
+        returntime,
+      </if>
+      <if test="limittime != null" >
+        limittime,
+      </if>
+      <if test="orderby != null" >
+        orderBy,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rid != null" >
+        #{rid,jdbcType=VARCHAR},
+      </if>
+      <if test="eid != null" >
+        #{eid,jdbcType=VARCHAR},
+      </if>
+      <if test="gid != null" >
+        #{gid,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="borrowtime != null" >
+        #{borrowtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="returntime != null" >
+        #{returntime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="limittime != null" >
+        #{limittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderby != null" >
+        #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        now(),
+      </if>
+      <if test="updatetime != null" >
+        now(),
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.oliveoa.pojo.GoodsBorrowRecord" >
+    update tb_goods_borrow_record
+    <set >
+      <if test="eid != null" >
+        eid = #{eid,jdbcType=VARCHAR},
+      </if>
+      <if test="gid != null" >
+        gid = #{gid,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="borrowtime != null" >
+        borrowtime = #{borrowtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="returntime != null" >
+        returntime = #{returntime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="limittime != null" >
+        limittime = #{limittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderby != null" >
+        orderBy = #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = now(),
+      </if>
+    </set>
+    where rid = #{rid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.oliveoa.pojo.GoodsBorrowRecord" >
+    update tb_goods_borrow_record
+    set eid = #{eid,jdbcType=VARCHAR},
+      gid = #{gid,jdbcType=VARCHAR},
+      number = #{number,jdbcType=INTEGER},
+      borrowtime = #{borrowtime,jdbcType=TIMESTAMP},
+      returntime = #{returntime,jdbcType=TIMESTAMP},
+      limittime = #{limittime,jdbcType=TIMESTAMP},
+      orderBy = #{orderby,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = now()
+    where rid = #{rid,jdbcType=VARCHAR}
+  </update>
+</mapper>

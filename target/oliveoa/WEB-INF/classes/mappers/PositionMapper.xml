@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oliveoa.dao.PositionMapper" >
+  <resultMap id="BaseResultMap" type="com.oliveoa.pojo.Position" >
+    <constructor >
+      <idArg column="pcid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ppid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="dcid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="limit" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="orderBy" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="createtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="updatetime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pcid, ppid, name, dcid, limit, orderBy, createtime, updatetime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_position
+    where pcid = #{pcid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_position
+    where pcid = #{pcid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.oliveoa.pojo.Position" >
+    insert into tb_position (pcid, ppid, name, 
+      dcid, limit, orderBy, 
+      createtime, updatetime)
+    values (#{pcid,jdbcType=VARCHAR}, #{ppid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{dcid,jdbcType=VARCHAR}, #{limit,jdbcType=INTEGER}, #{orderby,jdbcType=INTEGER}, 
+      now(), now())
+  </insert>
+  <insert id="insertSelective" parameterType="com.oliveoa.pojo.Position" >
+    insert into tb_position
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pcid != null" >
+        pcid,
+      </if>
+      <if test="ppid != null" >
+        ppid,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="dcid != null" >
+        dcid,
+      </if>
+      <if test="limit != null" >
+        limit,
+      </if>
+      <if test="orderby != null" >
+        orderBy,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pcid != null" >
+        #{pcid,jdbcType=VARCHAR},
+      </if>
+      <if test="ppid != null" >
+        #{ppid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="dcid != null" >
+        #{dcid,jdbcType=VARCHAR},
+      </if>
+      <if test="limit != null" >
+        #{limit,jdbcType=INTEGER},
+      </if>
+      <if test="orderby != null" >
+        #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        now(),
+      </if>
+      <if test="updatetime != null" >
+        now(),
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.oliveoa.pojo.Position" >
+    update tb_position
+    <set >
+      <if test="ppid != null" >
+        ppid = #{ppid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="dcid != null" >
+        dcid = #{dcid,jdbcType=VARCHAR},
+      </if>
+      <if test="limit != null" >
+        limit = #{limit,jdbcType=INTEGER},
+      </if>
+      <if test="orderby != null" >
+        orderBy = #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = now(),
+      </if>
+    </set>
+    where pcid = #{pcid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.oliveoa.pojo.Position" >
+    update tb_position
+    set ppid = #{ppid,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      dcid = #{dcid,jdbcType=VARCHAR},
+      limit = #{limit,jdbcType=INTEGER},
+      orderBy = #{orderby,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = now()
+    where pcid = #{pcid,jdbcType=VARCHAR}
+  </update>
+</mapper>

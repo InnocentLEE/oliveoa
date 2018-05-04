@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oliveoa.dao.GoodsApplicationItemMapper" >
+  <resultMap id="BaseResultMap" type="com.oliveoa.pojo.GoodsApplicationItem" >
+    <constructor >
+      <idArg column="gaiid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="gaid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="gid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="number" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="orderBy" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="createtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="updatetime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    gaiid, gaid, gid, number, orderBy, createtime, updatetime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_goods_application_item
+    where gaiid = #{gaiid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_goods_application_item
+    where gaiid = #{gaiid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.oliveoa.pojo.GoodsApplicationItem" >
+    insert into tb_goods_application_item (gaiid, gaid, gid, 
+      number, orderBy, createtime, 
+      updatetime)
+    values (#{gaiid,jdbcType=VARCHAR}, #{gaid,jdbcType=VARCHAR}, #{gid,jdbcType=VARCHAR}, 
+      #{number,jdbcType=INTEGER}, #{orderby,jdbcType=INTEGER}, now(),
+      now())
+  </insert>
+  <insert id="insertSelective" parameterType="com.oliveoa.pojo.GoodsApplicationItem" >
+    insert into tb_goods_application_item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="gaiid != null" >
+        gaiid,
+      </if>
+      <if test="gaid != null" >
+        gaid,
+      </if>
+      <if test="gid != null" >
+        gid,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="orderby != null" >
+        orderBy,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="gaiid != null" >
+        #{gaiid,jdbcType=VARCHAR},
+      </if>
+      <if test="gaid != null" >
+        #{gaid,jdbcType=VARCHAR},
+      </if>
+      <if test="gid != null" >
+        #{gid,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="orderby != null" >
+        #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        now(),
+      </if>
+      <if test="updatetime != null" >
+        now(),
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.oliveoa.pojo.GoodsApplicationItem" >
+    update tb_goods_application_item
+    <set >
+      <if test="gaid != null" >
+        gaid = #{gaid,jdbcType=VARCHAR},
+      </if>
+      <if test="gid != null" >
+        gid = #{gid,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="orderby != null" >
+        orderBy = #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = now(),
+      </if>
+    </set>
+    where gaiid = #{gaiid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.oliveoa.pojo.GoodsApplicationItem" >
+    update tb_goods_application_item
+    set gaid = #{gaid,jdbcType=VARCHAR},
+      gid = #{gid,jdbcType=VARCHAR},
+      number = #{number,jdbcType=INTEGER},
+      orderBy = #{orderby,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = now()
+    where gaiid = #{gaiid,jdbcType=VARCHAR}
+  </update>
+</mapper>

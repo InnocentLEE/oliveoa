@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oliveoa.dao.LeaveOfficeApplicationMapper" >
+  <resultMap id="BaseResultMap" type="com.oliveoa.pojo.LeaveOfficeApplication" >
+    <constructor >
+      <idArg column="loaid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="eid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="leavetime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="reason" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="handover_matters" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="orderBy" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="createtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="updatetime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    loaid, eid, leavetime, reason, handover_matters, orderBy, createtime, updatetime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_leave_office_application
+    where loaid = #{loaid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_leave_office_application
+    where loaid = #{loaid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.oliveoa.pojo.LeaveOfficeApplication" >
+    insert into tb_leave_office_application (loaid, eid, leavetime, 
+      reason, handover_matters, orderBy, 
+      createtime, updatetime)
+    values (#{loaid,jdbcType=VARCHAR}, #{eid,jdbcType=VARCHAR}, #{leavetime,jdbcType=TIMESTAMP}, 
+      #{reason,jdbcType=VARCHAR}, #{handoverMatters,jdbcType=VARCHAR}, #{orderby,jdbcType=INTEGER}, 
+      now(), now())
+  </insert>
+  <insert id="insertSelective" parameterType="com.oliveoa.pojo.LeaveOfficeApplication" >
+    insert into tb_leave_office_application
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="loaid != null" >
+        loaid,
+      </if>
+      <if test="eid != null" >
+        eid,
+      </if>
+      <if test="leavetime != null" >
+        leavetime,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+      <if test="handoverMatters != null" >
+        handover_matters,
+      </if>
+      <if test="orderby != null" >
+        orderBy,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="loaid != null" >
+        #{loaid,jdbcType=VARCHAR},
+      </if>
+      <if test="eid != null" >
+        #{eid,jdbcType=VARCHAR},
+      </if>
+      <if test="leavetime != null" >
+        #{leavetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="handoverMatters != null" >
+        #{handoverMatters,jdbcType=VARCHAR},
+      </if>
+      <if test="orderby != null" >
+        #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        now(),
+      </if>
+      <if test="updatetime != null" >
+        now(),
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.oliveoa.pojo.LeaveOfficeApplication" >
+    update tb_leave_office_application
+    <set >
+      <if test="eid != null" >
+        eid = #{eid,jdbcType=VARCHAR},
+      </if>
+      <if test="leavetime != null" >
+        leavetime = #{leavetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="handoverMatters != null" >
+        handover_matters = #{handoverMatters,jdbcType=VARCHAR},
+      </if>
+      <if test="orderby != null" >
+        orderBy = #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = now(),
+      </if>
+    </set>
+    where loaid = #{loaid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.oliveoa.pojo.LeaveOfficeApplication" >
+    update tb_leave_office_application
+    set eid = #{eid,jdbcType=VARCHAR},
+      leavetime = #{leavetime,jdbcType=TIMESTAMP},
+      reason = #{reason,jdbcType=VARCHAR},
+      handover_matters = #{handoverMatters,jdbcType=VARCHAR},
+      orderBy = #{orderby,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = now()
+    where loaid = #{loaid,jdbcType=VARCHAR}
+  </update>
+</mapper>

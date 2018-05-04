@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oliveoa.dao.EmployeesMapper" >
+  <resultMap id="BaseResultMap" type="com.oliveoa.pojo.Employees" >
+    <constructor >
+      <idArg column="eid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="dcid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="pcid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sex" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="birth" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="tel" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="email" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="address" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="orderBy" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="createtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="updatetime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    eid, dcid, pcid, id, name, sex, birth, tel, email, address, orderBy, createtime, 
+    updatetime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_employees
+    where eid = #{eid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_employees
+    where eid = #{eid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.oliveoa.pojo.Employees" >
+    insert into tb_employees (eid, dcid, pcid, 
+      id, name, sex, birth, 
+      tel, email, address, 
+      orderBy, createtime, updatetime
+      )
+    values (#{eid,jdbcType=VARCHAR}, #{dcid,jdbcType=VARCHAR}, #{pcid,jdbcType=VARCHAR}, 
+      #{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{birth,jdbcType=VARCHAR}, 
+      #{tel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{orderby,jdbcType=INTEGER}, now(), now()
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.oliveoa.pojo.Employees" >
+    insert into tb_employees
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="eid != null" >
+        eid,
+      </if>
+      <if test="dcid != null" >
+        dcid,
+      </if>
+      <if test="pcid != null" >
+        pcid,
+      </if>
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="birth != null" >
+        birth,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="orderby != null" >
+        orderBy,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="eid != null" >
+        #{eid,jdbcType=VARCHAR},
+      </if>
+      <if test="dcid != null" >
+        #{dcid,jdbcType=VARCHAR},
+      </if>
+      <if test="pcid != null" >
+        #{pcid,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birth != null" >
+        #{birth,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="orderby != null" >
+        #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        now(),
+      </if>
+      <if test="updatetime != null" >
+        now(),
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.oliveoa.pojo.Employees" >
+    update tb_employees
+    <set >
+      <if test="dcid != null" >
+        dcid = #{dcid,jdbcType=VARCHAR},
+      </if>
+      <if test="pcid != null" >
+        pcid = #{pcid,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null" >
+        id = #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birth != null" >
+        birth = #{birth,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="orderby != null" >
+        orderBy = #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = now(),
+      </if>
+    </set>
+    where eid = #{eid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.oliveoa.pojo.Employees" >
+    update tb_employees
+    set dcid = #{dcid,jdbcType=VARCHAR},
+      pcid = #{pcid,jdbcType=VARCHAR},
+      id = #{id,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      birth = #{birth,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      orderBy = #{orderby,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = now()
+    where eid = #{eid,jdbcType=VARCHAR}
+  </update>
+</mapper>

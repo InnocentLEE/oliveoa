@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oliveoa.dao.OfficialDocumentMapper" >
+  <resultMap id="BaseResultMap" type="com.oliveoa.pojo.OfficialDocument" >
+    <constructor >
+      <idArg column="odid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="draft_eid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="content" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="fid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="title" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="nuclear_draft_eid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="nuclear_draft_isApproved" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="nuclear_draft_opinion" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="issued_eid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="issued_isApproved" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="issued_opinion" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="orderBy" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="createtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="updatetime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    odid, draft_eid, content, fid, title, nuclear_draft_eid, nuclear_draft_isApproved, 
+    nuclear_draft_opinion, issued_eid, issued_isApproved, issued_opinion, orderBy, createtime, 
+    updatetime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_official_document
+    where odid = #{odid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_official_document
+    where odid = #{odid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.oliveoa.pojo.OfficialDocument" >
+    insert into tb_official_document (odid, draft_eid, content, 
+      fid, title, nuclear_draft_eid, 
+      nuclear_draft_isApproved, nuclear_draft_opinion, 
+      issued_eid, issued_isApproved, issued_opinion, 
+      orderBy, createtime, updatetime
+      )
+    values (#{odid,jdbcType=VARCHAR}, #{draftEid,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{fid,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{nuclearDraftEid,jdbcType=VARCHAR}, 
+      #{nuclearDraftIsapproved,jdbcType=INTEGER}, #{nuclearDraftOpinion,jdbcType=VARCHAR}, 
+      #{issuedEid,jdbcType=VARCHAR}, #{issuedIsapproved,jdbcType=INTEGER}, #{issuedOpinion,jdbcType=VARCHAR}, 
+      #{orderby,jdbcType=INTEGER}, now(), now()
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.oliveoa.pojo.OfficialDocument" >
+    insert into tb_official_document
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="odid != null" >
+        odid,
+      </if>
+      <if test="draftEid != null" >
+        draft_eid,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="fid != null" >
+        fid,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="nuclearDraftEid != null" >
+        nuclear_draft_eid,
+      </if>
+      <if test="nuclearDraftIsapproved != null" >
+        nuclear_draft_isApproved,
+      </if>
+      <if test="nuclearDraftOpinion != null" >
+        nuclear_draft_opinion,
+      </if>
+      <if test="issuedEid != null" >
+        issued_eid,
+      </if>
+      <if test="issuedIsapproved != null" >
+        issued_isApproved,
+      </if>
+      <if test="issuedOpinion != null" >
+        issued_opinion,
+      </if>
+      <if test="orderby != null" >
+        orderBy,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="odid != null" >
+        #{odid,jdbcType=VARCHAR},
+      </if>
+      <if test="draftEid != null" >
+        #{draftEid,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="fid != null" >
+        #{fid,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="nuclearDraftEid != null" >
+        #{nuclearDraftEid,jdbcType=VARCHAR},
+      </if>
+      <if test="nuclearDraftIsapproved != null" >
+        #{nuclearDraftIsapproved,jdbcType=INTEGER},
+      </if>
+      <if test="nuclearDraftOpinion != null" >
+        #{nuclearDraftOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="issuedEid != null" >
+        #{issuedEid,jdbcType=VARCHAR},
+      </if>
+      <if test="issuedIsapproved != null" >
+        #{issuedIsapproved,jdbcType=INTEGER},
+      </if>
+      <if test="issuedOpinion != null" >
+        #{issuedOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="orderby != null" >
+        #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        now(),
+      </if>
+      <if test="updatetime != null" >
+        now(),
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.oliveoa.pojo.OfficialDocument" >
+    update tb_official_document
+    <set >
+      <if test="draftEid != null" >
+        draft_eid = #{draftEid,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="fid != null" >
+        fid = #{fid,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="nuclearDraftEid != null" >
+        nuclear_draft_eid = #{nuclearDraftEid,jdbcType=VARCHAR},
+      </if>
+      <if test="nuclearDraftIsapproved != null" >
+        nuclear_draft_isApproved = #{nuclearDraftIsapproved,jdbcType=INTEGER},
+      </if>
+      <if test="nuclearDraftOpinion != null" >
+        nuclear_draft_opinion = #{nuclearDraftOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="issuedEid != null" >
+        issued_eid = #{issuedEid,jdbcType=VARCHAR},
+      </if>
+      <if test="issuedIsapproved != null" >
+        issued_isApproved = #{issuedIsapproved,jdbcType=INTEGER},
+      </if>
+      <if test="issuedOpinion != null" >
+        issued_opinion = #{issuedOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="orderby != null" >
+        orderBy = #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = now(),
+      </if>
+    </set>
+    where odid = #{odid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.oliveoa.pojo.OfficialDocument" >
+    update tb_official_document
+    set draft_eid = #{draftEid,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      fid = #{fid,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      nuclear_draft_eid = #{nuclearDraftEid,jdbcType=VARCHAR},
+      nuclear_draft_isApproved = #{nuclearDraftIsapproved,jdbcType=INTEGER},
+      nuclear_draft_opinion = #{nuclearDraftOpinion,jdbcType=VARCHAR},
+      issued_eid = #{issuedEid,jdbcType=VARCHAR},
+      issued_isApproved = #{issuedIsapproved,jdbcType=INTEGER},
+      issued_opinion = #{issuedOpinion,jdbcType=VARCHAR},
+      orderBy = #{orderby,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = now()
+    where odid = #{odid,jdbcType=VARCHAR}
+  </update>
+</mapper>

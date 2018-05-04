@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oliveoa.dao.OfficialDocumentIssuedMapper" >
+  <resultMap id="BaseResultMap" type="com.oliveoa.pojo.OfficialDocumentIssued" >
+    <constructor >
+      <idArg column="odiid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="oiid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="dcid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="isReceive" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="orderBy" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="createtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="updatetime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    odiid, oiid, dcid, isReceive, orderBy, createtime, updatetime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_official_document_issued
+    where odiid = #{odiid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_official_document_issued
+    where odiid = #{odiid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.oliveoa.pojo.OfficialDocumentIssued" >
+    insert into tb_official_document_issued (odiid, oiid, dcid, 
+      isReceive, orderBy, createtime, 
+      updatetime)
+    values (#{odiid,jdbcType=VARCHAR}, #{oiid,jdbcType=VARCHAR}, #{dcid,jdbcType=VARCHAR}, 
+      #{isreceive,jdbcType=INTEGER}, #{orderby,jdbcType=INTEGER}, now(),
+      now())
+  </insert>
+  <insert id="insertSelective" parameterType="com.oliveoa.pojo.OfficialDocumentIssued" >
+    insert into tb_official_document_issued
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="odiid != null" >
+        odiid,
+      </if>
+      <if test="oiid != null" >
+        oiid,
+      </if>
+      <if test="dcid != null" >
+        dcid,
+      </if>
+      <if test="isreceive != null" >
+        isReceive,
+      </if>
+      <if test="orderby != null" >
+        orderBy,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="odiid != null" >
+        #{odiid,jdbcType=VARCHAR},
+      </if>
+      <if test="oiid != null" >
+        #{oiid,jdbcType=VARCHAR},
+      </if>
+      <if test="dcid != null" >
+        #{dcid,jdbcType=VARCHAR},
+      </if>
+      <if test="isreceive != null" >
+        #{isreceive,jdbcType=INTEGER},
+      </if>
+      <if test="orderby != null" >
+        #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        now(),
+      </if>
+      <if test="updatetime != null" >
+        now(),
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.oliveoa.pojo.OfficialDocumentIssued" >
+    update tb_official_document_issued
+    <set >
+      <if test="oiid != null" >
+        oiid = #{oiid,jdbcType=VARCHAR},
+      </if>
+      <if test="dcid != null" >
+        dcid = #{dcid,jdbcType=VARCHAR},
+      </if>
+      <if test="isreceive != null" >
+        isReceive = #{isreceive,jdbcType=INTEGER},
+      </if>
+      <if test="orderby != null" >
+        orderBy = #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = now(),
+      </if>
+    </set>
+    where odiid = #{odiid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.oliveoa.pojo.OfficialDocumentIssued" >
+    update tb_official_document_issued
+    set oiid = #{oiid,jdbcType=VARCHAR},
+      dcid = #{dcid,jdbcType=VARCHAR},
+      isReceive = #{isreceive,jdbcType=INTEGER},
+      orderBy = #{orderby,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = now()
+    where odiid = #{odiid,jdbcType=VARCHAR}
+  </update>
+</mapper>
