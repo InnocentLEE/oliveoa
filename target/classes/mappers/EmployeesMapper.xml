@@ -19,7 +19,7 @@
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
-    eid, dcid, pcid, id, name, sex, birth, tel, email, address, orderBy, createtime, 
+    eid, dcid, pcid, id, `name`, sex, birth, tel, email, address, orderBy, createtime,
     updatetime
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
@@ -28,13 +28,48 @@
     from tb_employees
     where eid = #{eid,jdbcType=VARCHAR}
   </select>
+  <select id="selectByID" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_employees
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByDcid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_employees
+    where dcid = #{dcid,jdbcType=VARCHAR}
+    order by orderBy
+  </select>
+  <select id="selectByPcid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_employees
+    where pcid = #{pcid,jdbcType=VARCHAR}
+    order by orderBy
+  </select>
+  <select id="selectCountById" resultType="int" parameterType="java.lang.String">
+    SELECT COUNT(1)
+    FROM tb_employees
+    WHERE id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectCountByPcid" resultType="int" parameterType="java.lang.String">
+    SELECT COUNT(1)
+    FROM tb_employees
+    WHERE pcid = #{pcid,jdbcType=VARCHAR}
+  </select>
+  <select id="selectCountByDcid" resultType="int" parameterType="java.lang.String">
+    SELECT COUNT(1)
+    FROM tb_employees
+    WHERE dcid = #{dcid,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from tb_employees
     where eid = #{eid,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.oliveoa.pojo.Employees" >
     insert into tb_employees (eid, dcid, pcid, 
-      id, name, sex, birth, 
+      id, `name`, sex, birth,
       tel, email, address, 
       orderBy, createtime, updatetime
       )
@@ -60,7 +95,7 @@
         id,
       </if>
       <if test="name != null" >
-        name,
+        `name`,
       </if>
       <if test="sex != null" >
         sex,
@@ -142,7 +177,7 @@
         id = #{id,jdbcType=VARCHAR},
       </if>
       <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
+        `name` = #{name,jdbcType=VARCHAR},
       </if>
       <if test="sex != null" >
         sex = #{sex,jdbcType=VARCHAR},
@@ -165,9 +200,7 @@
       <if test="createtime != null" >
         createtime = #{createtime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updatetime != null" >
         updatetime = now(),
-      </if>
     </set>
     where eid = #{eid,jdbcType=VARCHAR}
   </update>
@@ -176,7 +209,7 @@
     set dcid = #{dcid,jdbcType=VARCHAR},
       pcid = #{pcid,jdbcType=VARCHAR},
       id = #{id,jdbcType=VARCHAR},
-      name = #{name,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=VARCHAR},
       birth = #{birth,jdbcType=VARCHAR},
       tel = #{tel,jdbcType=VARCHAR},

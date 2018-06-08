@@ -2,6 +2,8 @@ package com.oliveoa.dao;
 
 import com.oliveoa.pojo.OvertimeApplication;
 
+import java.util.List;
+
 public interface OvertimeApplicationMapper {
     int deleteByPrimaryKey(String oaid);
 
@@ -14,4 +16,6 @@ public interface OvertimeApplicationMapper {
     int updateByPrimaryKeySelective(OvertimeApplication record);
 
     int updateByPrimaryKey(OvertimeApplication record);
+
+    List<OvertimeApplication> selectByEid(String eid);
 }

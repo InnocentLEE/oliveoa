@@ -15,7 +15,7 @@
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
-    gid, name, describe, total, remaining, pcid, orderBy, createtime, updatetime
+    gid, `name`, `describe`, total, remaining, pcid, orderBy, createtime, updatetime
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -23,12 +23,33 @@
     from tb_goods
     where gid = #{gid,jdbcType=VARCHAR}
   </select>
+  <select id="select" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM tb_goods
+    ORDER BY orderBy
+  </select>
+  <select id="selectTotal" resultType="int" parameterType="string">
+    SELECT total
+    FROM tb_goods
+    WHERE gid = #{gid,jdbcType=VARCHAR}
+  </select>
+  <select id="selectRemaining" resultType="int" parameterType="string">
+    SELECT remaining
+    FROM tb_goods
+    WHERE gid = #{gid,jdbcType=VARCHAR}
+  </select>
+  <select id="selectCountByPcid" resultType="int" parameterType="string">
+    SELECT COUNT(1)
+    FROM tb_goods
+    WHERE pcid = #{pcid,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from tb_goods
     where gid = #{gid,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.oliveoa.pojo.Goods" >
-    insert into tb_goods (gid, name, describe, 
+    insert into tb_goods (gid, `name`, `describe`,
       total, remaining, pcid, 
       orderBy, createtime, updatetime
       )
@@ -44,10 +65,10 @@
         gid,
       </if>
       <if test="name != null" >
-        name,
+        `name`,
       </if>
       <if test="describe != null" >
-        describe,
+        `describe`,
       </if>
       <if test="total != null" >
         total,
@@ -102,10 +123,10 @@
     update tb_goods
     <set >
       <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
+        `name` = #{name,jdbcType=VARCHAR},
       </if>
       <if test="describe != null" >
-        describe = #{describe,jdbcType=VARCHAR},
+        `describe` = #{describe,jdbcType=VARCHAR},
       </if>
       <if test="total != null" >
         total = #{total,jdbcType=INTEGER},
@@ -122,16 +143,14 @@
       <if test="createtime != null" >
         createtime = #{createtime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updatetime != null" >
         updatetime = now(),
-      </if>
     </set>
     where gid = #{gid,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.oliveoa.pojo.Goods" >
     update tb_goods
-    set name = #{name,jdbcType=VARCHAR},
-      describe = #{describe,jdbcType=VARCHAR},
+    set `name` = #{name,jdbcType=VARCHAR},
+      `describe` = #{describe,jdbcType=VARCHAR},
       total = #{total,jdbcType=INTEGER},
       remaining = #{remaining,jdbcType=INTEGER},
       pcid = #{pcid,jdbcType=VARCHAR},

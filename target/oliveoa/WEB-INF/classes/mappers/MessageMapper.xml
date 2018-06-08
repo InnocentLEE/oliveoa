@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.oliveoa.pojo.Message" >
     <constructor >
       <idArg column="mid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="seid" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="eid" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="msg" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="orderBy" jdbcType="INTEGER" javaType="java.lang.Integer" />
@@ -12,7 +13,7 @@
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
-    mid, eid, msg, orderBy, createtime, updatetime
+    mid, seid, eid, msg, orderBy, createtime, updatetime
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -25,18 +26,21 @@
     where mid = #{mid,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.oliveoa.pojo.Message" >
-    insert into tb_message (mid, eid, msg, 
-      orderBy, createtime, updatetime
-      )
-    values (#{mid,jdbcType=VARCHAR}, #{eid,jdbcType=VARCHAR}, #{msg,jdbcType=VARCHAR}, 
-      #{orderby,jdbcType=INTEGER}, now(), now()
-      )
+    insert into tb_message (mid, seid, eid, 
+      msg, orderBy, createtime, 
+      updatetime)
+    values (#{mid,jdbcType=VARCHAR}, #{seid,jdbcType=VARCHAR}, #{eid,jdbcType=VARCHAR}, 
+      #{msg,jdbcType=VARCHAR}, #{orderby,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.oliveoa.pojo.Message" >
     insert into tb_message
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="mid != null" >
         mid,
+      </if>
+      <if test="seid != null" >
+        seid,
       </if>
       <if test="eid != null" >
         eid,
@@ -58,6 +62,9 @@
       <if test="mid != null" >
         #{mid,jdbcType=VARCHAR},
       </if>
+      <if test="seid != null" >
+        #{seid,jdbcType=VARCHAR},
+      </if>
       <if test="eid != null" >
         #{eid,jdbcType=VARCHAR},
       </if>
@@ -68,16 +75,19 @@
         #{orderby,jdbcType=INTEGER},
       </if>
       <if test="createtime != null" >
-        now(),
+        #{createtime,jdbcType=TIMESTAMP},
       </if>
       <if test="updatetime != null" >
-        now(),
+        #{updatetime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.oliveoa.pojo.Message" >
     update tb_message
     <set >
+      <if test="seid != null" >
+        seid = #{seid,jdbcType=VARCHAR},
+      </if>
       <if test="eid != null" >
         eid = #{eid,jdbcType=VARCHAR},
       </if>
@@ -91,18 +101,19 @@
         createtime = #{createtime,jdbcType=TIMESTAMP},
       </if>
       <if test="updatetime != null" >
-        updatetime = now(),
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where mid = #{mid,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.oliveoa.pojo.Message" >
     update tb_message
-    set eid = #{eid,jdbcType=VARCHAR},
+    set seid = #{seid,jdbcType=VARCHAR},
+      eid = #{eid,jdbcType=VARCHAR},
       msg = #{msg,jdbcType=VARCHAR},
       orderBy = #{orderby,jdbcType=INTEGER},
       createtime = #{createtime,jdbcType=TIMESTAMP},
-      updatetime = now()
+      updatetime = #{updatetime,jdbcType=TIMESTAMP}
     where mid = #{mid,jdbcType=VARCHAR}
   </update>
 </mapper>

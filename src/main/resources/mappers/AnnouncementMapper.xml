@@ -37,7 +37,7 @@
     values (#{aid,jdbcType=VARCHAR}, #{eid,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
       #{content,jdbcType=VARCHAR}, #{signature,jdbcType=VARCHAR}, #{publishtime,jdbcType=TIMESTAMP}, 
       #{isapproved,jdbcType=INTEGER}, #{orderby,jdbcType=INTEGER}, now(),
-      now())
+      now()
   </insert>
   <insert id="insertSelective" parameterType="com.oliveoa.pojo.Announcement" >
     insert into tb_announcement

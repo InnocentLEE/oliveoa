@@ -11,6 +11,8 @@ public class LeaveApplication {
 
     private Date endtime;
 
+    private String reason;
+
     private Integer type;
 
     private Date normalRest;
@@ -27,11 +29,12 @@ public class LeaveApplication {
 
     private Date updatetime;
 
-    public LeaveApplication(String laid, String eid, Date begintime, Date endtime, Integer type, Date normalRest, Date swapRest, Date shouldRest, Date supplementRest, Integer orderby, Date createtime, Date updatetime) {
+    public LeaveApplication(String laid, String eid, Date begintime, Date endtime, String reason, Integer type, Date normalRest, Date swapRest, Date shouldRest, Date supplementRest, Integer orderby, Date createtime, Date updatetime) {
         this.laid = laid;
         this.eid = eid;
         this.begintime = begintime;
         this.endtime = endtime;
+        this.reason = reason;
         this.type = type;
         this.normalRest = normalRest;
         this.swapRest = swapRest;
@@ -76,6 +79,14 @@ public class LeaveApplication {
 
     public void setEndtime(Date endtime) {
         this.endtime = endtime;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason == null ? null : reason.trim();
     }
 
     public Integer getType() {

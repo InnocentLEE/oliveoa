@@ -15,7 +15,7 @@
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
-    dcid, dpid, id, name, telephone, fax, orderBy, createtime, updatetime
+    dcid, dpid, id, `name`, telephone, fax, orderBy, createtime, updatetime
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -23,13 +23,43 @@
     from tb_department
     where dcid = #{dcid,jdbcType=VARCHAR}
   </select>
+  <select id="select" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_department
+    ORDER BY orderBy
+  </select>
+  <select id="selectByDpid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_department
+    where dpid = #{dpid,jdbcType=VARCHAR}
+    order by orderBy
+  </select>
+  <select id="selectByDpidIsNULL" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_department
+    where dpid IS NULL
+    order by orderBy
+  </select>
+  <select id="selectCountById" resultType="int" parameterType="string">
+    SELECT COUNT(1)
+    FROM tb_department
+    WHERE id = #{id}
+  </select>
+  <select id="selectCountByDpid" resultType="int" parameterType="string">
+    SELECT COUNT(1)
+    FROM tb_department
+    WHERE dpid = #{dpid}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from tb_department
     where dcid = #{dcid,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.oliveoa.pojo.Department" >
     insert into tb_department (dcid, dpid, id, 
-      name, telephone, fax, 
+      `name`, telephone, fax,
       orderBy, createtime, updatetime
       )
     values (#{dcid,jdbcType=VARCHAR}, #{dpid,jdbcType=VARCHAR}, #{id,jdbcType=VARCHAR}, 
@@ -50,7 +80,7 @@
         id,
       </if>
       <if test="name != null" >
-        name,
+        `name`,
       </if>
       <if test="telephone != null" >
         telephone,
@@ -108,7 +138,7 @@
         id = #{id,jdbcType=VARCHAR},
       </if>
       <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
+        `name` = #{name,jdbcType=VARCHAR},
       </if>
       <if test="telephone != null" >
         telephone = #{telephone,jdbcType=VARCHAR},
@@ -132,11 +162,9 @@
     update tb_department
     set dpid = #{dpid,jdbcType=VARCHAR},
       id = #{id,jdbcType=VARCHAR},
-      name = #{name,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
       telephone = #{telephone,jdbcType=VARCHAR},
       fax = #{fax,jdbcType=VARCHAR},
-      orderBy = #{orderby,jdbcType=INTEGER},
-      createtime = #{createtime,jdbcType=TIMESTAMP},
       updatetime = now()
     where dcid = #{dcid,jdbcType=VARCHAR}
   </update>

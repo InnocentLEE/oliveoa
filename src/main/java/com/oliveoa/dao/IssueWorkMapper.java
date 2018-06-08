@@ -2,6 +2,8 @@ package com.oliveoa.dao;
 
 import com.oliveoa.pojo.IssueWork;
 
+import java.util.List;
+
 public interface IssueWorkMapper {
     int deleteByPrimaryKey(String iwid);
 
@@ -14,4 +16,6 @@ public interface IssueWorkMapper {
     int updateByPrimaryKeySelective(IssueWork record);
 
     int updateByPrimaryKey(IssueWork record);
+
+    List<IssueWork> selectByEid(String eid);
 }

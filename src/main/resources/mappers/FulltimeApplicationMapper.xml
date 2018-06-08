@@ -32,7 +32,7 @@
       createtime, updatetime)
     values (#{faid,jdbcType=VARCHAR}, #{eid,jdbcType=VARCHAR}, #{begintime,jdbcType=DATE}, 
       #{endtime,jdbcType=DATE}, #{personalSummary,jdbcType=VARCHAR}, #{orderby,jdbcType=INTEGER}, 
-     now(), now())
+      now(), now())
   </insert>
   <insert id="insertSelective" parameterType="com.oliveoa.pojo.FulltimeApplication" >
     insert into tb_fulltime_application

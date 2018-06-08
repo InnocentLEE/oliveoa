@@ -7,6 +7,7 @@
       <arg column="eid" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="begintime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="endtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="reason" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="type" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="normal_rest" jdbcType="DATE" javaType="java.util.Date" />
       <arg column="swap_rest" jdbcType="DATE" javaType="java.util.Date" />
@@ -18,8 +19,8 @@
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
-    laid, eid, begintime, endtime, type, normal_rest, swap_rest, should_rest, supplement_rest, 
-    orderBy, createtime, updatetime
+    laid, eid, begintime, endtime, reason, type, normal_rest, swap_rest, should_rest, 
+    supplement_rest, orderBy, createtime, updatetime
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -33,15 +34,15 @@
   </delete>
   <insert id="insert" parameterType="com.oliveoa.pojo.LeaveApplication" >
     insert into tb_leave_application (laid, eid, begintime, 
-      endtime, type, normal_rest, 
-      swap_rest, should_rest, supplement_rest, 
-      orderBy, createtime, updatetime
-      )
+      endtime, reason, type, 
+      normal_rest, swap_rest, should_rest, 
+      supplement_rest, orderBy, createtime, 
+      updatetime)
     values (#{laid,jdbcType=VARCHAR}, #{eid,jdbcType=VARCHAR}, #{begintime,jdbcType=TIMESTAMP}, 
-      #{endtime,jdbcType=TIMESTAMP}, #{type,jdbcType=INTEGER}, #{normalRest,jdbcType=DATE}, 
-      #{swapRest,jdbcType=DATE}, #{shouldRest,jdbcType=DATE}, #{supplementRest,jdbcType=DATE}, 
-      #{orderby,jdbcType=INTEGER}, now(), now()
-      )
+      #{endtime,jdbcType=TIMESTAMP}, #{reason,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{normalRest,jdbcType=DATE}, #{swapRest,jdbcType=DATE}, #{shouldRest,jdbcType=DATE}, 
+      #{supplementRest,jdbcType=DATE}, #{orderby,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.oliveoa.pojo.LeaveApplication" >
     insert into tb_leave_application
@@ -57,6 +58,9 @@
       </if>
       <if test="endtime != null" >
         endtime,
+      </if>
+      <if test="reason != null" >
+        reason,
       </if>
       <if test="type != null" >
         type,
@@ -96,6 +100,9 @@
       <if test="endtime != null" >
         #{endtime,jdbcType=TIMESTAMP},
       </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
       <if test="type != null" >
         #{type,jdbcType=INTEGER},
       </if>
@@ -115,10 +122,10 @@
         #{orderby,jdbcType=INTEGER},
       </if>
       <if test="createtime != null" >
-        now(),
+        #{createtime,jdbcType=TIMESTAMP},
       </if>
       <if test="updatetime != null" >
-        now(),
+        #{updatetime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -133,6 +140,9 @@
       </if>
       <if test="endtime != null" >
         endtime = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
       </if>
       <if test="type != null" >
         type = #{type,jdbcType=INTEGER},
@@ -156,7 +166,7 @@
         createtime = #{createtime,jdbcType=TIMESTAMP},
       </if>
       <if test="updatetime != null" >
-        updatetime = now(),
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where laid = #{laid,jdbcType=VARCHAR}
@@ -166,6 +176,7 @@
     set eid = #{eid,jdbcType=VARCHAR},
       begintime = #{begintime,jdbcType=TIMESTAMP},
       endtime = #{endtime,jdbcType=TIMESTAMP},
+      reason = #{reason,jdbcType=VARCHAR},
       type = #{type,jdbcType=INTEGER},
       normal_rest = #{normalRest,jdbcType=DATE},
       swap_rest = #{swapRest,jdbcType=DATE},
@@ -173,7 +184,7 @@
       supplement_rest = #{supplementRest,jdbcType=DATE},
       orderBy = #{orderby,jdbcType=INTEGER},
       createtime = #{createtime,jdbcType=TIMESTAMP},
-      updatetime = now()
+      updatetime = #{updatetime,jdbcType=TIMESTAMP}
     where laid = #{laid,jdbcType=VARCHAR}
   </update>
 </mapper>

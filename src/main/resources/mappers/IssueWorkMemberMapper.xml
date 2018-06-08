@@ -20,6 +20,12 @@
     from tb_issue_work_member
     where iwmid = #{iwmid,jdbcType=VARCHAR}
   </select>
+  <select id="selectByIwid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_issue_work_member
+    where iwid = #{iwid,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from tb_issue_work_member
     where iwmid = #{iwmid,jdbcType=VARCHAR}
@@ -91,7 +97,7 @@
         createtime = #{createtime,jdbcType=TIMESTAMP},
       </if>
       <if test="updatetime != null" >
-        now(),
+        updatetime = now(),
       </if>
     </set>
     where iwmid = #{iwmid,jdbcType=VARCHAR}

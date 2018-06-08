@@ -22,6 +22,13 @@
     from tb_issue_work
     where iwid = #{iwid,jdbcType=VARCHAR}
   </select>
+  <select id="selectByEid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_issue_work
+    where eid = #{eid,jdbcType=VARCHAR}
+    order by orderBy desc
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from tb_issue_work
     where iwid = #{iwid,jdbcType=VARCHAR}

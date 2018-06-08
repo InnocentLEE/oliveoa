@@ -123,7 +123,7 @@
         createtime = #{createtime,jdbcType=TIMESTAMP},
       </if>
       <if test="updatetime != null" >
-        now(),
+        updatetime = now(),
       </if>
     </set>
     where btaaocid = #{btaaocid,jdbcType=VARCHAR}

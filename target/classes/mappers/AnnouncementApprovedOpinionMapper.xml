@@ -34,7 +34,7 @@
       )
     values (#{aaocid,jdbcType=VARCHAR}, #{aaopid,jdbcType=VARCHAR}, #{aid,jdbcType=VARCHAR}, 
       #{eid,jdbcType=VARCHAR}, #{isapproved,jdbcType=INTEGER}, #{opinion,jdbcType=VARCHAR}, 
-      #{orderby,jdbcType=INTEGER}, now(),now()
+      #{orderby,jdbcType=INTEGER}, now(), now()
       )
   </insert>
   <insert id="insertSelective" parameterType="com.oliveoa.pojo.AnnouncementApprovedOpinion" >

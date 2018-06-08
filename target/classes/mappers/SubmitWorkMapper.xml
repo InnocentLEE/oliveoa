@@ -1,36 +1,57 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.oliveoa.dao.SubmitWorkMapper" >
-  <resultMap id="BaseResultMap" type="com.oliveoa.pojo.SubmitWork" >
-    <constructor >
-      <idArg column="swid" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="seid" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="aeid" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="content" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="begintime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="endtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="isApproved" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="opinion" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="orderBy" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="createtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="updatetime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-    </constructor>
-  </resultMap>
-  <sql id="Base_Column_List" >
+<mapper namespace="com.oliveoa.dao.SubmitWorkMapper">
+    <resultMap id="BaseResultMap" type="com.oliveoa.pojo.SubmitWork">
+        <constructor>
+            <idArg column="swid" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="seid" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="aeid" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="content" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="begintime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="endtime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="isApproved" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="opinion" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="orderBy" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="createtime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="updatetime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
     swid, seid, aeid, content, begintime, endtime, isApproved, opinion, orderBy, createtime, 
     updatetime
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from tb_submit_work
-    where swid = #{swid,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_submit_work
+        where swid = #{swid,jdbcType=VARCHAR}
+    </select>
+    <select id="selectUnapprovedByAeid" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM tb_submit_work
+        where aeid = #{aeid,jdbcType=VARCHAR} and isApproved = 0 and orderBy > #{orderBy,jdbcType=INTEGER}
+        order by orderBy desc
+    </select>
+    <select id="selectByAeid" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM tb_submit_work
+        WHERE aeid = #{aeid,jdbcType=VARCHAR} and orderBy > #{orderBy,jdbcType=INTEGER}
+        order by orderBy desc
+    </select>
+    <select id="selectBySeid" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM tb_submit_work
+        where seid = #{seid,jdbcType=VARCHAR} and orderBy > #{orderBy,jdbcType=INTEGER}
+        order by orderBy desc
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from tb_submit_work
     where swid = #{swid,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.oliveoa.pojo.SubmitWork" >
+    <insert id="insert" parameterType="com.oliveoa.pojo.SubmitWork">
     insert into tb_submit_work (swid, seid, aeid, 
       content, begintime, endtime, 
       isApproved, opinion, orderBy, 
@@ -40,116 +61,116 @@
       #{isapproved,jdbcType=INTEGER}, #{opinion,jdbcType=VARCHAR}, #{orderby,jdbcType=INTEGER}, 
       now(), now())
   </insert>
-  <insert id="insertSelective" parameterType="com.oliveoa.pojo.SubmitWork" >
-    insert into tb_submit_work
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="swid != null" >
-        swid,
-      </if>
-      <if test="seid != null" >
-        seid,
-      </if>
-      <if test="aeid != null" >
-        aeid,
-      </if>
-      <if test="content != null" >
-        content,
-      </if>
-      <if test="begintime != null" >
-        begintime,
-      </if>
-      <if test="endtime != null" >
-        endtime,
-      </if>
-      <if test="isapproved != null" >
-        isApproved,
-      </if>
-      <if test="opinion != null" >
-        opinion,
-      </if>
-      <if test="orderby != null" >
-        orderBy,
-      </if>
-      <if test="createtime != null" >
-        createtime,
-      </if>
-      <if test="updatetime != null" >
-        updatetime,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="swid != null" >
-        #{swid,jdbcType=VARCHAR},
-      </if>
-      <if test="seid != null" >
-        #{seid,jdbcType=VARCHAR},
-      </if>
-      <if test="aeid != null" >
-        #{aeid,jdbcType=VARCHAR},
-      </if>
-      <if test="content != null" >
-        #{content,jdbcType=VARCHAR},
-      </if>
-      <if test="begintime != null" >
-        #{begintime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="endtime != null" >
-        #{endtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="isapproved != null" >
-        #{isapproved,jdbcType=INTEGER},
-      </if>
-      <if test="opinion != null" >
-        #{opinion,jdbcType=VARCHAR},
-      </if>
-      <if test="orderby != null" >
-        #{orderby,jdbcType=INTEGER},
-      </if>
-      <if test="createtime != null" >
-        now(),
-      </if>
-      <if test="updatetime != null" >
-        now(),
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.oliveoa.pojo.SubmitWork" >
-    update tb_submit_work
-    <set >
-      <if test="seid != null" >
-        seid = #{seid,jdbcType=VARCHAR},
-      </if>
-      <if test="aeid != null" >
-        aeid = #{aeid,jdbcType=VARCHAR},
-      </if>
-      <if test="content != null" >
-        content = #{content,jdbcType=VARCHAR},
-      </if>
-      <if test="begintime != null" >
-        begintime = #{begintime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="endtime != null" >
-        endtime = #{endtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="isapproved != null" >
-        isApproved = #{isapproved,jdbcType=INTEGER},
-      </if>
-      <if test="opinion != null" >
-        opinion = #{opinion,jdbcType=VARCHAR},
-      </if>
-      <if test="orderby != null" >
-        orderBy = #{orderby,jdbcType=INTEGER},
-      </if>
-      <if test="createtime != null" >
-        createtime = #{createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updatetime != null" >
-        updatetime = now(),
-      </if>
-    </set>
-    where swid = #{swid,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.oliveoa.pojo.SubmitWork" >
+    <insert id="insertSelective" parameterType="com.oliveoa.pojo.SubmitWork">
+        insert into tb_submit_work
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="swid != null">
+                swid,
+            </if>
+            <if test="seid != null">
+                seid,
+            </if>
+            <if test="aeid != null">
+                aeid,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            <if test="begintime != null">
+                begintime,
+            </if>
+            <if test="endtime != null">
+                endtime,
+            </if>
+            <if test="isapproved != null">
+                isApproved,
+            </if>
+            <if test="opinion != null">
+                opinion,
+            </if>
+            <if test="orderby != null">
+                orderBy,
+            </if>
+            <if test="createtime != null">
+                createtime,
+            </if>
+            <if test="updatetime != null">
+                updatetime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="swid != null">
+                #{swid,jdbcType=VARCHAR},
+            </if>
+            <if test="seid != null">
+                #{seid,jdbcType=VARCHAR},
+            </if>
+            <if test="aeid != null">
+                #{aeid,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="begintime != null">
+                #{begintime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endtime != null">
+                #{endtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isapproved != null">
+                #{isapproved,jdbcType=INTEGER},
+            </if>
+            <if test="opinion != null">
+                #{opinion,jdbcType=VARCHAR},
+            </if>
+            <if test="orderby != null">
+                #{orderby,jdbcType=INTEGER},
+            </if>
+            <if test="createtime != null">
+                now(),
+            </if>
+            <if test="updatetime != null">
+                now(),
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.oliveoa.pojo.SubmitWork">
+        update tb_submit_work
+        <set>
+            <if test="seid != null">
+                seid = #{seid,jdbcType=VARCHAR},
+            </if>
+            <if test="aeid != null">
+                aeid = #{aeid,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="begintime != null">
+                begintime = #{begintime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endtime != null">
+                endtime = #{endtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isapproved != null">
+                isApproved = #{isapproved,jdbcType=INTEGER},
+            </if>
+            <if test="opinion != null">
+                opinion = #{opinion,jdbcType=VARCHAR},
+            </if>
+            <if test="orderby != null">
+                orderBy = #{orderby,jdbcType=INTEGER},
+            </if>
+            <if test="createtime != null">
+                createtime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatetime != null">
+                updatetime = now(),
+            </if>
+        </set>
+        where swid = #{swid,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.oliveoa.pojo.SubmitWork">
     update tb_submit_work
     set seid = #{seid,jdbcType=VARCHAR},
       aeid = #{aeid,jdbcType=VARCHAR},

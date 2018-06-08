@@ -2,6 +2,8 @@ package com.oliveoa.dao;
 
 import com.oliveoa.pojo.Employees;
 
+import java.util.List;
+
 public interface EmployeesMapper {
     int deleteByPrimaryKey(String eid);
 
@@ -11,7 +13,19 @@ public interface EmployeesMapper {
 
     Employees selectByPrimaryKey(String eid);
 
+    Employees selectByID(String id);
+
+    List<Employees> selectByDcid(String dcid);
+
+    List<Employees> selectByPcid(String pcid);
+
     int updateByPrimaryKeySelective(Employees record);
 
     int updateByPrimaryKey(Employees record);
+
+    int selectCountById(String id);
+
+    int selectCountByPcid(String pcid);
+
+    int selectCountByDcid(String dcid);
 }

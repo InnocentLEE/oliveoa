@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oliveoa.dao.CompanyInfoMapper">
+  <resultMap id="BaseResultMap" type="com.oliveoa.pojo.CompanyInfo">
+    <constructor>
+      <arg column="username" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="password" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="fullname" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="telephone" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="fax" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="zipcode" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="address" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="website" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="email" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="introduction" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.oliveoa.pojo.CompanyInfo">
+    insert into tb_companyinfo (username, password, fullname,
+      telephone, fax, zipcode,
+      address, website, email,
+      introduction)
+    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{fullname,jdbcType=VARCHAR},
+      #{telephone,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR}, #{zipcode,jdbcType=VARCHAR},
+      #{address,jdbcType=VARCHAR}, #{website,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+      #{introduction,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.oliveoa.pojo.CompanyInfo">
+    insert into tb_companyinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        username,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="fullname != null">
+        fullname,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="fax != null">
+        fax,
+      </if>
+      <if test="zipcode != null">
+        zipcode,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="website != null">
+        website,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="introduction != null">
+        introduction,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="fullname != null">
+        #{fullname,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null">
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null">
+        #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="website != null">
+        #{website,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null">
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="selectLogin" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+    username, password, fullname,telephone, fax, zipcode,address, website, email,introduction
+    FROM tb_companyinfo
+    WHERE username = #{username}
+    AND password = #{password}
+  </select>
+  
+  <select id="selectCompanyInfo" parameterType="string" resultMap="BaseResultMap">
+    SELECT
+    username, password, fullname,telephone, fax, zipcode,address, website, email,introduction
+    FROM tb_companyinfo
+    WHERE username = #{username}
+  </select>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.oliveoa.pojo.CompanyInfo">
+    update tb_companyinfo
+    <set>
+      <if test="fullname != null">
+        fullname = #{fullname,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null">
+        fax = #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null">
+        zipcode = #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="website != null">
+        website = #{website,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null">
+        introduction = #{introduction,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where username = #{username,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updatePasswordByUsername" parameterType="map">
+  UPDATE tb_companyinfo
+  SET password = #{newPassword}
+  where username=#{username} and password=#{password}
+  </update>
+</mapper>

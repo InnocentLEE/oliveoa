@@ -5,6 +5,8 @@ import java.util.Date;
 public class Message {
     private String mid;
 
+    private String seid;
+
     private String eid;
 
     private String msg;
@@ -15,8 +17,9 @@ public class Message {
 
     private Date updatetime;
 
-    public Message(String mid, String eid, String msg, Integer orderby, Date createtime, Date updatetime) {
+    public Message(String mid, String seid, String eid, String msg, Integer orderby, Date createtime, Date updatetime) {
         this.mid = mid;
+        this.seid = seid;
         this.eid = eid;
         this.msg = msg;
         this.orderby = orderby;
@@ -34,6 +37,14 @@ public class Message {
 
     public void setMid(String mid) {
         this.mid = mid == null ? null : mid.trim();
+    }
+
+    public String getSeid() {
+        return seid;
+    }
+
+    public void setSeid(String seid) {
+        this.seid = seid == null ? null : seid.trim();
     }
 
     public String getEid() {

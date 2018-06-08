@@ -91,7 +91,7 @@
         createtime = #{createtime,jdbcType=TIMESTAMP},
       </if>
       <if test="updatetime != null" >
-        now(),
+        updatetime = now(),
       </if>
     </set>
     where fid = #{fid,jdbcType=VARCHAR}
@@ -102,7 +102,7 @@
       fsrc = #{fsrc,jdbcType=VARCHAR},
       orderBy = #{orderby,jdbcType=INTEGER},
       createtime = #{createtime,jdbcType=TIMESTAMP},
-      now()
+      updatetime = now()
     where fid = #{fid,jdbcType=VARCHAR}
   </update>
 </mapper>

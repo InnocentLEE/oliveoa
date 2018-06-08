@@ -14,7 +14,7 @@
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
-    pcid, ppid, name, dcid, limit, orderBy, createtime, updatetime
+    pcid, ppid, `name`, dcid, `limit`, orderBy, createtime, updatetime
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -22,17 +22,34 @@
     from tb_position
     where pcid = #{pcid,jdbcType=VARCHAR}
   </select>
+  <select id="selectByDcid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_position
+    where dcid = #{dcid,jdbcType=VARCHAR}
+    ORDER BY orderBy
+  </select>
+  <select id="selectCountByPpid" resultType="int" parameterType="java.lang.String">
+    SELECT COUNT(1)
+    FROM tb_position
+    WHERE ppid = #{ppid,jdbcType=VARCHAR}
+  </select>
+  <select id="selectCountByDcid" resultType="int" parameterType="java.lang.String">
+    SELECT COUNT(1)
+    FROM tb_position
+    WHERE dcid = #{dcid,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from tb_position
     where pcid = #{pcid,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.oliveoa.pojo.Position" >
-    insert into tb_position (pcid, ppid, name, 
-      dcid, limit, orderBy, 
+    insert into tb_position (pcid, ppid, `name`,
+      dcid, `limit`, orderBy,
       createtime, updatetime)
     values (#{pcid,jdbcType=VARCHAR}, #{ppid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{dcid,jdbcType=VARCHAR}, #{limit,jdbcType=INTEGER}, #{orderby,jdbcType=INTEGER}, 
-      now(), now())
+      #{dcid,jdbcType=VARCHAR}, #{limit,jdbcType=INTEGER}, #{orderby,jdbcType=INTEGER},
+      now(),now())
   </insert>
   <insert id="insertSelective" parameterType="com.oliveoa.pojo.Position" >
     insert into tb_position
@@ -44,13 +61,13 @@
         ppid,
       </if>
       <if test="name != null" >
-        name,
+        `name`,
       </if>
       <if test="dcid != null" >
         dcid,
       </if>
       <if test="limit != null" >
-        limit,
+        `limit`,
       </if>
       <if test="orderby != null" >
         orderBy,
@@ -96,13 +113,13 @@
         ppid = #{ppid,jdbcType=VARCHAR},
       </if>
       <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
+        `name` = #{name,jdbcType=VARCHAR},
       </if>
       <if test="dcid != null" >
         dcid = #{dcid,jdbcType=VARCHAR},
       </if>
       <if test="limit != null" >
-        limit = #{limit,jdbcType=INTEGER},
+        `limit` = #{limit,jdbcType=INTEGER},
       </if>
       <if test="orderby != null" >
         orderBy = #{orderby,jdbcType=INTEGER},
@@ -110,18 +127,16 @@
       <if test="createtime != null" >
         createtime = #{createtime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updatetime != null" >
         updatetime = now(),
-      </if>
     </set>
     where pcid = #{pcid,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.oliveoa.pojo.Position" >
     update tb_position
     set ppid = #{ppid,jdbcType=VARCHAR},
-      name = #{name,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
       dcid = #{dcid,jdbcType=VARCHAR},
-      limit = #{limit,jdbcType=INTEGER},
+      `limit` = #{limit,jdbcType=INTEGER},
       orderBy = #{orderby,jdbcType=INTEGER},
       createtime = #{createtime,jdbcType=TIMESTAMP},
       updatetime = now()
