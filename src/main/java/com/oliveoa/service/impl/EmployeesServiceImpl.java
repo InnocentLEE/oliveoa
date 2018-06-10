@@ -79,6 +79,8 @@ public class EmployeesServiceImpl implements IEmployeesService {
 
     @Override
     public ServerResponse delete_employee(String eid) {
+        String id = employeesMapper.selectByPrimaryKey(eid).getId();
+        empwdMapper.deleteByPrimaryKey(id);
         int result = employeesMapper.deleteByPrimaryKey(eid);
         if (result > 0)
             return ServerResponse.createBySuccessMessage("删除成功");

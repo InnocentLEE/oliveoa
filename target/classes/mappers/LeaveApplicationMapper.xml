@@ -19,7 +19,7 @@
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
-    laid, eid, begintime, endtime, reason, type, normal_rest, swap_rest, should_rest, 
+    laid, eid, begintime, endtime, reason, `type`, normal_rest, swap_rest, should_rest,
     supplement_rest, orderBy, createtime, updatetime
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
@@ -28,13 +28,20 @@
     from tb_leave_application
     where laid = #{laid,jdbcType=VARCHAR}
   </select>
+  <select id="selectByEid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_leave_application
+    where eid = #{eid,jdbcType=VARCHAR}
+    order by orderBy desc
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from tb_leave_application
     where laid = #{laid,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.oliveoa.pojo.LeaveApplication" >
     insert into tb_leave_application (laid, eid, begintime, 
-      endtime, reason, type, 
+      endtime, reason, `type`,
       normal_rest, swap_rest, should_rest, 
       supplement_rest, orderBy, createtime, 
       updatetime)
@@ -63,7 +70,7 @@
         reason,
       </if>
       <if test="type != null" >
-        type,
+        `type`,
       </if>
       <if test="normalRest != null" >
         normal_rest,
@@ -145,7 +152,7 @@
         reason = #{reason,jdbcType=VARCHAR},
       </if>
       <if test="type != null" >
-        type = #{type,jdbcType=INTEGER},
+        `type` = #{type,jdbcType=INTEGER},
       </if>
       <if test="normalRest != null" >
         normal_rest = #{normalRest,jdbcType=DATE},
@@ -177,7 +184,7 @@
       begintime = #{begintime,jdbcType=TIMESTAMP},
       endtime = #{endtime,jdbcType=TIMESTAMP},
       reason = #{reason,jdbcType=VARCHAR},
-      type = #{type,jdbcType=INTEGER},
+      `type` = #{type,jdbcType=INTEGER},
       normal_rest = #{normalRest,jdbcType=DATE},
       swap_rest = #{swapRest,jdbcType=DATE},
       should_rest = #{shouldRest,jdbcType=DATE},

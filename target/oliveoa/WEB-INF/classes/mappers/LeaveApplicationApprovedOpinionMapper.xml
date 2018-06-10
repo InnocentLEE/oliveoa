@@ -23,6 +23,25 @@
     from tb_leave_application_approved_opinion
     where laaocid = #{laaocid,jdbcType=VARCHAR}
   </select>
+  <select id="selectByLaid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_leave_application_approved_opinion
+    where laid = #{laid,jdbcType=VARCHAR}
+    order by orderBy desc
+  </select>
+  <select id="selectNeedApprovedByEid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_leave_application_approved_opinion
+    where eid = #{eid,jdbcType=VARCHAR} and isApproved = 0
+    order by orderBy
+  </select>
+  <select id="selectLaaopidByLaidAndEid" resultType="string" parameterType="com.oliveoa.pojo.LeaveApplicationApprovedOpinion" >
+    SELECT laaopid
+    FROM tb_leave_application_approved_opinion
+    WHERE laid = #{laid,jdbcType=VARCHAR} and eid = #{eid,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from tb_leave_application_approved_opinion
     where laaocid = #{laaocid,jdbcType=VARCHAR}
@@ -139,5 +158,18 @@
       createtime = #{createtime,jdbcType=TIMESTAMP},
       updatetime = now()
     where laaocid = #{laaocid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByLaidAndEid" parameterType="com.oliveoa.pojo.LeaveApplicationApprovedOpinion" >
+    UPDATE tb_leave_application_approved_opinion
+    SET isApproved = #{isapproved,jdbcType=INTEGER},
+      opinion = #{opinion,jdbcType=VARCHAR},
+      updatetime = now()
+    where laid = #{laid,jdbcType=VARCHAR} and eid = #{eid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateIsApprovedToZeroByLaaocid" parameterType="string">
+    UPDATE tb_leave_application_approved_opinion
+    SET isApproved = 0,
+    updatetime = now()
+    WHERE laaocid = #{laaocid,jdbcType=VARCHAR}
   </update>
 </mapper>

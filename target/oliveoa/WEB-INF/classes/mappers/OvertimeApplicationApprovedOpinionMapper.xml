@@ -30,12 +30,17 @@
     where eid = #{eid,jdbcType=VARCHAR} and isApproved = 0
     order by orderBy
   </select>
-  <select id="selectNeedApprovedByOaid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectByOaid" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select
     <include refid="Base_Column_List" />
     from tb_overtime_application_approved_opinion
     where oaid = #{oaid,jdbcType=VARCHAR}
     order by orderBy desc
+  </select>
+  <select id="selectOaaopidByOaidAndEid" resultType="string" parameterType="com.oliveoa.pojo.OvertimeApplicationApprovedOpinion" >
+    SELECT oaaopid
+    FROM tb_overtime_application_approved_opinion
+    WHERE oaid = #{oaid,jdbcType=VARCHAR} and eid = #{eid,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from tb_overtime_application_approved_opinion
@@ -160,5 +165,11 @@
       opinion = #{opinion,jdbcType=VARCHAR},
       updatetime = now()
     where  oaid = #{oaid,jdbcType=VARCHAR} and eid = #{eid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateIsApprovedToZeroByOaaocid" parameterType="string">
+    UPDATE tb_overtime_application_approved_opinion
+    SET isApproved = 0,
+      updatetime = now()
+    WHERE oaaocid = #{oaaocid,jdbcType=VARCHAR}
   </update>
 </mapper>

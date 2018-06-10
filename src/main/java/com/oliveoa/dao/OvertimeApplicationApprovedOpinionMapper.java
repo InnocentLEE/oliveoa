@@ -1,6 +1,7 @@
 package com.oliveoa.dao;
 
 import com.oliveoa.pojo.OvertimeApplicationApprovedOpinion;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,7 +20,11 @@ public interface OvertimeApplicationApprovedOpinionMapper {
 
     List<OvertimeApplicationApprovedOpinion> selectNeedApprovedByEid(String eid);
 
-    List<OvertimeApplicationApprovedOpinion> selectNeedApprovedByOaid(String oaid);
+    List<OvertimeApplicationApprovedOpinion> selectByOaid(String oaid);
 
     int updateByOaidAndEid(OvertimeApplicationApprovedOpinion overtimeApplicationApprovedOpinion);
+
+    String selectOaaopidByOaidAndEid(OvertimeApplicationApprovedOpinion overtimeApplicationApprovedOpinion);
+
+    int updateIsApprovedToZeroByOaaocid(String oaaocid);
 }
