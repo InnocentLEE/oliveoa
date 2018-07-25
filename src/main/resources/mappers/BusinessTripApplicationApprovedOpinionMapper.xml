@@ -23,6 +23,25 @@
     from tb_business_trip_application_approved_opinion
     where btaaocid = #{btaaocid,jdbcType=VARCHAR}
   </select>
+  <select id="selectBtaaopidByBtaidAndEid" resultType="string" parameterType="com.oliveoa.pojo.BusinessTripApplicationApprovedOpinion" >
+    SELECT btaaopid
+    FROM tb_business_trip_application_approved_opinion
+    WHERE btaid = #{btaid,jdbcType=VARCHAR} and eid = #{eid,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByBtaid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_business_trip_application_approved_opinion
+    where btaid = #{btaid,jdbcType=VARCHAR}
+    order by orderBy
+  </select>
+  <select id="selectNeedApprovedByEid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_business_trip_application_approved_opinion
+    where eid = #{eid,jdbcType=VARCHAR} and isApproved = 0
+    order by orderBy
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from tb_business_trip_application_approved_opinion
     where btaaocid = #{btaaocid,jdbcType=VARCHAR}
@@ -139,5 +158,17 @@
       createtime = #{createtime,jdbcType=TIMESTAMP},
       updatetime = now()
     where btaaocid = #{btaaocid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByBtaidAndEid" parameterType="com.oliveoa.pojo.BusinessTripApplicationApprovedOpinion" >
+    UPDATE tb_business_trip_application_approved_opinion
+    SET isApproved = #{isapproved,jdbcType=INTEGER},
+      opinion = #{opinion,jdbcType=VARCHAR},
+       updatetime = now()
+     where btaid = #{btaid,jdbcType=VARCHAR} and eid = #{eid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateIsApprovedToZeroByBtaaocid" parameterType="string">
+    UPDATE tb_business_trip_application_approved_opinion
+    SET isApproved = 0
+    WHERE btaaocid = #{btaaocid,jdbcType=VARCHAR}
   </update>
 </mapper>

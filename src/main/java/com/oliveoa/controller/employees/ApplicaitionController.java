@@ -1,5 +1,6 @@
 package com.oliveoa.controller.employees;
 
+import com.google.common.collect.Table;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -244,6 +245,104 @@ public class ApplicaitionController {
         leaveApplicationApprovedOpinion.setLaid(laid);
         return iApplicationService.approved_leave_application(leaveApplicationApprovedOpinion);
     }
+
+    @RequestMapping(value = "add_business_trip_application.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse add_business_trip_application(HttpSession session,String begintime,String endtime,String place,String task,String approvedMember){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date beginTime = null;
+        Date endTime = null;
+        try {
+            beginTime = format.parse(begintime);
+            endTime = format.parse(endtime);
+        } catch (ParseException e) {
+            return ServerResponse.createByErrorMessage("请适用正确的日期格式：yyyy-MM-dd HH:mm:ss");
+        }
+        String btaid = CommonUtils.uuid();
+        BusinessTripApplication businessTripApplication = new BusinessTripApplication();
+        businessTripApplication.setBtaid(btaid);
+        businessTripApplication.setEid(employees.getEid());
+        businessTripApplication.setBegintime(beginTime);
+        businessTripApplication.setEndtime(endTime);
+        businessTripApplication.setPlace(place);
+        businessTripApplication.setTask(task);
+
+        //Json的解析类对象
+        JsonParser parser = new JsonParser();
+        //将JSON的String 转成一个JsonArray对象
+        JsonArray jsonArray = parser.parse(approvedMember).getAsJsonArray();
+
+        Gson gson = new Gson();
+        ArrayList<BusinessTripApplicationApprovedOpinion> businessTripApplicationApprovedOpinionList = new ArrayList<>();
+
+        //加强for循环遍历JsonArray
+        for(JsonElement member:jsonArray){
+            //使用GSON，直接转成Bean对象]
+            MemberBean memberBean = gson.fromJson(member,MemberBean.class);
+            BusinessTripApplicationApprovedOpinion businessTripApplicationApprovedOpinion = new BusinessTripApplicationApprovedOpinion();
+            businessTripApplicationApprovedOpinion.setBtaaopid(null);
+            businessTripApplicationApprovedOpinion.setBtaaocid(CommonUtils.uuid());
+            businessTripApplicationApprovedOpinion.setBtaid(btaid);
+            businessTripApplicationApprovedOpinion.setEid(memberBean.getId());
+            businessTripApplicationApprovedOpinion.setIsapproved(-2);
+            businessTripApplicationApprovedOpinionList.add(businessTripApplicationApprovedOpinion);
+        }
+        //for循环遍历建立审核分级
+        int size = businessTripApplicationApprovedOpinionList.size();
+        for(int i=0;i<size-1;i++){
+            businessTripApplicationApprovedOpinionList.get(i).setBtaaopid(businessTripApplicationApprovedOpinionList.get(i+1).getBtaaocid());
+        }
+        businessTripApplicationApprovedOpinionList.get(0).setIsapproved(0);
+        return iApplicationService.add_business_trip_application(businessTripApplication,businessTripApplicationApprovedOpinionList);
+    }
+
+    @RequestMapping(value = "get_business_trip_application_need_approved.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_business_trip_application_need_approved(HttpSession session){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iApplicationService.get_business_trip_application_need_approved(employees.getEid());
+    }
+
+    @RequestMapping(value = "get_business_trip_application_Isubmit.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_business_trip_application_Isubmit(HttpSession session){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iApplicationService.get_business_trip_application_Isubmit(employees.getEid());
+    }
+
+    @RequestMapping(value = "get_business_trip_application_details.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_business_trip_application_details(HttpSession session ,String btaid){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iApplicationService.get_business_trip_application_details(btaid);
+    }
+
+    @RequestMapping(value = "approved_business_trip_application.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse approved_business_trip_application(HttpSession session,String btaid,String isApproved,String opinion){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        int approved = Integer.parseInt(isApproved);
+        BusinessTripApplicationApprovedOpinion businessTripApplicationApprovedOpinion = new BusinessTripApplicationApprovedOpinion();
+        businessTripApplicationApprovedOpinion.setBtaid(btaid);
+        businessTripApplicationApprovedOpinion.setEid(employees.getEid());
+        businessTripApplicationApprovedOpinion.setIsapproved(approved);
+        businessTripApplicationApprovedOpinion.setOpinion(opinion);
+        return iApplicationService.approved_business_trip_application(businessTripApplicationApprovedOpinion);
+    }
+
+
+
 
 
 

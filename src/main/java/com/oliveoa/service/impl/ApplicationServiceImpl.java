@@ -1,15 +1,10 @@
 package com.oliveoa.service.impl;
 
 import com.oliveoa.common.ServerResponse;
-import com.oliveoa.dao.LeaveApplicationApprovedOpinionMapper;
-import com.oliveoa.dao.LeaveApplicationMapper;
-import com.oliveoa.dao.OvertimeApplicationApprovedOpinionMapper;
-import com.oliveoa.dao.OvertimeApplicationMapper;
-import com.oliveoa.pojo.LeaveApplication;
-import com.oliveoa.pojo.LeaveApplicationApprovedOpinion;
-import com.oliveoa.pojo.OvertimeApplication;
-import com.oliveoa.pojo.OvertimeApplicationApprovedOpinion;
+import com.oliveoa.dao.*;
+import com.oliveoa.pojo.*;
 import com.oliveoa.service.IApplicationService;
+import com.oliveoa.vo.BusinessTripApplicationDetails;
 import com.oliveoa.vo.LeaveApplicationDetails;
 import com.oliveoa.vo.OvertimeApplicationDetails;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +27,10 @@ public class ApplicationServiceImpl implements IApplicationService {
     private LeaveApplicationMapper leaveApplicationMapper;
     @Autowired
     private LeaveApplicationApprovedOpinionMapper leaveApplicationApprovedOpinionMapper;
+    @Autowired
+    private BusinessTripApplicationMapper businessTripApplicationMapper;
+    @Autowired
+    private BusinessTripApplicationApprovedOpinionMapper businessTripApplicationApprovedOpinionMapper;
 
     @Override
     public ServerResponse add_overtime_application(OvertimeApplication overtimeApplication, List<OvertimeApplicationApprovedOpinion> overtimeApplicationApprovedOpinionList) {
@@ -148,4 +147,63 @@ public class ApplicationServiceImpl implements IApplicationService {
         else
             return ServerResponse.createByErrorMessage("审核失败");
     }
+
+    @Override
+    public ServerResponse add_business_trip_application(BusinessTripApplication businessTripApplication, List<BusinessTripApplicationApprovedOpinion> businessTripApplicationApprovedOpinionList){
+        boolean result1 = businessTripApplicationMapper.insertSelective(businessTripApplication)>0;
+        boolean result2 = true;
+        int size = businessTripApplicationApprovedOpinionList.size();
+        for(int i=0;i<size;i++){
+            int ir = businessTripApplicationApprovedOpinionMapper.insertSelective(businessTripApplicationApprovedOpinionList.get(i));
+            if(ir==0)
+                result2 = false;
+        }
+        if (result1 && result2)
+            return ServerResponse.createBySuccessMessage("添加出差申请成功");
+        else
+            return ServerResponse.createByErrorMessage("添加申请失败");
+    }
+
+    @Override
+    public ServerResponse get_business_trip_application_need_approved(String eid){
+        List<BusinessTripApplicationApprovedOpinion> businessTripApplicationApprovedOpinionList = businessTripApplicationApprovedOpinionMapper.selectNeedApprovedByEid(eid);
+        int size = businessTripApplicationApprovedOpinionList.size();
+        List<BusinessTripApplication> businessTripApplicationList = new ArrayList<>();
+        for(int i=0;i<size;i++){
+            businessTripApplicationList.add(businessTripApplicationMapper.selectByPrimaryKey(businessTripApplicationApprovedOpinionList.get(i).getBtaid()));
+        }
+        return ServerResponse.createBySuccess("查询成功",businessTripApplicationList);
+    }
+
+    @Override
+    public ServerResponse get_business_trip_application_Isubmit(String eid){
+        List<BusinessTripApplication> businessTripApplicationList = businessTripApplicationMapper.selectByEid(eid);
+        return ServerResponse.createBySuccess("查询成功", businessTripApplicationList);
+    }
+
+    @Override
+    public ServerResponse get_business_trip_application_details(String btaid){
+        BusinessTripApplication businessTripApplication = businessTripApplicationMapper.selectByPrimaryKey(btaid);
+        List<BusinessTripApplicationApprovedOpinion> businessTripApplicationApprovedOpinionList = businessTripApplicationApprovedOpinionMapper.selectByBtaid(btaid);
+        BusinessTripApplicationDetails businessTripApplicationDetails = new BusinessTripApplicationDetails(businessTripApplication,businessTripApplicationApprovedOpinionList);
+        return ServerResponse.createBySuccess("查询成功",businessTripApplicationDetails);
+    }
+
+    @Override
+    public ServerResponse approved_business_trip_application(BusinessTripApplicationApprovedOpinion businessTripApplicationApprovedOpinion){
+        int result1 = businessTripApplicationApprovedOpinionMapper.updateByBtaidAndEid(businessTripApplicationApprovedOpinion);
+        if(businessTripApplicationApprovedOpinion.getIsapproved()==1){
+            String btaaocid = businessTripApplicationApprovedOpinionMapper.selectBtaaopidByBtaidAndEid(businessTripApplicationApprovedOpinion);
+            if(btaaocid!=null){
+                int result2 = businessTripApplicationApprovedOpinionMapper.updateIsApprovedToZeroByBtaaocid(btaaocid);
+                if (result2 <= 0)
+                    result1 = 0;
+            }
+        }
+        if (result1 > 0)
+            return ServerResponse.createBySuccessMessage("审核成功");
+        else
+            return ServerResponse.createByErrorMessage("审核失败");
+    }
+
 }

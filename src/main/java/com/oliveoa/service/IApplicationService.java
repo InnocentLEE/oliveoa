@@ -1,10 +1,7 @@
 package com.oliveoa.service;
 
 import com.oliveoa.common.ServerResponse;
-import com.oliveoa.pojo.LeaveApplication;
-import com.oliveoa.pojo.LeaveApplicationApprovedOpinion;
-import com.oliveoa.pojo.OvertimeApplication;
-import com.oliveoa.pojo.OvertimeApplicationApprovedOpinion;
+import com.oliveoa.pojo.*;
 
 import java.util.List;
 
@@ -23,4 +20,9 @@ public interface IApplicationService {
     ServerResponse get_leave_application_Isubmit(String eid);
     ServerResponse get_leave_application_details(String laid);
     ServerResponse approved_leave_application(LeaveApplicationApprovedOpinion leaveApplicationApprovedOpinion);
+    ServerResponse add_business_trip_application(BusinessTripApplication businessTripApplication,List<BusinessTripApplicationApprovedOpinion> businessTripApplicationApprovedOpinionList);
+    ServerResponse get_business_trip_application_need_approved(String eid);
+    ServerResponse get_business_trip_application_Isubmit(String eid);
+    ServerResponse get_business_trip_application_details(String btaid);
+    ServerResponse approved_business_trip_application(BusinessTripApplicationApprovedOpinion businessTripApplicationApprovedOpinion);
 }

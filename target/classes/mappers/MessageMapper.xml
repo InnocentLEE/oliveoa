@@ -21,6 +21,20 @@
     from tb_message
     where mid = #{mid,jdbcType=VARCHAR}
   </select>
+  <select id="selectBySeidAfterOrder" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_message
+    where seid = #{seid,jdbcType=VARCHAR} and orderBy >  #{orderBy}
+    order by orderBy desc
+  </select>
+  <select id="selectByEidAfterOrder" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_message
+    where eid = #{eid,jdbcType=VARCHAR} and orderBy >  #{orderBy}
+    order by orderBy desc
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from tb_message
     where mid = #{mid,jdbcType=VARCHAR}

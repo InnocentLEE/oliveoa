@@ -23,6 +23,13 @@
     from tb_business_trip_application
     where btaid = #{btaid,jdbcType=VARCHAR}
   </select>
+  <select id="selectByEid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_business_trip_application
+    where eid = #{eid,jdbcType=VARCHAR}
+    order by orderBy desc
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from tb_business_trip_application
     where btaid = #{btaid,jdbcType=VARCHAR}

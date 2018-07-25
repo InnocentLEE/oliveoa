@@ -1,8 +1,9 @@
 package com.oliveoa.service;
 
 import com.oliveoa.common.ServerResponse;
-import com.oliveoa.pojo.Employees;
-import com.oliveoa.pojo.Empwd;
+import com.oliveoa.pojo.*;
+
+import java.util.List;
 
 /**
  * Created by Lee on 2018/5/28.
@@ -20,4 +21,8 @@ public interface IEmployeesService {
     ServerResponse update_info(Employees employees);
     ServerResponse update_password(Empwd empwd);
     ServerResponse get_contact();
+    ServerResponse sent_message(Message message);
+    ServerResponse get_message_Isent(String seid,int orderBy);
+    ServerResponse get_message_sent_to_me(String eid,int orderBy);
+    ServerResponse submit_announcement(Announcement announcement, List<AnnouncementApprovedOpinion> announcementApprovedOpinionList);
 }

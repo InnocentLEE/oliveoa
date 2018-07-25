@@ -1,14 +1,8 @@
 package com.oliveoa.service.impl;
 
 import com.oliveoa.common.ServerResponse;
-import com.oliveoa.dao.DepartmentMapper;
-import com.oliveoa.dao.EmployeesMapper;
-import com.oliveoa.dao.EmpwdMapper;
-import com.oliveoa.dao.PositionMapper;
-import com.oliveoa.pojo.Department;
-import com.oliveoa.pojo.Employees;
-import com.oliveoa.pojo.Empwd;
-import com.oliveoa.pojo.Position;
+import com.oliveoa.dao.*;
+import com.oliveoa.pojo.*;
 import com.oliveoa.service.IEmployeesService;
 import com.oliveoa.vo.DepContact;
 import com.oliveoa.vo.EmpContact;
@@ -36,6 +30,14 @@ public class EmployeesServiceImpl implements IEmployeesService {
     @Autowired
     private PositionMapper positionMapper;
 
+    @Autowired
+    private MessageMapper messageMapper;
+
+    @Autowired
+    private AnnouncementMapper announcementMapper;
+
+    @Autowired
+    private AnnouncementApprovedOpinionMapper announcementApprovedOpinionMapper;
     @Override
     public ServerResponse add_employee(Employees employees) {
         int result = employeesMapper.insert(employees);
@@ -147,5 +149,39 @@ public class EmployeesServiceImpl implements IEmployeesService {
             depContactList.add(depContact);
         }
         return ServerResponse.createBySuccess("查询成功",depContactList);
+    }
+
+    @Override
+    public ServerResponse sent_message(Message message){
+        messageMapper.insertSelective(message);
+        return ServerResponse.createBySuccessMessage("发送成功");
+    }
+
+    @Override
+    public ServerResponse get_message_Isent(String seid,int orderBy){
+        List<Message> messageList = messageMapper.selectBySeidAfterOrder(seid,orderBy);
+        return ServerResponse.createBySuccess("查询成功",messageList);
+    }
+
+    @Override
+    public ServerResponse get_message_sent_to_me(String eid,int orderBy){
+        List<Message> messageList = messageMapper.selectByEidAfterOrder(eid,orderBy);
+        return ServerResponse.createBySuccess("查询成功",messageList);
+    }
+
+    @Override
+    public ServerResponse submit_announcement(Announcement announcement,List<AnnouncementApprovedOpinion> announcementApprovedOpinionList){
+        boolean result1 = announcementMapper.insertSelective(announcement) > 0;
+        boolean result2 = true;
+        int size = announcementApprovedOpinionList.size();
+        for (int i = size - 1; i >= 0; i--) {
+            int ir = announcementApprovedOpinionMapper.insertSelective(announcementApprovedOpinionList.get(i));
+            if (ir == 0)
+                result2 = false;
+        }
+        if (result1 && result2)
+            return ServerResponse.createBySuccessMessage("提交公告成功");
+        else
+            return ServerResponse.createByErrorMessage("提交公告失败");
     }
 }
