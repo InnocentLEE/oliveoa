@@ -25,4 +25,9 @@ public interface IEmployeesService {
     ServerResponse get_message_Isent(String seid,int orderBy);
     ServerResponse get_message_sent_to_me(String eid,int orderBy);
     ServerResponse submit_announcement(Announcement announcement, List<AnnouncementApprovedOpinion> announcementApprovedOpinionList);
+    ServerResponse get_announcement_need_approved(String eid);
+    ServerResponse get_announcement_Isubmit(String eid);
+    ServerResponse approved_announcement(AnnouncementApprovedOpinion announcementApprovedOpinion);
+    ServerResponse get_announcement_details(String aid);
+    ServerResponse get_announcement_publish();
 }

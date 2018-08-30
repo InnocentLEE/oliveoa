@@ -23,6 +23,18 @@
     from tb_job_transfer_application_approved_opinion
     where jtaaocid = #{jtaaocid,jdbcType=VARCHAR}
   </select>
+  <select id="selectJtaaopidByBtaidAndEid" resultType="string" parameterType="com.oliveoa.pojo.JobTransferApplicationApprovedOpinion">
+    select jtaaopid
+    FROM tb_job_transfer_application_approved_opinion
+    where jtaid = #{jtaid,jdbcType=VARCHAR} and eid = #{eid,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByJtaid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    SELECT
+    <include refid="Base_Column_List" />
+    from tb_job_transfer_application_approved_opinion
+    WHERE jtaid = #{jtaid,jdbcType=VARCHAR}
+    order by orderBy
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from tb_job_transfer_application_approved_opinion
     where jtaaocid = #{jtaaocid,jdbcType=VARCHAR}
@@ -139,5 +151,17 @@
       createtime = #{createtime,jdbcType=TIMESTAMP},
       updatetime = now()
     where jtaaocid = #{jtaaocid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByJtaidAndEid" parameterType="com.oliveoa.pojo.JobTransferApplicationApprovedOpinion">
+    UPDATE tb_job_transfer_application_approved_opinion
+    SET isApproved = #{isapproved,jdbcType=INTEGER},
+      opinion = #{opinion,jdbcType=VARCHAR},
+      updatetime = now()
+    where jtaid = #{jtaid,jdbcType=VARCHAR} and eid = #{eid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateIsApprovedToZeroByJtaaocid" parameterType="string">
+    UPDATE tb_job_transfer_application_approved_opinion
+    SET isApproved = 0
+    WHERE jtaaocid = #{jtaaocid,jdbcType=VARCHAR}
   </update>
 </mapper>

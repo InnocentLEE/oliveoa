@@ -23,6 +23,17 @@
     from tb_announcement_approved_opinion
     where aaocid = #{aaocid,jdbcType=VARCHAR}
   </select>
+  <select id="selectByAid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_announcement_approved_opinion
+    where aid = #{aid,jdbcType=VARCHAR}
+    order by orderBy
+  </select>
+  <select id="selectAaopidByAidAndEid" resultType="string" parameterType="com.oliveoa.pojo.AnnouncementApprovedOpinion" >
+    SELECT aaopid FROM tb_announcement_approved_opinion
+    WHERE aid = #{aid,jdbcType=VARCHAR} AND eid = #{eid,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from tb_announcement_approved_opinion
     where aaocid = #{aaocid,jdbcType=VARCHAR}
@@ -139,5 +150,17 @@
       createtime = #{createtime,jdbcType=TIMESTAMP},
       updatetime = now()
     where aaocid = #{aaocid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByAidAndEid" parameterType="com.oliveoa.pojo.AnnouncementApprovedOpinion" >
+    update tb_announcement_approved_opinion
+    set isApproved = #{isapproved,jdbcType=INTEGER},
+    opinion = #{opinion,jdbcType=VARCHAR},
+    updatetime = now()
+    where aid = #{aid,jdbcType=VARCHAR} and eid = #{eid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateIsApprovedToZeroByAaocid" parameterType="string">
+    UPDATE tb_announcement_approved_opinion
+    SET isApproved = 0
+    WHERE aaocid = #{aaocid,jdbcType=VARCHAR}
   </update>
 </mapper>

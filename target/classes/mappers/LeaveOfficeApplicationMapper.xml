@@ -22,6 +22,20 @@
     from tb_leave_office_application
     where loaid = #{loaid,jdbcType=VARCHAR}
   </select>
+  <select id="selectByApprovedEid" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_leave_office_application
+    WHERE loaid IN (SELECT loaid FROM tb_leave_office_application_approved_opinion WHERE eid = #{eid,jdbcType=VARCHAR})
+    order by orderBy
+  </select>
+  <select id="selectByEid" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_leave_office_application
+    WHERE eid = #{eid,jdbcType=VARCHAR}
+    ORDER BY orderBy
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from tb_leave_office_application
     where loaid = #{loaid,jdbcType=VARCHAR}

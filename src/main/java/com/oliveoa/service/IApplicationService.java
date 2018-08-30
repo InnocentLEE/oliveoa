@@ -25,4 +25,14 @@ public interface IApplicationService {
     ServerResponse get_business_trip_application_Isubmit(String eid);
     ServerResponse get_business_trip_application_details(String btaid);
     ServerResponse approved_business_trip_application(BusinessTripApplicationApprovedOpinion businessTripApplicationApprovedOpinion);
+    ServerResponse add_job_transfer_application(JobTransferApplication jobTransferApplication,List<JobTransferApplicationApprovedOpinion> jobTransferApplicationApprovedOpinionList);
+    ServerResponse get_job_transfer_application_need_approved(String eid);
+    ServerResponse get_job_transfer_application_Isubmit(String eid);
+    ServerResponse get_job_transfer_application_details(String jtaid);
+    ServerResponse approved_job_transfer_application(JobTransferApplicationApprovedOpinion jobTransferApplicationApprovedOpinion);
+    ServerResponse add_leave_office_application(LeaveOfficeApplication leaveOfficeApplication,List<LeaveOfficeApplicationApprovedOpinion> leaveOfficeApplicationApprovedOpinionList);
+    ServerResponse get_leave_office_application_need_approved(String eid);
+    ServerResponse get_leave_office_application_Isubmit(String eid);
+    ServerResponse get_leave_office_application_details(String loaid);
+    ServerResponse approved_leave_office_application(LeaveOfficeApplicationApprovedOpinion leaveOfficeApplicationApprovedOpinion);
 }

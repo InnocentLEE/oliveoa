@@ -4,10 +4,12 @@ import com.oliveoa.common.ServerResponse;
 import com.oliveoa.dao.*;
 import com.oliveoa.pojo.*;
 import com.oliveoa.service.IEmployeesService;
+import com.oliveoa.vo.AnnouncementDetails;
 import com.oliveoa.vo.DepContact;
 import com.oliveoa.vo.EmpContact;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -183,5 +185,51 @@ public class EmployeesServiceImpl implements IEmployeesService {
             return ServerResponse.createBySuccessMessage("提交公告成功");
         else
             return ServerResponse.createByErrorMessage("提交公告失败");
+    }
+    @Override
+    public ServerResponse get_announcement_need_approved(String eid){
+        List<Announcement> list = announcementMapper.selectByApprovedEid(eid);
+        return ServerResponse.createBySuccess(list);
+    }
+
+    @Override
+    public ServerResponse get_announcement_Isubmit(String eid){
+        List<Announcement> list = announcementMapper.selectByEid(eid);
+        return ServerResponse.createBySuccess(list);
+    }
+
+    @Override
+    @Transactional
+    public ServerResponse approved_announcement(AnnouncementApprovedOpinion announcementApprovedOpinion){
+        int result1 = announcementApprovedOpinionMapper.updateByAidAndEid(announcementApprovedOpinion);
+        if(announcementApprovedOpinion.getIsapproved()==1){
+            String aaocid = announcementApprovedOpinionMapper.selectAaopidByAidAndEid(announcementApprovedOpinion);
+            if(aaocid!=null){
+                int result2 = announcementApprovedOpinionMapper.updateIsApprovedToZeroByAaocid(aaocid);
+                if (result2 <= 0)
+                    result1 = 0;
+            }else {
+                announcementMapper.updateisApprovedByAid(announcementApprovedOpinion.getAid(),1);
+            }
+        }else{
+            announcementMapper.updateisApprovedByAid(announcementApprovedOpinion.getAid(),-1);
+        }
+        return ServerResponse.createBySuccess();
+    }
+
+    @Override
+    public ServerResponse get_announcement_details(String aid){
+        AnnouncementDetails announcementDetails = new AnnouncementDetails();
+        Announcement announcement = announcementMapper.selectByPrimaryKey(aid);
+        List<AnnouncementApprovedOpinion> list = announcementApprovedOpinionMapper.selectByAid(aid);
+        announcementDetails.setAnnouncement(announcement);
+        announcementDetails.setAnnouncementApprovedOpinionList(list);
+        return ServerResponse.createBySuccess(announcementDetails);
+    }
+
+    @Override
+    public ServerResponse get_announcement_publish(){
+        List<Announcement> announcementList = announcementMapper.selectPublished();
+        return ServerResponse.createBySuccess(announcementList);
     }
 }

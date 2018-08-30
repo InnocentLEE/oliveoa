@@ -200,4 +200,54 @@ public class EmployeeController {
         return iEmployeesService.submit_announcement(announcement,announcementApprovedOpinionList);
     }
 
+    @RequestMapping(value = "get_announcement_need_approved.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_announcement_need_approved(HttpSession session){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iEmployeesService.get_announcement_need_approved(employees.getEid());
+    }
+
+    @RequestMapping(value = "get_announcement_Isubmit.do",method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_announcement_Isubmit(HttpSession session){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iEmployeesService.get_announcement_Isubmit(employees.getEid());
+    }
+
+    @RequestMapping(value = "approved_announcement.do",method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse approved_announcement(HttpSession session,String aid,String isApproved,String opinion){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        int approved = Integer.parseInt(isApproved);
+        AnnouncementApprovedOpinion announcementApprovedOpinion = new AnnouncementApprovedOpinion();
+        announcementApprovedOpinion.setAid(aid);
+        announcementApprovedOpinion.setEid(employees.getEid());
+        announcementApprovedOpinion.setIsapproved(approved);
+        announcementApprovedOpinion.setOpinion(opinion);
+        return iEmployeesService.approved_announcement(announcementApprovedOpinion);
+    }
+
+    @RequestMapping(value = "get_announcement_details.do",method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_announcement_details(HttpSession session,String aid){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iEmployeesService.get_announcement_details(aid);
+    }
+
+    @RequestMapping(value = "get_announcement_publish.do",method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_announcement_publish(HttpSession session){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iEmployeesService.get_announcement_publish();
+    }
 }

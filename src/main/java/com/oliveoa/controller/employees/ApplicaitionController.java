@@ -1,5 +1,6 @@
 package com.oliveoa.controller.employees;
 
+import com.google.common.collect.EnumMultiset;
 import com.google.common.collect.Table;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -340,6 +341,188 @@ public class ApplicaitionController {
         businessTripApplicationApprovedOpinion.setOpinion(opinion);
         return iApplicationService.approved_business_trip_application(businessTripApplicationApprovedOpinion);
     }
+
+    @RequestMapping(value = "add_job_transfer_application.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse add_job_transfer_application(HttpSession session,String eid,String aimdcid,String aimpcid,String reason,String approvedMember){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        String aeid = employees.getEid();
+        String jtaid = CommonUtils.uuid();
+        JobTransferApplication jobTransferApplication = new JobTransferApplication();
+        jobTransferApplication.setJtaid(jtaid);
+        jobTransferApplication.setAeid(aeid);
+        jobTransferApplication.setEid(eid);
+        jobTransferApplication.setAimdcid(aimdcid);
+        jobTransferApplication.setAimpcid(aimpcid);
+        jobTransferApplication.setReason(reason);
+
+        //Json的解析类对象
+        JsonParser parser = new JsonParser();
+        //将JSON的String 转成一个JsonArray对象
+        JsonArray jsonArray = parser.parse(approvedMember).getAsJsonArray();
+
+        Gson gson = new Gson();
+        ArrayList<JobTransferApplicationApprovedOpinion> jobTransferApplicationApprovedOpinionArrayList = new ArrayList<>();
+
+        //加强for循环遍历JsonArray
+        for(JsonElement member:jsonArray){
+            //使用GSON，直接转成Bean对象
+            MemberBean memberBean = gson.fromJson(member,MemberBean.class);
+            JobTransferApplicationApprovedOpinion jobTransferApplicationApprovedOpinion = new JobTransferApplicationApprovedOpinion();
+            jobTransferApplicationApprovedOpinion.setJtaaocid(CommonUtils.uuid());
+            jobTransferApplicationApprovedOpinion.setJtaaopid(null);
+            jobTransferApplicationApprovedOpinion.setJtaid(jtaid);
+            jobTransferApplicationApprovedOpinion.setEid(memberBean.getId());
+            jobTransferApplicationApprovedOpinion.setIsapproved(-2);
+            jobTransferApplicationApprovedOpinionArrayList.add(jobTransferApplicationApprovedOpinion);
+        }
+        //for循环遍历建立审核分级
+        int size = jobTransferApplicationApprovedOpinionArrayList.size();
+        for(int i=0;i<size-1;i++){
+            jobTransferApplicationApprovedOpinionArrayList.get(i).setJtaaopid(jobTransferApplicationApprovedOpinionArrayList.get(i+1).getJtaaocid());
+        }
+        jobTransferApplicationApprovedOpinionArrayList.get(0).setIsapproved(0);
+        return iApplicationService.add_job_transfer_application(jobTransferApplication,jobTransferApplicationApprovedOpinionArrayList);
+    }
+
+    @RequestMapping(value = "get_job_transfer_application_need_approved.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_job_transfer_application_need_approved(HttpSession session){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iApplicationService.get_job_transfer_application_need_approved(employees.getEid());
+    }
+
+    @RequestMapping(value = "get_job_transfer_application_Isubmit.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_job_transfer_application_Isubmit(HttpSession session){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iApplicationService.get_job_transfer_application_Isubmit(employees.getEid());
+    }
+
+    @RequestMapping(value = "get_job_transfer_application_details.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_job_transfer_application_details(HttpSession session,String jtaid){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iApplicationService.get_job_transfer_application_details(jtaid);
+    }
+
+    @RequestMapping(value = "approved_job_transfer_application.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse approved_job_transfer_application(HttpSession session,String jtaid,String isApproved,String opinion){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        int approved = Integer.parseInt(isApproved);
+        JobTransferApplicationApprovedOpinion jobTransferApplicationApprovedOpinion = new JobTransferApplicationApprovedOpinion();
+        jobTransferApplicationApprovedOpinion.setJtaid(jtaid);
+        jobTransferApplicationApprovedOpinion.setEid(employees.getEid());
+        jobTransferApplicationApprovedOpinion.setIsapproved(approved);
+        jobTransferApplicationApprovedOpinion.setOpinion(opinion);
+        return iApplicationService.approved_job_transfer_application(jobTransferApplicationApprovedOpinion);
+    }
+
+    @RequestMapping(value = "add_leave_office_application.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse add_leave_office_applicatio(HttpSession session,String leavetime,String handoverMatters,String reason,String approvedMember){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date leaveTime = null;
+        try {
+            leaveTime = format.parse(leavetime);
+        } catch (ParseException e) {
+            return ServerResponse.createByErrorMessage("请适用正确的日期格式：yyyy-MM-dd HH:mm:ss");
+        }
+        String loaid = CommonUtils.uuid();
+        LeaveOfficeApplication leaveOfficeApplication = new LeaveOfficeApplication();
+        leaveOfficeApplication.setLoaid(loaid);
+        leaveOfficeApplication.setEid(employees.getEid());
+        leaveOfficeApplication.setLeavetime(leaveTime);
+        leaveOfficeApplication.setReason(reason);
+        leaveOfficeApplication.setHandoverMatters(handoverMatters);
+        //Json的解析类对象
+        JsonParser parser = new JsonParser();
+        //将JSON的String 转成一个JsonArray对象
+        JsonArray jsonArray = parser.parse(approvedMember).getAsJsonArray();
+
+        Gson gson = new Gson();
+        ArrayList<LeaveOfficeApplicationApprovedOpinion> leaveOfficeApplicationApprovedOpinionList = new ArrayList<>();
+        //加强for循环遍历JsonArray
+        for(JsonElement member:jsonArray){
+            //使用GSON，直接转成Bean对象]
+            MemberBean memberBean = gson.fromJson(member,MemberBean.class);
+            LeaveOfficeApplicationApprovedOpinion leaveOfficeApplicationApprovedOpinion = new LeaveOfficeApplicationApprovedOpinion();
+            leaveOfficeApplicationApprovedOpinion.setLoaaopid(null);
+            leaveOfficeApplicationApprovedOpinion.setLoaaocid(CommonUtils.uuid());
+            leaveOfficeApplicationApprovedOpinion.setLoaid(loaid);
+            leaveOfficeApplicationApprovedOpinion.setEid(memberBean.getId());
+            leaveOfficeApplicationApprovedOpinion.setIsapproved(-2);
+            leaveOfficeApplicationApprovedOpinionList.add(leaveOfficeApplicationApprovedOpinion);
+        }
+        //for循环遍历建立审核分级
+        int size = leaveOfficeApplicationApprovedOpinionList.size();
+        for(int i=0;i<size-1;i++){
+            leaveOfficeApplicationApprovedOpinionList.get(i).setLoaaopid(leaveOfficeApplicationApprovedOpinionList.get(i+1).getLoaaocid());
+        }
+        leaveOfficeApplicationApprovedOpinionList.get(0).setIsapproved(0);
+        return iApplicationService.add_leave_office_application(leaveOfficeApplication,leaveOfficeApplicationApprovedOpinionList);
+    }
+
+    @RequestMapping(value = "get_leave_office_application_need_approved.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_leave_office_application_need_approved(HttpSession session){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iApplicationService.get_leave_office_application_need_approved(employees.getEid());
+    }
+
+    @RequestMapping(value = "get_leave_office_application_Isubmit.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_leave_office_application_Isubmit(HttpSession session){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iApplicationService.get_leave_office_application_Isubmit(employees.getEid());
+    }
+
+    @RequestMapping(value = "get_leave_office_application_details.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_leave_office_application_details(HttpSession session,String loaid){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iApplicationService.get_leave_office_application_details(loaid);
+    }
+
+    @RequestMapping(value = "approved_leave_office_application.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse approved_leave_office_application(HttpSession session,String loaid,String isApproved,String opinion){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        int approved = Integer.parseInt(isApproved);
+        LeaveOfficeApplicationApprovedOpinion leaveOfficeApplicationApprovedOpinion = new LeaveOfficeApplicationApprovedOpinion();
+        leaveOfficeApplicationApprovedOpinion.setLoaid(loaid);
+        leaveOfficeApplicationApprovedOpinion.setEid(employees.getEid());
+        leaveOfficeApplicationApprovedOpinion.setIsapproved(approved);
+        leaveOfficeApplicationApprovedOpinion.setOpinion(opinion);
+        return iApplicationService.approved_leave_office_application(leaveOfficeApplicationApprovedOpinion);
+    }
+
+
+
+
+
 
 
 

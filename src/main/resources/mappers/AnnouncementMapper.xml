@@ -25,6 +25,27 @@
     from tb_announcement
     where aid = #{aid,jdbcType=VARCHAR}
   </select>
+  <select id="selectByApprovedEid" resultType="com.oliveoa.pojo.Announcement" parameterType="string">
+    SELECT
+    <include refid="Base_Column_List" />
+    from tb_announcement
+    WHERE aid IN (SELECT aid FROM tb_announcement_approved_opinion WHERE eid = #{eid,jdbcType=VARCHAR} and isApproved = 0)
+    order by orderBy desc
+  </select>
+  <select id="selectByEid" resultType="com.oliveoa.pojo.Announcement" parameterType="string">
+    SELECT
+    <include refid="Base_Column_List" />
+    from tb_announcement
+    WHERE eid = #{eid,jdbcType=VARCHAR}
+    order by orderBy desc
+  </select>
+  <select id="selectPublished" resultType="com.oliveoa.pojo.Announcement" >
+    SELECT
+    <include refid="Base_Column_List" />
+    from tb_announcement
+    WHERE publishtime &lt;= now()
+    ORDER  BY publishtime DESC
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from tb_announcement
     where aid = #{aid,jdbcType=VARCHAR}
@@ -150,6 +171,11 @@
       orderBy = #{orderby,jdbcType=INTEGER},
       createtime = #{createtime,jdbcType=TIMESTAMP},
       updatetime = now()
+    where aid = #{aid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateisApprovedByAid">
+    UPDATE tb_announcement
+    SET isApproved = #{isApproved,jdbcType=INTEGER}
     where aid = #{aid,jdbcType=VARCHAR}
   </update>
 </mapper>
