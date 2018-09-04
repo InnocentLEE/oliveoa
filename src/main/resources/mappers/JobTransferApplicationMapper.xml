@@ -30,6 +30,13 @@
     WHERE jtaid IN (SELECT jtaid FROM tb_job_transfer_application_approved_opinion WHERE eid = #{eid,jdbcType=VARCHAR} AND isApproved=0)
     order by orderBy desc
   </select>
+  <select id="selectApprovedByEid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    SELECT
+    <include refid="Base_Column_List" />
+    from tb_job_transfer_application
+    WHERE jtaid IN (SELECT jtaid FROM tb_job_transfer_application_approved_opinion WHERE eid = #{eid,jdbcType=VARCHAR} AND (isApproved= -1 OR isApproved = 1))
+    order by orderBy desc
+  </select>
   <select id="selectByAEid" resultMap="BaseResultMap" parameterType="java.lang.String" >
     SELECT
     <include refid="Base_Column_List" />

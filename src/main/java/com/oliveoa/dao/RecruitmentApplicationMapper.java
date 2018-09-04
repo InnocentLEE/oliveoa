@@ -2,6 +2,8 @@ package com.oliveoa.dao;
 
 import com.oliveoa.pojo.RecruitmentApplication;
 
+import java.util.List;
+
 public interface RecruitmentApplicationMapper {
     int deleteByPrimaryKey(String raid);
 
@@ -14,4 +16,10 @@ public interface RecruitmentApplicationMapper {
     int updateByPrimaryKeySelective(RecruitmentApplication record);
 
     int updateByPrimaryKey(RecruitmentApplication record);
+
+    List<RecruitmentApplication> selectByApprovedEid(String eid);
+
+    List<RecruitmentApplication> selectApprovedByEid(String eid);
+
+    List<RecruitmentApplication> selectByEid(String eid);
 }

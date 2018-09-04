@@ -18,4 +18,6 @@ public interface BusinessTripApplicationMapper {
     int updateByPrimaryKey(BusinessTripApplication record);
 
     List<BusinessTripApplication> selectByEid(String eid);
+
+    List<BusinessTripApplication> selectApprovedByEid(String eid);
 }

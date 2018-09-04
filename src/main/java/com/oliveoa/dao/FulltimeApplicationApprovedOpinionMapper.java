@@ -1,6 +1,9 @@
 package com.oliveoa.dao;
 
+import com.oliveoa.pojo.FulltimeApplication;
 import com.oliveoa.pojo.FulltimeApplicationApprovedOpinion;
+
+import java.util.List;
 
 public interface FulltimeApplicationApprovedOpinionMapper {
     int deleteByPrimaryKey(String faaocid);
@@ -11,7 +14,15 @@ public interface FulltimeApplicationApprovedOpinionMapper {
 
     FulltimeApplicationApprovedOpinion selectByPrimaryKey(String faaocid);
 
+    String selectFaaopidByFaidAndEid(FulltimeApplicationApprovedOpinion record);
+
     int updateByPrimaryKeySelective(FulltimeApplicationApprovedOpinion record);
 
     int updateByPrimaryKey(FulltimeApplicationApprovedOpinion record);
+
+    List<FulltimeApplicationApprovedOpinion> selectByFaid(String faid);
+
+    int updateByFaidAndEid(FulltimeApplicationApprovedOpinion record);
+
+    int updateIsApprovedToZeroByFaaocid(String faaocid);
 }

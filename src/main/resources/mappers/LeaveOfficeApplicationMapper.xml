@@ -26,8 +26,15 @@
     select
     <include refid="Base_Column_List" />
     from tb_leave_office_application
-    WHERE loaid IN (SELECT loaid FROM tb_leave_office_application_approved_opinion WHERE eid = #{eid,jdbcType=VARCHAR})
-    order by orderBy
+    WHERE loaid IN (SELECT loaid FROM tb_leave_office_application_approved_opinion WHERE eid = #{eid,jdbcType=VARCHAR} and isApproved = 0)
+    order by orderBy desc
+  </select>
+  <select id="selectApprovedByEid" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_leave_office_application
+    WHERE loaid IN (SELECT loaid FROM tb_leave_office_application_approved_opinion WHERE eid = #{eid,jdbcType=VARCHAR} and (isApproved= -1 or isApproved = 1))
+    order by orderBy desc
   </select>
   <select id="selectByEid" resultMap="BaseResultMap" >
     select

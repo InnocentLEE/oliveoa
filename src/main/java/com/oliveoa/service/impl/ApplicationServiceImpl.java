@@ -38,8 +38,19 @@ public class ApplicationServiceImpl implements IApplicationService {
     private LeaveOfficeApplicationMapper leaveOfficeApplicationMapper;
     @Autowired
     private LeaveOfficeApplicationApprovedOpinionMapper leaveOfficeApplicationApprovedOpinionMapper;
+    @Autowired
+    private FulltimeApplicationMapper fulltimeApplicationMapper;
+    @Autowired
+    private FulltimeApplicationApprovedOpinionMapper fulltimeApplicationApprovedOpinionMapper;
+    @Autowired
+    private RecruitmentApplicationMapper recruitmentApplicationMapper;
+    @Autowired
+    private RecruitmentApplicationItemMapper recruitmentApplicationItemMapper;
+    @Autowired
+    private RecruitmentApplicationApprovedOpinionMapper recruitmentApplicationApprovedOpinionMapper;
 
     @Override
+    @Transactional
     public ServerResponse add_overtime_application(OvertimeApplication overtimeApplication, List<OvertimeApplicationApprovedOpinion> overtimeApplicationApprovedOpinionList) {
         boolean result1 = overtimeApplicationMapper.insertSelective(overtimeApplication) > 0;
         boolean result2 = true;
@@ -56,6 +67,7 @@ public class ApplicationServiceImpl implements IApplicationService {
     }
 
     @Override
+    @Transactional
     public ServerResponse get_overtime_application_need_approved(String eid) {
         List<OvertimeApplicationApprovedOpinion> overtimeApplicationApprovedOpinionList = overtimeApplicationApprovedOpinionMapper.selectNeedApprovedByEid(eid);
         int size = overtimeApplicationApprovedOpinionList.size();
@@ -67,12 +79,21 @@ public class ApplicationServiceImpl implements IApplicationService {
     }
 
     @Override
+    @Transactional
+    public ServerResponse get_overtime_application_approved(String eid){
+        List<OvertimeApplication> overtimeApplicationList = overtimeApplicationMapper.selectApprovedByEid(eid);
+        return ServerResponse.createBySuccess(overtimeApplicationList);
+    }
+
+    @Override
+    @Transactional
     public ServerResponse get_overtime_application_Isubmit(String eid) {
         List<OvertimeApplication> overtimeApplicationList = overtimeApplicationMapper.selectByEid(eid);
         return ServerResponse.createBySuccess("查询成功", overtimeApplicationList);
     }
 
     @Override
+    @Transactional
     public ServerResponse get_overtime_application_details(String oaid) {
         OvertimeApplication overtimeApplication = overtimeApplicationMapper.selectByPrimaryKey(oaid);
         List<OvertimeApplicationApprovedOpinion> overtimeApplicationApprovedOpinionList = overtimeApplicationApprovedOpinionMapper.selectByOaid(oaid);
@@ -81,6 +102,7 @@ public class ApplicationServiceImpl implements IApplicationService {
     }
 
     @Override
+    @Transactional
     public ServerResponse approved_overtime_application(OvertimeApplicationApprovedOpinion overtimeApplicationApprovedOpinion) {
         int result1 = overtimeApplicationApprovedOpinionMapper.updateByOaidAndEid(overtimeApplicationApprovedOpinion);
         if (overtimeApplicationApprovedOpinion.getIsapproved() == 1) {
@@ -98,6 +120,7 @@ public class ApplicationServiceImpl implements IApplicationService {
     }
 
     @Override
+    @Transactional
     public ServerResponse add_leave_application(LeaveApplication leaveApplication, List<LeaveApplicationApprovedOpinion> leaveApplicationApprovedOpinionList) {
         boolean result1 = leaveApplicationMapper.insertSelective(leaveApplication) > 0;
         boolean result2 = true;
@@ -114,6 +137,7 @@ public class ApplicationServiceImpl implements IApplicationService {
     }
 
     @Override
+    @Transactional
     public ServerResponse get_leave_application_need_approved(String eid) {
         List<LeaveApplicationApprovedOpinion> leaveApplicationApprovedOpinionList = leaveApplicationApprovedOpinionMapper.selectNeedApprovedByEid(eid);
         int size = leaveApplicationApprovedOpinionList.size();
@@ -125,12 +149,21 @@ public class ApplicationServiceImpl implements IApplicationService {
     }
 
     @Override
+    @Transactional
+    public ServerResponse get_leave_application_approved(String eid){
+        List<LeaveApplication> leaveApplicationList = leaveApplicationMapper.selectApprovedByEid(eid);
+        return ServerResponse.createBySuccess(leaveApplicationList);
+    }
+
+    @Override
+    @Transactional
     public ServerResponse get_leave_application_Isubmit(String eid) {
         List<LeaveApplication> leaveApplicationList = leaveApplicationMapper.selectByEid(eid);
         return ServerResponse.createBySuccess("查询成功", leaveApplicationList);
     }
 
     @Override
+    @Transactional
     public ServerResponse get_leave_application_details(String laid) {
         LeaveApplication leaveApplication = leaveApplicationMapper.selectByPrimaryKey(laid);
         List<LeaveApplicationApprovedOpinion> leaveApplicationApprovedOpinionList = leaveApplicationApprovedOpinionMapper.selectByLaid(laid);
@@ -139,6 +172,7 @@ public class ApplicationServiceImpl implements IApplicationService {
     }
 
     @Override
+    @Transactional
     public ServerResponse approved_leave_application(LeaveApplicationApprovedOpinion leaveApplicationApprovedOpinion) {
         int result1 = leaveApplicationApprovedOpinionMapper.updateByLaidAndEid(leaveApplicationApprovedOpinion);
         if (leaveApplicationApprovedOpinion.getIsapproved() == 1) {
@@ -156,6 +190,7 @@ public class ApplicationServiceImpl implements IApplicationService {
     }
 
     @Override
+    @Transactional
     public ServerResponse add_business_trip_application(BusinessTripApplication businessTripApplication, List<BusinessTripApplicationApprovedOpinion> businessTripApplicationApprovedOpinionList) {
         boolean result1 = businessTripApplicationMapper.insertSelective(businessTripApplication) > 0;
         boolean result2 = true;
@@ -172,6 +207,7 @@ public class ApplicationServiceImpl implements IApplicationService {
     }
 
     @Override
+    @Transactional
     public ServerResponse get_business_trip_application_need_approved(String eid) {
         List<BusinessTripApplicationApprovedOpinion> businessTripApplicationApprovedOpinionList = businessTripApplicationApprovedOpinionMapper.selectNeedApprovedByEid(eid);
         int size = businessTripApplicationApprovedOpinionList.size();
@@ -183,12 +219,21 @@ public class ApplicationServiceImpl implements IApplicationService {
     }
 
     @Override
+    @Transactional
+    public ServerResponse get_business_trip_application_approved(String eid) {
+        List<BusinessTripApplication> businessTripApplicationList = businessTripApplicationMapper.selectApprovedByEid(eid);
+        return ServerResponse.createBySuccess(businessTripApplicationList);
+    }
+
+    @Override
+    @Transactional
     public ServerResponse get_business_trip_application_Isubmit(String eid) {
         List<BusinessTripApplication> businessTripApplicationList = businessTripApplicationMapper.selectByEid(eid);
         return ServerResponse.createBySuccess("查询成功", businessTripApplicationList);
     }
 
     @Override
+    @Transactional
     public ServerResponse get_business_trip_application_details(String btaid) {
         BusinessTripApplication businessTripApplication = businessTripApplicationMapper.selectByPrimaryKey(btaid);
         List<BusinessTripApplicationApprovedOpinion> businessTripApplicationApprovedOpinionList = businessTripApplicationApprovedOpinionMapper.selectByBtaid(btaid);
@@ -197,6 +242,7 @@ public class ApplicationServiceImpl implements IApplicationService {
     }
 
     @Override
+    @Transactional
     public ServerResponse approved_business_trip_application(BusinessTripApplicationApprovedOpinion businessTripApplicationApprovedOpinion) {
         int result1 = businessTripApplicationApprovedOpinionMapper.updateByBtaidAndEid(businessTripApplicationApprovedOpinion);
         if (businessTripApplicationApprovedOpinion.getIsapproved() == 1) {
@@ -214,6 +260,7 @@ public class ApplicationServiceImpl implements IApplicationService {
     }
 
     @Override
+    @Transactional
     public ServerResponse add_job_transfer_application(JobTransferApplication jobTransferApplication, List<JobTransferApplicationApprovedOpinion> jobTransferApplicationApprovedOpinionList) {
         boolean result1 = jobTransferApplicationMapper.insertSelective(jobTransferApplication) > 0;
         boolean result2 = true;
@@ -230,18 +277,28 @@ public class ApplicationServiceImpl implements IApplicationService {
     }
 
     @Override
+    @Transactional
     public ServerResponse get_job_transfer_application_need_approved(String eid) {
         List<JobTransferApplication> jobTransferApplications = jobTransferApplicationMapper.selectByApprovedEid(eid);
         return ServerResponse.createBySuccess(jobTransferApplications);
     }
 
     @Override
+    @Transactional
+    public ServerResponse get_job_transfer_application_approved(String eid) {
+        List<JobTransferApplication> jobTransferApplications = jobTransferApplicationMapper.selectApprovedByEid(eid);
+        return ServerResponse.createBySuccess(jobTransferApplications);
+    }
+
+    @Override
+    @Transactional
     public ServerResponse get_job_transfer_application_Isubmit(String eid) {
         List<JobTransferApplication> jobTransferApplications = jobTransferApplicationMapper.selectByAEid(eid);
         return ServerResponse.createBySuccess(jobTransferApplications);
     }
 
     @Override
+    @Transactional
     public ServerResponse get_job_transfer_application_details(String jtaid) {
         JobTransferApplication jobTransferApplication = jobTransferApplicationMapper.selectByPrimaryKey(jtaid);
         List<JobTransferApplicationApprovedOpinion> jobTransferApplicationApprovedOpinions = jobTransferApplicationApprovedOpinionMapper.selectByJtaid(jtaid);
@@ -250,6 +307,7 @@ public class ApplicationServiceImpl implements IApplicationService {
     }
 
     @Override
+    @Transactional
     public ServerResponse approved_job_transfer_application(JobTransferApplicationApprovedOpinion jobTransferApplicationApprovedOpinion) {
         int result1 = jobTransferApplicationApprovedOpinionMapper.updateByJtaidAndEid(jobTransferApplicationApprovedOpinion);
         if (jobTransferApplicationApprovedOpinion.getIsapproved() == 1) {
@@ -267,6 +325,7 @@ public class ApplicationServiceImpl implements IApplicationService {
     }
 
     @Override
+    @Transactional
     public ServerResponse add_leave_office_application(LeaveOfficeApplication leaveOfficeApplication,List<LeaveOfficeApplicationApprovedOpinion> leaveOfficeApplicationApprovedOpinionList){
         boolean result1 = leaveOfficeApplicationMapper.insertSelective(leaveOfficeApplication) > 0;
         boolean result2 = true;
@@ -283,18 +342,28 @@ public class ApplicationServiceImpl implements IApplicationService {
     }
 
     @Override
+    @Transactional
     public ServerResponse get_leave_office_application_need_approved(String eid){
         List<LeaveOfficeApplication> leaveOfficeApplicationList = leaveOfficeApplicationMapper.selectByApprovedEid(eid);
         return ServerResponse.createBySuccess(leaveOfficeApplicationList);
     }
 
     @Override
+    @Transactional
+    public ServerResponse get_leave_office_application_approved(String eid){
+        List<LeaveOfficeApplication> leaveOfficeApplicationList = leaveOfficeApplicationMapper.selectApprovedByEid(eid);
+        return ServerResponse.createBySuccess(leaveOfficeApplicationList);
+    }
+
+    @Override
+    @Transactional
     public ServerResponse get_leave_office_application_Isubmit(String eid){
         List<LeaveOfficeApplication> leaveOfficeApplicationList = leaveOfficeApplicationMapper.selectByEid(eid);
         return ServerResponse.createBySuccess(leaveOfficeApplicationList);
     }
 
     @Override
+    @Transactional
     public ServerResponse get_leave_office_application_details(String loaid){
         LeaveOfficeApplication leaveOfficeApplication = leaveOfficeApplicationMapper.selectByPrimaryKey(loaid);
         List<LeaveOfficeApplicationApprovedOpinion> leaveOfficeApplicationApprovedOpinions = leaveOfficeApplicationApprovedOpinionMapper.selectByLoaid(loaid);
@@ -310,6 +379,138 @@ public class ApplicationServiceImpl implements IApplicationService {
             String loaaocid = leaveOfficeApplicationApprovedOpinionMapper.selectLoaaopidByLoaidAndEid(leaveOfficeApplicationApprovedOpinion);
             if(loaaocid != null){
                 int result2 = leaveOfficeApplicationApprovedOpinionMapper.updateIsApprovedToZeroByLoaaocid(loaaocid);
+                if(result2 <= 0)
+                    result1 = 0;
+            }
+        }
+        if (result1 > 0)
+            return ServerResponse.createBySuccessMessage("审核成功");
+        else
+            return ServerResponse.createByErrorMessage("审核失败");
+    }
+
+    @Override
+    @Transactional
+    public ServerResponse add_fulltime_application(FulltimeApplication fulltimeApplication,List<FulltimeApplicationApprovedOpinion> fulltimeApplicationApprovedOpinions){
+        boolean result1 = fulltimeApplicationMapper.insertSelective(fulltimeApplication) > 0;
+        boolean result2 = true;
+        int size = fulltimeApplicationApprovedOpinions.size();
+        for(int i=0;i<size;i++){
+            int ir = fulltimeApplicationApprovedOpinionMapper.insertSelective(fulltimeApplicationApprovedOpinions.get(i));
+            if(ir == 0)
+                result2 = false;
+        }
+        if (result1 && result2)
+            return ServerResponse.createBySuccessMessage("添加转正申请成功");
+        else
+            return ServerResponse.createByErrorMessage("添加申请失败");
+    }
+
+    @Override
+    @Transactional
+    public ServerResponse get_fulltime_application_need_approved(String eid){
+        List<FulltimeApplication> fulltimeApplicationList = fulltimeApplicationMapper.selectByApprovedEid(eid);
+        return ServerResponse.createBySuccess(fulltimeApplicationList);
+    }
+
+    @Override
+    @Transactional
+    public ServerResponse get_fulltime_application_approved(String eid){
+        List<FulltimeApplication> fulltimeApplicationList = fulltimeApplicationMapper.selectApprovedByEid(eid);
+        return ServerResponse.createBySuccess(fulltimeApplicationList);
+    }
+
+    @Override
+    @Transactional
+    public ServerResponse get_fulltime_application_Isubmit(String eid){
+        List<FulltimeApplication> fulltimeApplicationList = fulltimeApplicationMapper.selectByEid(eid);
+        return ServerResponse.createBySuccess(fulltimeApplicationList);
+    }
+
+    @Override
+    @Transactional
+    public ServerResponse get_fulltime_application_details(String faid){
+        FulltimeApplication fulltimeApplication = fulltimeApplicationMapper.selectByPrimaryKey(faid);
+        List<FulltimeApplicationApprovedOpinion> fulltimeApplicationApprovedOpinionList = fulltimeApplicationApprovedOpinionMapper.selectByFaid(faid);
+        FulltimeApplicationDetails fulltimeApplicationDetails = new FulltimeApplicationDetails(fulltimeApplication,fulltimeApplicationApprovedOpinionList);
+        return ServerResponse.createBySuccess(fulltimeApplicationDetails);
+    }
+
+    @Override
+    @Transactional
+    public ServerResponse approved_fulltime_application(FulltimeApplicationApprovedOpinion fulltimeApplicationApprovedOpinion){
+        int result1 = fulltimeApplicationApprovedOpinionMapper.updateByFaidAndEid(fulltimeApplicationApprovedOpinion);
+        if(fulltimeApplicationApprovedOpinion.getIsapproved() == 1){
+            String faaocid = fulltimeApplicationApprovedOpinionMapper.selectFaaopidByFaidAndEid(fulltimeApplicationApprovedOpinion);
+            if(faaocid != null){
+                int result2 = fulltimeApplicationApprovedOpinionMapper.updateIsApprovedToZeroByFaaocid(faaocid);
+                if(result2 <= 0)
+                    result1 = 0;
+            }
+        }
+        if (result1 > 0)
+            return ServerResponse.createBySuccessMessage("审核成功");
+        else
+            return ServerResponse.createByErrorMessage("审核失败");
+    }
+
+    @Override
+    @Transactional
+    public ServerResponse add_recruitment_application(RecruitmentApplication recruitmentApplication,RecruitmentApplicationItem recruitmentApplicationItem,List<RecruitmentApplicationApprovedOpinion> recruitmentApplicationApprovedOpinionList){
+        boolean result1 = recruitmentApplicationMapper.insertSelective(recruitmentApplication) > 0;
+        boolean result2 = recruitmentApplicationItemMapper.insertSelective(recruitmentApplicationItem) > 0;
+        boolean result3 = true;
+        int size = recruitmentApplicationApprovedOpinionList.size();
+        for(int i=0;i<size;i++){
+            int ir = recruitmentApplicationApprovedOpinionMapper.insertSelective(recruitmentApplicationApprovedOpinionList.get(i));
+            if(ir == 0)
+                result3 = false;
+        }
+        if (result1 && result2 && result3)
+            return ServerResponse.createBySuccessMessage("添加招聘请成功");
+        else
+            return ServerResponse.createByErrorMessage("添加申请失败");
+    }
+
+    @Override
+    @Transactional
+    public ServerResponse get_recruitment_application_need_approved(String eid){
+        List<RecruitmentApplication> recruitmentApplications = recruitmentApplicationMapper.selectByApprovedEid(eid);
+        return ServerResponse.createBySuccess(recruitmentApplications);
+    }
+
+    @Override
+    @Transactional
+    public ServerResponse get_recruitment_application_approved(String eid){
+        List<RecruitmentApplication> recruitmentApplications = recruitmentApplicationMapper.selectApprovedByEid(eid);
+        return ServerResponse.createBySuccess(recruitmentApplications);
+    }
+
+    @Override
+    @Transactional
+    public ServerResponse get_recruitment_application_Isubmit(String eid){
+        List<RecruitmentApplication> recruitmentApplications = recruitmentApplicationMapper.selectByEid(eid);
+        return ServerResponse.createBySuccess(recruitmentApplications);
+    }
+
+    @Override
+    @Transactional
+    public ServerResponse get_recruitment_application_details(String raid){
+        RecruitmentApplication recruitmentApplication = recruitmentApplicationMapper.selectByPrimaryKey(raid);
+        RecruitmentApplicationItem recruitmentApplicationItem = recruitmentApplicationItemMapper.selectByRaid(raid);
+        List<RecruitmentApplicationApprovedOpinion> recruitmentApplicationApprovedOpinions = recruitmentApplicationApprovedOpinionMapper.selectByRaid(raid);
+        RecruitmentApplicationDetails recruitmentApplicationDetails = new RecruitmentApplicationDetails(recruitmentApplicationItem,recruitmentApplication,recruitmentApplicationApprovedOpinions);
+        return ServerResponse.createBySuccess(recruitmentApplicationDetails);
+    }
+
+    @Override
+    @Transactional
+    public ServerResponse approved_recruitment_application(RecruitmentApplicationApprovedOpinion recruitmentApplicationApprovedOpinion){
+        int result1 = recruitmentApplicationApprovedOpinionMapper.updateByRaidAndEid(recruitmentApplicationApprovedOpinion);
+        if(recruitmentApplicationApprovedOpinion.getIsapproved() == 1){
+            String raaocid = recruitmentApplicationApprovedOpinionMapper.selectRaaopidByRaidAndEid(recruitmentApplicationApprovedOpinion);
+            if(raaocid != null){
+                int result2 = recruitmentApplicationApprovedOpinionMapper.updateIsApprovedToZeroByRaaocid(raaocid);
                 if(result2 <= 0)
                     result1 = 0;
             }

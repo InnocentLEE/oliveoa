@@ -14,4 +14,6 @@ public interface RecruitmentApplicationItemMapper {
     int updateByPrimaryKeySelective(RecruitmentApplicationItem record);
 
     int updateByPrimaryKey(RecruitmentApplicationItem record);
+
+    RecruitmentApplicationItem selectByRaid(String raid);
 }

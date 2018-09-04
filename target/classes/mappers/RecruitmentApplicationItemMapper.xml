@@ -25,6 +25,12 @@
     from tb_recruitment_application_item
     where raiid = #{raiid,jdbcType=VARCHAR}
   </select>
+  <select id="selectByRaid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_recruitment_application_item
+    WHERE  raid = #{raid,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from tb_recruitment_application_item
     where raiid = #{raiid,jdbcType=VARCHAR}

@@ -20,5 +20,7 @@ public interface LeaveOfficeApplicationMapper {
 
     List<LeaveOfficeApplication> selectByApprovedEid(@Param("eid") String eid);
 
+    List<LeaveOfficeApplication> selectApprovedByEid(@Param("eid") String eid);
+
     List<LeaveOfficeApplication> selectByEid(@Param("eid") String eid);
 }

@@ -22,6 +22,27 @@
     from tb_fulltime_application
     where faid = #{faid,jdbcType=VARCHAR}
   </select>
+  <select id="selectByApprovedEid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_fulltime_application
+    WHERE faid IN (SELECT faid FROM tb_fulltime_application_approved_opinion WHERE eid = #{eid,jdbcType=VARCHAR} and isApproved = 0)
+    order by orderBy
+  </select>
+  <select id="selectApprovedByEid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_fulltime_application
+    WHERE faid IN (SELECT faid FROM tb_fulltime_application_approved_opinion WHERE eid = #{eid,jdbcType=VARCHAR} AND (isApproved= -1 OR isApproved = 1))
+    order by orderBy
+  </select>
+  <select id="selectByEid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_fulltime_application
+    WHERE eid = #{eid,jdbcType=VARCHAR}
+    order by orderBy
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from tb_fulltime_application
     where faid = #{faid,jdbcType=VARCHAR}

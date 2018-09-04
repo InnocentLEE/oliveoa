@@ -18,4 +18,6 @@ public interface OvertimeApplicationMapper {
     int updateByPrimaryKey(OvertimeApplication record);
 
     List<OvertimeApplication> selectByEid(String eid);
+
+    List<OvertimeApplication> selectApprovedByEid(String eid);
 }

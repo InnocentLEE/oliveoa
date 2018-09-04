@@ -71,4 +71,9 @@ public class PositionServiceImpl implements IPositionService {
         else
             return ServerResponse.createByErrorMessage("删除职务失败");
     }
+    @Override
+    public ServerResponse get_position_dateils(String pcid){
+        Position position = positionMapper.selectByPrimaryKey(pcid);
+        return ServerResponse.createBySuccess(position);
+    }
 }

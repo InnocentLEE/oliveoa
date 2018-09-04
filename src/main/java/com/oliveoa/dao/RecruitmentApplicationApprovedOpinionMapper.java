@@ -2,6 +2,8 @@ package com.oliveoa.dao;
 
 import com.oliveoa.pojo.RecruitmentApplicationApprovedOpinion;
 
+import java.util.List;
+
 public interface RecruitmentApplicationApprovedOpinionMapper {
     int deleteByPrimaryKey(String raaocid);
 
@@ -14,4 +16,12 @@ public interface RecruitmentApplicationApprovedOpinionMapper {
     int updateByPrimaryKeySelective(RecruitmentApplicationApprovedOpinion record);
 
     int updateByPrimaryKey(RecruitmentApplicationApprovedOpinion record);
+
+    List<RecruitmentApplicationApprovedOpinion> selectByRaid(String raid);
+
+    int updateByRaidAndEid(RecruitmentApplicationApprovedOpinion record);
+
+    String selectRaaopidByRaidAndEid(RecruitmentApplicationApprovedOpinion record);
+
+    int updateIsApprovedToZeroByRaaocid(String raaocid);
 }

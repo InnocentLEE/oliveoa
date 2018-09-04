@@ -2,6 +2,8 @@ package com.oliveoa.dao;
 
 import com.oliveoa.pojo.FulltimeApplication;
 
+import java.util.List;
+
 public interface FulltimeApplicationMapper {
     int deleteByPrimaryKey(String faid);
 
@@ -14,4 +16,10 @@ public interface FulltimeApplicationMapper {
     int updateByPrimaryKeySelective(FulltimeApplication record);
 
     int updateByPrimaryKey(FulltimeApplication record);
+
+    List<FulltimeApplication> selectByApprovedEid(String eid);
+
+    List<FulltimeApplication> selectApprovedByEid(String eid);
+
+    List<FulltimeApplication> selectByEid(String eid);
 }

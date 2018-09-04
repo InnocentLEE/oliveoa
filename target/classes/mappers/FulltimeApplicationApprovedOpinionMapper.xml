@@ -23,6 +23,18 @@
     from tb_fulltime_application_approved_opinion
     where faaocid = #{faaocid,jdbcType=VARCHAR}
   </select>
+  <select id="selectFaaopidByFaidAndEid" resultType="string" parameterType="com.oliveoa.pojo.FulltimeApplicationApprovedOpinion">
+    SELECT faaopid
+    FROM tb_fulltime_application_approved_opinion
+    where faid = #{faid,jdbcType=VARCHAR} and eid = #{eid,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByFaid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_fulltime_application_approved_opinion
+    where faid = #{faid,jdbcType=VARCHAR}
+    order by orderBy
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from tb_fulltime_application_approved_opinion
     where faaocid = #{faaocid,jdbcType=VARCHAR}
@@ -137,6 +149,19 @@
       opinion = #{opinion,jdbcType=VARCHAR},
       orderBy = #{orderby,jdbcType=INTEGER},
       createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = now()
+    where faaocid = #{faaocid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByFaidAndEid" parameterType="com.oliveoa.pojo.FulltimeApplicationApprovedOpinion" >
+    update tb_fulltime_application_approved_opinion
+    SET isApproved = #{isapproved,jdbcType=INTEGER},
+      opinion = #{opinion,jdbcType=VARCHAR},
+      updatetime = now()
+    where faid = #{faid,jdbcType=VARCHAR} and eid = #{eid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateIsApprovedToZeroByFaaocid" parameterType="string">
+    UPDATE tb_fulltime_application_approved_opinion
+    SET isApproved = 0,
       updatetime = now()
     where faaocid = #{faaocid,jdbcType=VARCHAR}
   </update>

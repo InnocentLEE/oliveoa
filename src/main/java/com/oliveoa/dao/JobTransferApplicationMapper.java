@@ -20,5 +20,7 @@ public interface JobTransferApplicationMapper {
 
     List<JobTransferApplication> selectByApprovedEid(@Param("eid") String eid);
 
+    List<JobTransferApplication> selectApprovedByEid(@Param("eid") String eid);
+
     List<JobTransferApplication> selectByAEid(@Param("aeid") String aeid);
 }

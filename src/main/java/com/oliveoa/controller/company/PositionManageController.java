@@ -82,4 +82,14 @@ public class PositionManageController {
         }
         return iPositionService.delete_position(pcid);
     }
+
+    @RequestMapping(value = "get_position_details.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_position_details(HttpSession session,String pcid){
+        CompanyInfo companyInfo = (CompanyInfo) session.getAttribute(Const.CURRENT_COMPANY);
+        if (companyInfo == null) {
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        }
+        return iPositionService.get_position_dateils(pcid);
+    }
 }

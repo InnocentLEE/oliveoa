@@ -97,6 +97,15 @@ public class ApplicaitionController {
         return iApplicationService.get_overtime_application_need_approved(employees.getEid());
     }
 
+    @RequestMapping(value = "get_overtime_application_approved.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_overtime_application_approved(HttpSession session){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iApplicationService.get_overtime_application_approved(employees.getEid());
+    }
+
     @RequestMapping(value = "get_overtime_application_Isubmit.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse get_overtime_application_Isubmit(HttpSession session){
@@ -214,6 +223,15 @@ public class ApplicaitionController {
         return iApplicationService.get_leave_application_need_approved(employees.getEid());
     }
 
+    @RequestMapping(value = "get_leave_application_approved.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_leave_application_approved(HttpSession session){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iApplicationService.get_leave_application_approved(employees.getEid());
+    }
+
     @RequestMapping(value = "get_leave_application_Isubmit.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse get_leave_application_Isubmit(HttpSession session){
@@ -309,6 +327,15 @@ public class ApplicaitionController {
         return iApplicationService.get_business_trip_application_need_approved(employees.getEid());
     }
 
+    @RequestMapping(value = "get_business_trip_application_approved.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_business_trip_application_approved(HttpSession session){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iApplicationService.get_business_trip_application_approved(employees.getEid());
+    }
+
     @RequestMapping(value = "get_business_trip_application_Isubmit.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse get_business_trip_application_Isubmit(HttpSession session){
@@ -394,6 +421,15 @@ public class ApplicaitionController {
         if (employees == null)
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
         return iApplicationService.get_job_transfer_application_need_approved(employees.getEid());
+    }
+
+    @RequestMapping(value = "get_job_transfer_application_approved.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_job_transfer_application_approved(HttpSession session){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iApplicationService.get_job_transfer_application_approved(employees.getEid());
     }
 
     @RequestMapping(value = "get_job_transfer_application_Isubmit.do", method = RequestMethod.POST)
@@ -486,6 +522,15 @@ public class ApplicaitionController {
         return iApplicationService.get_leave_office_application_need_approved(employees.getEid());
     }
 
+    @RequestMapping(value = "get_leave_office_application_approved.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_leave_office_application_approved(HttpSession session){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iApplicationService.get_leave_office_application_approved(employees.getEid());
+    }
+
     @RequestMapping(value = "get_leave_office_application_Isubmit.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse get_leave_office_application_Isubmit(HttpSession session){
@@ -519,6 +564,205 @@ public class ApplicaitionController {
         return iApplicationService.approved_leave_office_application(leaveOfficeApplicationApprovedOpinion);
     }
 
+    @RequestMapping(value = "add_fulltime_application.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse add_fulltime_application(HttpSession session,String begintime,String endtime,String personalSummary,String approvedMember) {
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date beginTime = null;
+        Date endTime = null;
+        try {
+            beginTime = format.parse(begintime);
+            endTime = format.parse(endtime);
+        } catch (ParseException e) {
+            return ServerResponse.createByErrorMessage("请适用正确的日期格式：yyyy-MM-dd HH:mm:ss");
+        }
+        String faid = CommonUtils.uuid();
+        FulltimeApplication fulltimeApplication = new FulltimeApplication();
+        fulltimeApplication.setFaid(faid);
+        fulltimeApplication.setEid(employees.getEid());
+        fulltimeApplication.setBegintime(beginTime);
+        fulltimeApplication.setEndtime(endTime);
+        fulltimeApplication.setPersonalSummary(personalSummary);
+        //Json的解析类对象
+        JsonParser parser = new JsonParser();
+        //将JSON的String 转成一个JsonArray对象
+        JsonArray jsonArray = parser.parse(approvedMember).getAsJsonArray();
+
+        Gson gson = new Gson();
+        ArrayList<FulltimeApplicationApprovedOpinion> fulltimeApplicationApprovedOpinionList = new ArrayList<>();
+        //加强for循环遍历JsonArray
+        for(JsonElement member:jsonArray){
+            //使用GSON，直接转成Bean对象]
+            MemberBean memberBean = gson.fromJson(member,MemberBean.class);
+            FulltimeApplicationApprovedOpinion fulltimeApplicationApprovedOpinion = new FulltimeApplicationApprovedOpinion();
+            fulltimeApplicationApprovedOpinion.setFaaopid(null);
+            fulltimeApplicationApprovedOpinion.setFaaocid(CommonUtils.uuid());
+            fulltimeApplicationApprovedOpinion.setFaid(faid);
+            fulltimeApplicationApprovedOpinion.setEid(memberBean.getId());
+            fulltimeApplicationApprovedOpinion.setIsapproved(-2);
+            fulltimeApplicationApprovedOpinionList.add(fulltimeApplicationApprovedOpinion);
+        }
+        //for循环遍历建立审核分级
+        int size = fulltimeApplicationApprovedOpinionList.size();
+        for(int i=0;i<size-1;i++){
+            fulltimeApplicationApprovedOpinionList.get(i).setFaaopid(fulltimeApplicationApprovedOpinionList.get(i+1).getFaaocid());
+        }
+        fulltimeApplicationApprovedOpinionList.get(0).setIsapproved(0);
+        return iApplicationService.add_fulltime_application(fulltimeApplication,fulltimeApplicationApprovedOpinionList);
+    }
+
+    @RequestMapping(value = "get_fulltime_application_need_approved.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_fulltime_application_need_approved(HttpSession session){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iApplicationService.get_fulltime_application_need_approved(employees.getEid());
+    }
+
+    @RequestMapping(value = "get_fulltime_application_approved.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_fulltime_application_approved(HttpSession session){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iApplicationService.get_fulltime_application_approved(employees.getEid());
+    }
+
+    @RequestMapping(value = "get_fulltime_application_Isubmit.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_fulltime_application_Isubmit(HttpSession session){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iApplicationService.get_fulltime_application_Isubmit(employees.getEid());
+    }
+
+    @RequestMapping(value = "get_fulltime_application_details.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_fulltime_application_details(HttpSession session,String faid){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iApplicationService.get_fulltime_application_details(faid);
+    }
+
+    @RequestMapping(value = "approved_fulltime_application.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse approved_fulltime_application(HttpSession session,String faid,String isApproved,String opinion){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        int approved = Integer.parseInt(isApproved);
+        FulltimeApplicationApprovedOpinion fulltimeApplicationApprovedOpinion = new FulltimeApplicationApprovedOpinion();
+        fulltimeApplicationApprovedOpinion.setFaid(faid);
+        fulltimeApplicationApprovedOpinion.setEid(employees.getEid());
+        fulltimeApplicationApprovedOpinion.setIsapproved(approved);
+        fulltimeApplicationApprovedOpinion.setOpinion(opinion);
+        return iApplicationService.approved_fulltime_application(fulltimeApplicationApprovedOpinion);
+    }
+
+    @RequestMapping(value = "add_recruitment_application.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse add_recruitment_application(HttpSession session,String dcid,String pcid,String number,String describe,String request,String salary,String approvedMember) {
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        Integer num = Integer.parseInt(number);
+        String raid = CommonUtils.uuid();
+        RecruitmentApplication recruitmentApplication = new RecruitmentApplication();
+        recruitmentApplication.setRaid(raid);
+        recruitmentApplication.setEid(employees.getEid());
+        recruitmentApplication.setDcid(dcid);
+        RecruitmentApplicationItem recruitmentApplicationItem = new RecruitmentApplicationItem();
+        recruitmentApplicationItem.setRaiid(CommonUtils.uuid());
+        recruitmentApplicationItem.setRaid(raid);
+        recruitmentApplicationItem.setNumber(num);
+        recruitmentApplicationItem.setPcid(pcid);
+        recruitmentApplicationItem.setPositionDescribe(describe);
+        recruitmentApplicationItem.setPositionRequest(request);
+        recruitmentApplicationItem.setSalary(salary);
+        //Json的解析类对象
+        JsonParser parser = new JsonParser();
+        //将JSON的String 转成一个JsonArray对象
+        JsonArray jsonArray = parser.parse(approvedMember).getAsJsonArray();
+
+        Gson gson = new Gson();
+        ArrayList<RecruitmentApplicationApprovedOpinion> recruitmentApplicationApprovedOpinionList = new ArrayList<>();
+        //加强for循环遍历JsonArray
+        for (JsonElement member : jsonArray) {
+            //使用GSON，直接转成Bean对象]
+            MemberBean memberBean = gson.fromJson(member, MemberBean.class);
+            RecruitmentApplicationApprovedOpinion recruitmentApplicationApprovedOpinion = new RecruitmentApplicationApprovedOpinion();
+            recruitmentApplicationApprovedOpinion.setRaid(raid);
+            recruitmentApplicationApprovedOpinion.setEid(memberBean.getId());
+            recruitmentApplicationApprovedOpinion.setRaaocid(CommonUtils.uuid());
+            recruitmentApplicationApprovedOpinion.setRaaopid(null);
+            recruitmentApplicationApprovedOpinion.setIsapproved(-2);
+            recruitmentApplicationApprovedOpinionList.add(recruitmentApplicationApprovedOpinion);
+        }
+        //for循环遍历建立审核分级
+        int size = recruitmentApplicationApprovedOpinionList.size();
+        for (int i = 0; i < size - 1; i++) {
+            recruitmentApplicationApprovedOpinionList.get(i).setRaaopid(recruitmentApplicationApprovedOpinionList.get(i + 1).getRaaocid());
+        }
+        recruitmentApplicationApprovedOpinionList.get(0).setIsapproved(0);
+        return iApplicationService.add_recruitment_application(recruitmentApplication, recruitmentApplicationItem, recruitmentApplicationApprovedOpinionList);
+    }
+
+    @RequestMapping(value = "get_recruitment_application_need_approved.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_recruitment_application_need_approved(HttpSession session){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iApplicationService.get_recruitment_application_need_approved(employees.getEid());
+    }
+
+    @RequestMapping(value = "get_recruitment_application_approved.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_recruitment_application_approved(HttpSession session){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iApplicationService.get_recruitment_application_approved(employees.getEid());
+    }
+
+    @RequestMapping(value = "get_recruitment_application_Isubmit.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_recruitment_application_Isubmit(HttpSession session){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iApplicationService.get_recruitment_application_Isubmit(employees.getEid());
+    }
+
+    @RequestMapping(value = "get_recruitment_application_details.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_recruitment_application_details(HttpSession session,String raid){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iApplicationService.get_recruitment_application_details(raid);
+    }
+
+    @RequestMapping(value = "approved_recruitment_application.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse approved_recruitment_application(HttpSession session,String raid,String isApproved,String opinion){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        int approved = Integer.parseInt(isApproved);
+        RecruitmentApplicationApprovedOpinion recruitmentApplicationApprovedOpinion = new RecruitmentApplicationApprovedOpinion();
+        recruitmentApplicationApprovedOpinion.setRaid(raid);
+        recruitmentApplicationApprovedOpinion.setEid(employees.getEid());
+        recruitmentApplicationApprovedOpinion.setIsapproved(approved);
+        recruitmentApplicationApprovedOpinion.setOpinion(opinion);
+        return iApplicationService.approved_recruitment_application(recruitmentApplicationApprovedOpinion);
+    }
 
 
 

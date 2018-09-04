@@ -20,6 +20,27 @@
     from tb_recruitment_application
     where raid = #{raid,jdbcType=VARCHAR}
   </select>
+  <select id="selectByApprovedEid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_recruitment_application
+    WHERE raid IN (SELECT raid FROM tb_recruitment_application_approved_opinion WHERE eid = #{eid,jdbcType=VARCHAR} and isApproved = 0)
+    order By orderBy
+  </select>
+  <select id="selectApprovedByEid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_recruitment_application
+    WHERE raid IN (SELECT raid FROM tb_recruitment_application_approved_opinion WHERE eid = #{eid,jdbcType=VARCHAR} AND (isApproved= -1 OR isApproved = 1))
+    order By orderBy
+  </select>
+  <select id="selectByEid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_recruitment_application
+    WHERE eid = #{eid,jdbcType=VARCHAR}
+    order by orderBy desc
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from tb_recruitment_application
     where raid = #{raid,jdbcType=VARCHAR}

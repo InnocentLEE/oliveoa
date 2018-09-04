@@ -35,6 +35,13 @@
     where eid = #{eid,jdbcType=VARCHAR}
     order by orderBy desc
   </select>
+  <select id="selectApprovedByEid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_leave_application
+    where laid IN (SELECT laid FROM tb_leave_application_approved_opinion WHERE eid = #{eid,jdbcType=VARCHAR} AND (isApproved= -1 OR isApproved = 1))
+    order by orderBy desc
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from tb_leave_application
     where laid = #{laid,jdbcType=VARCHAR}

@@ -11,4 +11,5 @@ public interface IPositionService {
     ServerResponse get_position(String dcid);
     ServerResponse update_position(Position position);
     ServerResponse delete_position(String pcid);
+    ServerResponse get_position_dateils(String pcid);
 }

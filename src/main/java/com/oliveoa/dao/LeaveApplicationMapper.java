@@ -18,4 +18,6 @@ public interface LeaveApplicationMapper {
     int updateByPrimaryKey(LeaveApplication record);
 
     List<LeaveApplication> selectByEid(String eid);
+
+    List<LeaveApplication> selectApprovedByEid(String eid);
 }
