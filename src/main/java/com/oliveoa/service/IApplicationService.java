@@ -52,4 +52,13 @@ public interface IApplicationService {
     ServerResponse get_recruitment_application_Isubmit(String eid);
     ServerResponse get_recruitment_application_details(String raid);
     ServerResponse approved_recruitment_application(RecruitmentApplicationApprovedOpinion recruitmentApplicationApprovedOpinion);
+    ServerResponse add_meeting_applicatiobn(MeetingApplication meetingApplication,List<MeetingMember> meetingMembers);
+    ServerResponse get_meeting_application_need_approved(String aeid);
+    ServerResponse get_meeting_application_approved(String aeid);
+    ServerResponse get_meeting_application_Isubmit(String eid);
+    ServerResponse get_meeting_application_details(String maid);
+    ServerResponse approved_meeting_application(MeetingApplication meetingApplication);
+    ServerResponse get_my_meeting_doing(String eid);
+    ServerResponse get_my_meeting_done(String eid);
+    ServerResponse get_my_meeting_will_do(String eid);
 }

@@ -30,6 +30,41 @@
     from tb_official_document
     where odid = #{odid,jdbcType=VARCHAR}
   </select>
+  <select id="selectByDraftEid" resultMap="BaseResultMap" parameterType="string" >
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM tb_official_document
+    WHERE draft_eid = #{eid,jdbcType=VARCHAR}
+    order by orderBy desc
+  </select>
+  <select id="selectByNuclearEid" resultMap="BaseResultMap" parameterType="string" >
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM tb_official_document
+    WHERE nuclear_draft_eid = #{eid,jdbcType=VARCHAR} and nuclear_draft_isApproved = 0
+    order by orderBy
+  </select>
+  <select id="selectByApprovedNuclearEid" resultMap="BaseResultMap" parameterType="string" >
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM tb_official_document
+    WHERE nuclear_draft_eid = #{eid,jdbcType=VARCHAR} and (nuclear_draft_isApproved = 1 or nuclear_draft_isApproved = -1)
+    order by orderBy desc
+  </select>
+  <select id="selectByIssueEid" resultMap="BaseResultMap" parameterType="string" >
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM tb_official_document
+    WHERE issued_eid = #{eid,jdbcType=VARCHAR} and issued_isApproved = 0 and nuclear_draft_isApproved = 1
+    order by orderBy
+  </select>
+  <select id="selectApprovedByIssueEid" resultMap="BaseResultMap" parameterType="string" >
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM tb_official_document
+    WHERE issued_eid = #{eid,jdbcType=VARCHAR} and (issued_isApproved = 1 or issued_isApproved = -1)
+    order by orderBy
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from tb_official_document
     where odid = #{odid,jdbcType=VARCHAR}
@@ -201,4 +236,20 @@
       updatetime = now()
     where odid = #{odid,jdbcType=VARCHAR}
   </update>
+  <update id="updateByNuclear" parameterType="com.oliveoa.pojo.OfficialDocument" >
+    update tb_official_document
+    set nuclear_draft_isApproved = #{nuclearDraftIsapproved,jdbcType=INTEGER},
+      nuclear_draft_opinion = #{nuclearDraftOpinion,jdbcType=VARCHAR},
+      updatetime = now()
+    where odid = #{odid,jdbcType=VARCHAR} and nuclear_draft_eid = #{nuclearDraftEid,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateByIssue" parameterType="com.oliveoa.pojo.OfficialDocument" >
+    update tb_official_document
+    set issued_isApproved = #{issuedIsapproved,jdbcType=INTEGER},
+      issued_opinion = #{issuedOpinion,jdbcType=VARCHAR},
+      updatetime = now()
+    where odid = #{odid,jdbcType=VARCHAR} and issued_eid = #{issuedEid,jdbcType=VARCHAR}
+  </update>
+
 </mapper>

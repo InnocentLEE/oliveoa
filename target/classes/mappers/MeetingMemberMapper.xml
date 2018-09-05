@@ -13,7 +13,7 @@
   <sql id="Base_Column_List" >
     maid, eid, orderBy, createtime, updatetime
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectByMaid" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from tb_meeting_member

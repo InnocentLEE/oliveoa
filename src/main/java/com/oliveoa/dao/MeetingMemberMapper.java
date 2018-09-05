@@ -2,6 +2,8 @@ package com.oliveoa.dao;
 
 import com.oliveoa.pojo.MeetingMember;
 
+import java.util.List;
+
 public interface MeetingMemberMapper {
     int deleteByPrimaryKey(String maid);
 
@@ -9,7 +11,7 @@ public interface MeetingMemberMapper {
 
     int insertSelective(MeetingMember record);
 
-    MeetingMember selectByPrimaryKey(String maid);
+    List<MeetingMember> selectByMaid(String maid);
 
     int updateByPrimaryKeySelective(MeetingMember record);
 

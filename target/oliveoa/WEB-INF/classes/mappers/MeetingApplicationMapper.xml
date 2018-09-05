@@ -5,6 +5,7 @@
     <constructor >
       <idArg column="maid" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="eid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="aeid" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="theme" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="begintime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="endtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
@@ -17,7 +18,7 @@
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
-    maid, eid, theme, begintime, endtime, place, isApproved, opinion, orderBy, createtime, 
+    maid, eid, aeid, theme, begintime, endtime, place, isApproved, opinion, orderBy, createtime,
     updatetime
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
@@ -26,16 +27,58 @@
     from tb_meeting_application
     where maid = #{maid,jdbcType=VARCHAR}
   </select>
+  <select id="selectByAeid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_meeting_application
+    where aeid = #{aeid,jdbcType=VARCHAR} and isApproved = 0
+    order by orderBy
+  </select>
+  <select id="selectApprovedByAeid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_meeting_application
+    where aeid = #{aeid,jdbcType=VARCHAR} and (isApproved=1 or isApproved=-1)
+    order by orderBy desc
+  </select>
+  <select id="selectByEid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_meeting_application
+    where eid = #{eid,jdbcType=VARCHAR}
+    order by orderBy desc
+  </select>
+  <select id="selectDoingByMemberId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    SELECT
+    <include refid="Base_Column_List" />
+    from tb_meeting_application
+    WHERE maid IN (SELECT maid FROM tb_meeting_member WHERE eid = #{eid,jdbcType=VARCHAR}) and begintime&lt;now() and endtime&gt;now() and isApproved=1
+    order by begintime desc
+  </select>
+  <select id="selectDoneByMemberId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    SELECT
+    <include refid="Base_Column_List" />
+    from tb_meeting_application
+    WHERE maid IN (SELECT maid FROM tb_meeting_member WHERE eid = #{eid,jdbcType=VARCHAR}) and endtime&lt;now() and isApproved=1
+    order by begintime desc
+  </select>
+  <select id="selectWillByMemberId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    SELECT
+    <include refid="Base_Column_List" />
+    from tb_meeting_application
+    WHERE maid IN (SELECT maid FROM tb_meeting_member WHERE eid = #{eid,jdbcType=VARCHAR}) and begintime&gt;now() and isApproved=1
+    order by begintime desc
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from tb_meeting_application
     where maid = #{maid,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.oliveoa.pojo.MeetingApplication" >
-    insert into tb_meeting_application (maid, eid, theme, 
+    insert into tb_meeting_application (maid, eid, aeid, theme,
       begintime, endtime, place, 
       isApproved, opinion, orderBy, 
       createtime, updatetime)
-    values (#{maid,jdbcType=VARCHAR}, #{eid,jdbcType=VARCHAR}, #{theme,jdbcType=VARCHAR}, 
+    values (#{maid,jdbcType=VARCHAR}, #{eid,jdbcType=VARCHAR}, #{aeid,jdbcType=VARCHAR},#{theme,jdbcType=VARCHAR},
       #{begintime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, #{place,jdbcType=VARCHAR}, 
       #{isapproved,jdbcType=INTEGER}, #{opinion,jdbcType=VARCHAR}, #{orderby,jdbcType=INTEGER}, 
       now(), now())
@@ -48,6 +91,9 @@
       </if>
       <if test="eid != null" >
         eid,
+      </if>
+      <if test="aeid != null" >
+        aeid,
       </if>
       <if test="theme != null" >
         theme,
@@ -84,6 +130,9 @@
       <if test="eid != null" >
         #{eid,jdbcType=VARCHAR},
       </if>
+      <if test="aeid != null" >
+        #{aeid,jdbcType=VARCHAR},
+      </if>
       <if test="theme != null" >
         #{theme,jdbcType=VARCHAR},
       </if>
@@ -119,6 +168,9 @@
       <if test="eid != null" >
         eid = #{eid,jdbcType=VARCHAR},
       </if>
+      <if test="aeid != null" >
+        eid = #{aeid,jdbcType=VARCHAR},
+      </if>
       <if test="theme != null" >
         theme = #{theme,jdbcType=VARCHAR},
       </if>
@@ -152,6 +204,7 @@
   <update id="updateByPrimaryKey" parameterType="com.oliveoa.pojo.MeetingApplication" >
     update tb_meeting_application
     set eid = #{eid,jdbcType=VARCHAR},
+      aeid = #{aeid,jdbcType=VARCHAR},
       theme = #{theme,jdbcType=VARCHAR},
       begintime = #{begintime,jdbcType=TIMESTAMP},
       endtime = #{endtime,jdbcType=TIMESTAMP},
@@ -162,5 +215,12 @@
       createtime = #{createtime,jdbcType=TIMESTAMP},
       updatetime = now()
     where maid = #{maid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateApproved" parameterType="com.oliveoa.pojo.MeetingApplication" >
+    UPDATE tb_meeting_application
+    SET isApproved = #{isapproved,jdbcType=INTEGER},
+      opinion = #{opinion,jdbcType=VARCHAR},
+      updatetime = now()
+    where maid = #{maid,jdbcType=VARCHAR} and aeid = #{aeid,jdbcType=VARCHAR}
   </update>
 </mapper>

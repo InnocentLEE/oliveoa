@@ -5,6 +5,7 @@ import com.oliveoa.dao.*;
 import com.oliveoa.pojo.*;
 import com.oliveoa.service.IApplicationService;
 import com.oliveoa.vo.*;
+import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,6 +49,10 @@ public class ApplicationServiceImpl implements IApplicationService {
     private RecruitmentApplicationItemMapper recruitmentApplicationItemMapper;
     @Autowired
     private RecruitmentApplicationApprovedOpinionMapper recruitmentApplicationApprovedOpinionMapper;
+    @Autowired
+    private MeetingApplicationMapper meetingApplicationMapper;
+    @Autowired
+    private MeetingMemberMapper meetingMemberMapper;
 
     @Override
     @Transactional
@@ -519,5 +524,83 @@ public class ApplicationServiceImpl implements IApplicationService {
             return ServerResponse.createBySuccessMessage("审核成功");
         else
             return ServerResponse.createByErrorMessage("审核失败");
+    }
+
+    @Override
+    @Transactional
+    public ServerResponse add_meeting_applicatiobn(MeetingApplication meetingApplication,List<MeetingMember> meetingMembers){
+        boolean result1 = meetingApplicationMapper.insertSelective(meetingApplication) > 0;
+        boolean result2 = true;
+        int size = meetingMembers.size();
+        for(int i=0;i<size;i++){
+            int ir = meetingMemberMapper.insertSelective(meetingMembers.get(i));
+            if(ir == 0)
+                result2 = false;
+        }
+        if (result1 && result2)
+            return ServerResponse.createBySuccessMessage("添加会议请成功");
+        else
+            return ServerResponse.createByErrorMessage("添加申请失败");
+    }
+
+    @Override
+    @Transactional
+    public ServerResponse get_meeting_application_need_approved(String aeid){
+        List<MeetingApplication> meetingApplications = meetingApplicationMapper.selectByAeid(aeid);
+        return ServerResponse.createBySuccess(meetingApplications);
+    }
+
+    @Override
+    @Transactional
+    public ServerResponse get_meeting_application_approved(String aeid){
+        List<MeetingApplication> meetingApplications = meetingApplicationMapper.selectApprovedByAeid(aeid);
+        return ServerResponse.createBySuccess(meetingApplications);
+    }
+
+    @Override
+    @Transactional
+    public ServerResponse get_meeting_application_Isubmit(String eid){
+        List<MeetingApplication> meetingApplications = meetingApplicationMapper.selectByEid(eid);
+        return ServerResponse.createBySuccess(meetingApplications);
+    }
+
+    @Override
+    @Transactional
+    public ServerResponse get_meeting_application_details(String maid){
+        MeetingApplication meetingApplication = meetingApplicationMapper.selectByPrimaryKey(maid);
+        List<MeetingMember> meetingMembers = meetingMemberMapper.selectByMaid(maid);
+        MeetingApplicationDetails meetingApplicationDetails = new MeetingApplicationDetails(meetingApplication,meetingMembers);
+        return ServerResponse.createBySuccess(meetingApplicationDetails);
+    }
+
+    @Override
+    @Transactional
+    public ServerResponse approved_meeting_application(MeetingApplication meetingApplication){
+        boolean result = meetingApplicationMapper.updateApproved(meetingApplication) > 0;
+        if(result)
+            return ServerResponse.createBySuccess("审核成功");
+        else
+            return ServerResponse.createByErrorMessage("审核失败");
+    }
+
+    @Override
+    @Transactional
+    public ServerResponse get_my_meeting_doing(String eid){
+        List<MeetingApplication> meetingApplications = meetingApplicationMapper.selectDoingByMemberId(eid);
+        return ServerResponse.createBySuccess(meetingApplications);
+    }
+
+    @Override
+    @Transactional
+    public ServerResponse get_my_meeting_done(String eid){
+        List<MeetingApplication> meetingApplications = meetingApplicationMapper.selectDoneByMemberId(eid);
+        return ServerResponse.createBySuccess(meetingApplications);
+    }
+
+    @Override
+    @Transactional
+    public ServerResponse get_my_meeting_will_do(String eid){
+        List<MeetingApplication> meetingApplications = meetingApplicationMapper.selectWillByMemberId(eid);
+        return ServerResponse.createBySuccess(meetingApplications);
     }
 }

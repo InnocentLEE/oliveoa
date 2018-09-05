@@ -7,6 +7,8 @@ public class MeetingApplication {
 
     private String eid;
 
+    private String aeid;
+
     private String theme;
 
     private Date begintime;
@@ -25,9 +27,15 @@ public class MeetingApplication {
 
     private Date updatetime;
 
-    public MeetingApplication(String maid, String eid, String theme, Date begintime, Date endtime, String place, Integer isapproved, String opinion, Integer orderby, Date createtime, Date updatetime) {
+
+    public MeetingApplication() {
+        super();
+    }
+
+    public MeetingApplication(String maid, String eid, String aeid, String theme, Date begintime, Date endtime, String place, Integer isapproved, String opinion, Integer orderby, Date updatetime, Date createtime) {
         this.maid = maid;
         this.eid = eid;
+        this.aeid = aeid;
         this.theme = theme;
         this.begintime = begintime;
         this.endtime = endtime;
@@ -35,12 +43,8 @@ public class MeetingApplication {
         this.isapproved = isapproved;
         this.opinion = opinion;
         this.orderby = orderby;
-        this.createtime = createtime;
         this.updatetime = updatetime;
-    }
-
-    public MeetingApplication() {
-        super();
+        this.createtime = createtime;
     }
 
     public String getMaid() {
@@ -48,7 +52,7 @@ public class MeetingApplication {
     }
 
     public void setMaid(String maid) {
-        this.maid = maid == null ? null : maid.trim();
+        this.maid = maid;
     }
 
     public String getEid() {
@@ -56,7 +60,15 @@ public class MeetingApplication {
     }
 
     public void setEid(String eid) {
-        this.eid = eid == null ? null : eid.trim();
+        this.eid = eid;
+    }
+
+    public String getAeid() {
+        return aeid;
+    }
+
+    public void setAeid(String aeid) {
+        this.aeid = aeid;
     }
 
     public String getTheme() {
@@ -64,7 +76,7 @@ public class MeetingApplication {
     }
 
     public void setTheme(String theme) {
-        this.theme = theme == null ? null : theme.trim();
+        this.theme = theme;
     }
 
     public Date getBegintime() {
@@ -88,7 +100,7 @@ public class MeetingApplication {
     }
 
     public void setPlace(String place) {
-        this.place = place == null ? null : place.trim();
+        this.place = place;
     }
 
     public Integer getIsapproved() {
@@ -104,7 +116,7 @@ public class MeetingApplication {
     }
 
     public void setOpinion(String opinion) {
-        this.opinion = opinion == null ? null : opinion.trim();
+        this.opinion = opinion;
     }
 
     public Integer getOrderby() {
@@ -115,6 +127,14 @@ public class MeetingApplication {
         this.orderby = orderby;
     }
 
+    public Date getUpdatetime() {
+        return updatetime;
+    }
+
+    public void setUpdatetime(Date updatetime) {
+        this.updatetime = updatetime;
+    }
+
     public Date getCreatetime() {
         return createtime;
     }
@@ -123,11 +143,21 @@ public class MeetingApplication {
         this.createtime = createtime;
     }
 
-    public Date getUpdatetime() {
-        return updatetime;
-    }
-
-    public void setUpdatetime(Date updatetime) {
-        this.updatetime = updatetime;
+    @Override
+    public String toString() {
+        return "MeetingApplication{" +
+                "maid='" + maid + '\'' +
+                ", eid='" + eid + '\'' +
+                ", aeid='" + aeid + '\'' +
+                ", theme='" + theme + '\'' +
+                ", begintime=" + begintime +
+                ", endtime=" + endtime +
+                ", place='" + place + '\'' +
+                ", isapproved=" + isapproved +
+                ", opinion='" + opinion + '\'' +
+                ", orderby=" + orderby +
+                ", createtime=" + createtime +
+                ", updatetime=" + updatetime +
+                '}';
     }
 }

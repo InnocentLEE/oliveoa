@@ -764,6 +764,153 @@ public class ApplicaitionController {
         return iApplicationService.approved_recruitment_application(recruitmentApplicationApprovedOpinion);
     }
 
+    @RequestMapping(value = "add_meeting_application.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse add_meeting_application(HttpSession session,String theme,String begintime,String endtime,String place,String aeid,String meetingMember) {
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date beginTime = null;
+        Date endTime = null;
+        try {
+            beginTime = format.parse(begintime);
+            endTime = format.parse(endtime);
+        } catch (ParseException e) {
+            return ServerResponse.createByErrorMessage("请适用正确的日期格式：yyyy-MM-dd HH:mm:ss");
+        }
+        MeetingApplication  meetingApplication = new MeetingApplication();
+        String maid = CommonUtils.uuid();
+        meetingApplication.setMaid(maid);
+        meetingApplication.setEid(employees.getEid());
+        meetingApplication.setAeid(aeid);
+        meetingApplication.setTheme(theme);
+        meetingApplication.setBegintime(beginTime);
+        meetingApplication.setEndtime(endTime);
+        meetingApplication.setPlace(place);
+        meetingApplication.setIsapproved(0);
+        //Json的解析类对象
+        JsonParser parser = new JsonParser();
+        //将JSON的String 转成一个JsonArray对象
+        JsonArray jsonArray = parser.parse(meetingMember).getAsJsonArray();
+
+        Gson gson = new Gson();
+        ArrayList<MeetingMember> meetingMembers = new ArrayList<>();
+        //加强for循环遍历JsonArray
+        for (JsonElement member : jsonArray) {
+            //使用GSON，直接转成Bean对象]
+            MemberBean memberBean = gson.fromJson(member, MemberBean.class);
+            MeetingMember meetingMember1 = new MeetingMember();
+            meetingMember1.setEid(memberBean.getId());
+            meetingMember1.setMaid(maid);
+            meetingMembers.add(meetingMember1);
+        }
+        return iApplicationService.add_meeting_applicatiobn(meetingApplication,meetingMembers);
+    }
+
+    @RequestMapping(value = "get_meeting_application_need_approved.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_meeting_application_need_approved(HttpSession session){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iApplicationService.get_meeting_application_need_approved(employees.getEid());
+    }
+
+    @RequestMapping(value = "get_meeting_application_approved.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_meeting_application_approved(HttpSession session){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iApplicationService.get_meeting_application_approved(employees.getEid());
+    }
+
+    @RequestMapping(value = "get_meeting_application_Isubmit.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_meeting_application_Isubmit(HttpSession session){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iApplicationService.get_meeting_application_Isubmit(employees.getEid());
+    }
+
+    @RequestMapping(value = "get_meeting_application_details.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_meeting_application_details(HttpSession session,String maid){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iApplicationService.get_meeting_application_details(maid);
+    }
+
+    @RequestMapping(value = "approved_meeting_application.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse approved_meeting_application(HttpSession session,String isApproved,String maid,String opinion){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        int approved = Integer.parseInt(isApproved);
+        MeetingApplication meetingApplication = new MeetingApplication();
+        meetingApplication.setMaid(maid);
+        meetingApplication.setAeid(employees.getEid());
+        meetingApplication.setIsapproved(approved);
+        meetingApplication.setOpinion(opinion);
+        return iApplicationService.approved_meeting_application(meetingApplication);
+    }
+
+    @RequestMapping(value = "get_my_meeting_doing.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_my_meeting_doing(HttpSession session){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iApplicationService.get_my_meeting_doing(employees.getEid());
+    }
+
+    @RequestMapping(value = "get_my_meeting_done.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_my_meeting_done(HttpSession session){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iApplicationService.get_my_meeting_done(employees.getEid());
+    }
+
+    @RequestMapping(value = "get_my_meeting_will_do.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_my_meeting_will_do(HttpSession session){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iApplicationService.get_my_meeting_will_do(employees.getEid());
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
