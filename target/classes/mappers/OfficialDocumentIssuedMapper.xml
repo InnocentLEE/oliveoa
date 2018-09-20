@@ -21,6 +21,12 @@
     from tb_official_document_issued
     where odiid = #{odiid,jdbcType=VARCHAR}
   </select>
+  <select id="selectByOiid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_official_document_issued
+    where oiid = #{oiid,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from tb_official_document_issued
     where odiid = #{odiid,jdbcType=VARCHAR}
@@ -115,5 +121,11 @@
       createtime = #{createtime,jdbcType=TIMESTAMP},
       updatetime = now()
     where odiid = #{odiid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByOiidAndDcid" parameterType="com.oliveoa.pojo.OfficialDocumentIssued" >
+    update tb_official_document_issued
+    set isReceive = #{isreceive,jdbcType=INTEGER},
+      updatetime = now()
+    where oiid = #{oiid,jdbcType=VARCHAR} and dcid = #{dcid,jdbcType=VARCHAR}
   </update>
 </mapper>

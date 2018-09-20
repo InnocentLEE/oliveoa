@@ -23,4 +23,6 @@ public interface SubmitWorkMapper {
     List<SubmitWork> selectByAeid(@Param("aeid") String aeid, @Param("orderBy") Integer orderBy);
 
     List<SubmitWork> selectBySeid(@Param("seid") String seid, @Param("orderBy") Integer orderBy);
+
+    List<SubmitWork> selectApprovedByAeid(@Param("aeid") String aeid);
 }

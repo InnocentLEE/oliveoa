@@ -2,16 +2,18 @@ package com.oliveoa.service.impl;
 
 import com.github.pagehelper.MSUtils;
 import com.oliveoa.common.ServerResponse;
-import com.oliveoa.dao.FileMapper;
-import com.oliveoa.dao.OfficialDocumentIssuedMapper;
-import com.oliveoa.dao.OfficialDocumentMapper;
+import com.oliveoa.dao.*;
 import com.oliveoa.pojo.File;
 import com.oliveoa.pojo.OfficialDocument;
+import com.oliveoa.pojo.OfficialDocumentCirculread;
 import com.oliveoa.pojo.OfficialDocumentIssued;
 import com.oliveoa.service.IDocumentFlowService;
+import com.oliveoa.vo.ODocument;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,6 +28,12 @@ public class DocumentFlowServiceImpl implements IDocumentFlowService {
     private OfficialDocumentMapper officialDocumentMapper;
     @Autowired
     private OfficialDocumentIssuedMapper officialDocumentIssuedMapper;
+    @Autowired
+    private OfficialDocumentCirculreadMapper officialDocumentCirculreadMapper;
+    @Autowired
+    private PositionMapper positionMapper;
+    @Autowired
+    private EmployeesMapper employeesMapper;
 
     @Override
     public ServerResponse draft(File file, OfficialDocument officialDocument){
@@ -87,6 +95,83 @@ public class DocumentFlowServiceImpl implements IDocumentFlowService {
                 officialDocumentIssuedMapper.insertSelective(officialDocumentIssueds.get(i));
             }
         }
-        return ServerResponse.createBySuccessMessage("核稿成功");
+        return ServerResponse.createBySuccessMessage("签发成功");
+    }
+
+    @Override
+    public ServerResponse getDocumentNeedReceive(String eid){
+        String ppid = positionMapper.isPpidIsNull(eid);
+        if(ppid!=null)
+            return ServerResponse.createBySuccessMessage("没有待你签收的公文");
+        List<OfficialDocument> officialDocumentList = officialDocumentMapper.selectNeedReceive(eid);
+        return ServerResponse.createBySuccess(officialDocumentList);
+    }
+
+    @Override
+    public ServerResponse getDocumentReceived(String eid){
+        String ppid = positionMapper.isPpidIsNull(eid);
+        if(ppid!=null)
+            return ServerResponse.createBySuccessMessage("没有已经签收的公文");
+        List<OfficialDocument> officialDocumentList = officialDocumentMapper.selectReceived(eid);
+        return ServerResponse.createBySuccess(officialDocumentList);
+    }
+
+    @Override
+    public ServerResponse receive(String eid,OfficialDocumentIssued officialDocumentIssued,List<OfficialDocumentCirculread> officialDocumentCirculreads){
+        officialDocumentIssued.setDcid(employeesMapper.selectDcidByEid(eid));
+        officialDocumentIssuedMapper.updateByOiidAndDcid(officialDocumentIssued);
+        int size = officialDocumentCirculreads.size();
+        for (int i = 0; i < size; i++) {
+            officialDocumentCirculreadMapper.insertSelective(officialDocumentCirculreads.get(i));
+        }
+        return ServerResponse.createBySuccessMessage("签收成功");
+    }
+
+    @Override
+    public ServerResponse getDocumentNeedRead(String eid){
+        List<OfficialDocument> officialDocumentList = officialDocumentMapper.selectNeedRead(eid);
+        return ServerResponse.createBySuccess(officialDocumentList);
+    }
+
+    @Override
+    public ServerResponse getDocumentHaveRead(String eid){
+        List<OfficialDocument> officialDocumentList = officialDocumentMapper.selectHaveRead(eid);
+        return ServerResponse.createBySuccess(officialDocumentList);
+    }
+
+    @Override
+    public ServerResponse read(OfficialDocumentCirculread officialDocumentCirculread){
+        officialDocumentCirculreadMapper.updateByOiidAndEid(officialDocumentCirculread);
+        return ServerResponse.createBySuccessMessage("报告成功");
+    }
+
+    @Override
+    public ServerResponse getDocumentDetails(String odid){
+        OfficialDocument officialDocument = officialDocumentMapper.selectByPrimaryKey(odid);
+        List<OfficialDocumentIssued> officialDocumentIssueds = officialDocumentIssuedMapper.selectByOiid(odid);
+        List<OfficialDocumentCirculread> officialDocumentCirculreads = officialDocumentCirculreadMapper.selectByOiid(odid);
+        ODocument oDocument = new ODocument();
+        oDocument.setOfficialDocument(officialDocument);
+        oDocument.setOfficialDocumentCirculreads(officialDocumentCirculreads);
+        oDocument.setOfficialDocumentIssueds(officialDocumentIssueds);
+        return ServerResponse.createBySuccess(oDocument);
+    }
+
+    @Override
+    public ServerResponse getDocumentList(){
+        List<String> odids = officialDocumentMapper.selectAllOdid();
+        int size = odids.size();
+        List<ODocument> oDocumentList = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            OfficialDocument officialDocument = officialDocumentMapper.selectByPrimaryKey(odids.get(i));
+            List<OfficialDocumentIssued> officialDocumentIssueds = officialDocumentIssuedMapper.selectByOiid(odids.get(i));
+            List<OfficialDocumentCirculread> officialDocumentCirculreads = officialDocumentCirculreadMapper.selectByOiid(odids.get(i));
+            ODocument oDocument = new ODocument();
+            oDocument.setOfficialDocument(officialDocument);
+            oDocument.setOfficialDocumentCirculreads(officialDocumentCirculreads);
+            oDocument.setOfficialDocumentIssueds(officialDocumentIssueds);
+            oDocumentList.add(oDocument);
+        }
+        return ServerResponse.createBySuccess(oDocumentList);
     }
 }

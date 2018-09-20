@@ -22,4 +22,6 @@ public interface PositionMapper {
     int selectCountByPpid(String ppid);
 
     int selectCountByDcid(String dcid);
+
+    String isPpidIsNull(String eid);
 }

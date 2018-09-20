@@ -22,6 +22,12 @@
     from tb_official_document_circulread
     where odcid = #{odcid,jdbcType=VARCHAR}
   </select>
+  <select id="selectByOiid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_official_document_circulread
+    where oiid = #{oiid,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from tb_official_document_circulread
     where odcid = #{odcid,jdbcType=VARCHAR}
@@ -126,5 +132,12 @@
       createtime = #{createtime,jdbcType=TIMESTAMP},
       updatetime = now()
     where odcid = #{odcid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByOiidAndEid" parameterType="com.oliveoa.pojo.OfficialDocumentCirculread">
+    update tb_official_document_circulread
+    set isRead = #{isread,jdbcType=INTEGER},
+      report = #{report,jdbcType=VARCHAR},
+      updatetime = now()
+    where oiid = #{oiid,jdbcType=VARCHAR} AND eid = #{eid,jdbcType=VARCHAR}
   </update>
 </mapper>

@@ -65,6 +65,37 @@
     WHERE issued_eid = #{eid,jdbcType=VARCHAR} and (issued_isApproved = 1 or issued_isApproved = -1)
     order by orderBy
   </select>
+  <select id="selectNeedReceive" resultMap="BaseResultMap" parameterType="string" >
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM tb_official_document
+    WHERE odid IN (SELECT oiid FROM tb_official_document_issued WHERE dcid = (SELECT dcid FROM tb_employees WHERE eid = #{eid,jdbcType=VARCHAR}) AND isReceive=0)
+    order by orderBy
+  </select>
+  <select id="selectReceived" resultMap="BaseResultMap" parameterType="string">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM tb_official_document
+    WHERE odid IN (SELECT oiid FROM tb_official_document_issued WHERE dcid = (SELECT dcid FROM tb_employees WHERE eid = #{eid,jdbcType=VARCHAR}) AND isReceive=1)
+    order by orderBy desc
+  </select>
+  <select id="selectNeedRead" resultMap="BaseResultMap" parameterType="string">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM tb_official_document
+    WHERE odid IN (SELECT oiid FROM tb_official_document_circulread WHERE eid = #{eid,jdbcType=VARCHAR} AND isRead = 0)
+    order by orderBy
+  </select>
+  <select id="selectHaveRead" resultMap="BaseResultMap" parameterType="string">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM tb_official_document
+    WHERE odid IN (SELECT oiid FROM tb_official_document_circulread WHERE eid = #{eid,jdbcType=VARCHAR} AND isRead = 1)
+    order by orderBy desc
+  </select>
+  <select id="selectAllOdid" resultType="string">
+    SELECT odid FROM tb_official_document
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from tb_official_document
     where odid = #{odid,jdbcType=VARCHAR}

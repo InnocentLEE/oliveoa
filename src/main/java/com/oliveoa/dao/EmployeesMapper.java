@@ -28,4 +28,6 @@ public interface EmployeesMapper {
     int selectCountByPcid(String pcid);
 
     int selectCountByDcid(String dcid);
+
+    String selectDcidByEid(String eid);
 }

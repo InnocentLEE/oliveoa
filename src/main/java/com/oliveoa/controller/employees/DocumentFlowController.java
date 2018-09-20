@@ -36,18 +36,6 @@ public class DocumentFlowController {
     @Autowired
     private IDocumentFlowService iDocumentFlowService;
 
-    /**
-     * 拟稿接口
-     * @param file
-     * @param request
-     * @param session
-     * @param title
-     * @param content
-     * @param nuclearDraftEid
-     * @param issuedEid
-     * @return
-     * @throws IOException
-     */
     @RequestMapping(value="draft.do",method= RequestMethod.POST)
     @ResponseBody
     public ServerResponse draft(MultipartFile file, HttpServletRequest request, HttpSession session,String title,String content,String nuclearDraftEid,String issuedEid) throws IOException {
@@ -81,13 +69,6 @@ public class DocumentFlowController {
         return iDocumentFlowService.draft(file1,officialDocument);
     }
 
-    /**
-     * 下载公文文件接口
-     * @param request
-     * @param response
-     * @param odid
-     * @throws Exception
-     */
     @RequestMapping(value="download.do",method= RequestMethod.GET)
     public void download(HttpServletRequest request,HttpServletResponse response, String odid) throws Exception{
         com.oliveoa.pojo.File file = iDocumentFlowService.getFile(odid);
@@ -181,31 +162,126 @@ public class DocumentFlowController {
         officialDocument.setIssuedEid(employees.getEid());
         officialDocument.setIssuedIsapproved(Integer.parseInt(isApproved));
         officialDocument.setIssuedOpinion(oponion);
-        JsonParser parser = new JsonParser();
-        //将JSON的String 转成一个JsonArray对象
-        JsonArray jsonArray = parser.parse(departments).getAsJsonArray();
-
-        Gson gson = new Gson();
         ArrayList<OfficialDocumentIssued> officialDocumentIssueds = new ArrayList<>();
-        //加强for循环遍历JsonArray
-        for (JsonElement member : jsonArray) {
-            //使用GSON，直接转成Bean对象]
-            MemberBean memberBean = gson.fromJson(member, MemberBean.class);
-            OfficialDocumentIssued officialDocumentIssued = new OfficialDocumentIssued();
-            officialDocumentIssued.setOdiid(CommonUtils.uuid());
-            officialDocumentIssued.setOiid(odid);
-            officialDocumentIssued.setDcid(memberBean.getId());
-            officialDocumentIssued.setIsreceive(0);
-            officialDocumentIssueds.add(officialDocumentIssued);
+        if(!departments.equals("")){
+            JsonParser parser = new JsonParser();
+            //将JSON的String 转成一个JsonArray对象
+            JsonArray jsonArray = parser.parse(departments).getAsJsonArray();
+            Gson gson = new Gson();
+            //加强for循环遍历JsonArray
+            for (JsonElement member : jsonArray) {
+                //使用GSON，直接转成Bean对象]
+                MemberBean memberBean = gson.fromJson(member, MemberBean.class);
+                OfficialDocumentIssued officialDocumentIssued = new OfficialDocumentIssued();
+                officialDocumentIssued.setOdiid(CommonUtils.uuid());
+                officialDocumentIssued.setOiid(odid);
+                officialDocumentIssued.setDcid(memberBean.getId());
+                officialDocumentIssued.setIsreceive(0);
+                officialDocumentIssueds.add(officialDocumentIssued);
+            }
         }
         return iDocumentFlowService.issue(officialDocument,officialDocumentIssueds);
     }
 
+    @RequestMapping(value="get_document_need_receive.do",method= RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse getDocumentNeedReceive(HttpSession session){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iDocumentFlowService.getDocumentNeedReceive(employees.getEid());
+    }
+
+    @RequestMapping(value="get_document_received.do",method= RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse getDocumentReceived(HttpSession session){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iDocumentFlowService.getDocumentReceived(employees.getEid());
+    }
+
+    @RequestMapping(value="receive.do",method= RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse receive(HttpSession session,String isReceive,String odid,String members){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        OfficialDocumentIssued officialDocumentIssued = new OfficialDocumentIssued();
+        officialDocumentIssued.setOiid(odid);
+        officialDocumentIssued.setIsreceive(Integer.parseInt(isReceive));
+        ArrayList<OfficialDocumentCirculread> officialDocumentCirculreads = new ArrayList<>();
+        if(!members.equals("")){
+            JsonParser parser = new JsonParser();
+            //将JSON的String 转成一个JsonArray对象
+            JsonArray jsonArray = parser.parse(members).getAsJsonArray();
+            Gson gson = new Gson();
+            //加强for循环遍历JsonArray
+            for (JsonElement member : jsonArray) {
+                //使用GSON，直接转成Bean对象]
+                MemberBean memberBean = gson.fromJson(member, MemberBean.class);
+                OfficialDocumentCirculread officialDocumentCirculread = new OfficialDocumentCirculread();
+                officialDocumentCirculread.setOdcid(CommonUtils.uuid());
+                officialDocumentCirculread.setOiid(odid);
+                officialDocumentCirculread.setEid(memberBean.getId());
+                officialDocumentCirculread.setIsread(0);
+                officialDocumentCirculreads.add(officialDocumentCirculread);
+            }
+        }
+
+        return iDocumentFlowService.receive(employees.getEid(),officialDocumentIssued,officialDocumentCirculreads);
+    }
 
 
+    @RequestMapping(value="get_document_need_read.do",method= RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse getDocumentNeedRead(HttpSession session){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iDocumentFlowService.getDocumentNeedRead(employees.getEid());
+    }
 
+    @RequestMapping(value="get_document_have_read.do",method= RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse getDocumentHaveRead(HttpSession session){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iDocumentFlowService.getDocumentHaveRead(employees.getEid());
+    }
 
+    @RequestMapping(value="read.do",method= RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse read(HttpSession session,String odid,String report){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        OfficialDocumentCirculread officialDocumentCirculread = new OfficialDocumentCirculread();
+        officialDocumentCirculread.setOiid(odid);
+        officialDocumentCirculread.setEid(employees.getEid());
+        officialDocumentCirculread.setIsread(1);
+        officialDocumentCirculread.setReport(report);
+        return iDocumentFlowService.read(officialDocumentCirculread);
+    }
 
+    @RequestMapping(value="get_document_details.do",method= RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse getDocumentDetails(HttpSession session,String odid){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iDocumentFlowService.getDocumentDetails(odid);
+    }
+
+    @RequestMapping(value="get_document_list.do",method= RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse getDocumentList(HttpSession session){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iDocumentFlowService.getDocumentList();
+    }
 
 
 

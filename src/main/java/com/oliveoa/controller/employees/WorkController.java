@@ -73,6 +73,15 @@ public class WorkController {
         return iWorkService.get_work_unapproved(employees.getEid(), orderby);
     }
 
+    @RequestMapping(value = "get_work_approved.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_work_approved(HttpSession session, String orderBy) {
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iWorkService.get_work_approved(employees.getEid());
+    }
+
     @RequestMapping(value = "get_submit_work.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse get_submit_work(HttpSession session, String orderBy) {

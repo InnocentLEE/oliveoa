@@ -48,6 +48,11 @@
     where pcid = #{pcid,jdbcType=VARCHAR}
     order by orderBy
   </select>
+  <select id="selectDcidByEid" resultType="string" parameterType="string" >
+    SELECT dcid
+    FROM tb_employees
+    WHERE eid = #{eid,jdbcType=VARCHAR}
+  </select>
   <select id="selectCountById" resultType="int" parameterType="java.lang.String">
     SELECT COUNT(1)
     FROM tb_employees

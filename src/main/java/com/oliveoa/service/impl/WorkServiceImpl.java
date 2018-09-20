@@ -50,6 +50,12 @@ public class WorkServiceImpl implements IWorkService {
     }
 
     @Override
+    public ServerResponse get_work_approved(String eid){
+        List<SubmitWork> submitWorkList = submitWorkMapper.selectApprovedByAeid(eid);
+        return ServerResponse.createBySuccess("查找成功", submitWorkList);
+    }
+
+    @Override
     public ServerResponse get_submit_work(String seid, int orderBy) {
         List<SubmitWork> submitWorkList = submitWorkMapper.selectBySeid(seid, orderBy);
         return ServerResponse.createBySuccess("查找成功", submitWorkList);

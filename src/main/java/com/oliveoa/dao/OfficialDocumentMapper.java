@@ -30,4 +30,15 @@ public interface OfficialDocumentMapper {
     List<OfficialDocument> selectApprovedByIssueEid(String eid);
 
     int updateByIssue(OfficialDocument officialDocument);
+
+    List<OfficialDocument> selectNeedReceive(String eid);
+
+    List<OfficialDocument> selectReceived(String eid);
+
+    List<OfficialDocument> selectNeedRead(String eid);
+
+    List<OfficialDocument> selectHaveRead(String eid);
+
+    List<String> selectAllOdid();
+
 }

@@ -39,6 +39,11 @@
     FROM tb_position
     WHERE dcid = #{dcid,jdbcType=VARCHAR}
   </select>
+  <select id="isPpidIsNull" resultType="string" parameterType="string">
+    SELECT ppid
+    FROM tb_position
+    WHERE pcid = (SELECT pcid FROM tb_employees WHERE eid = #{dcid,jdbcType=VARCHAR})
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from tb_position
     where pcid = #{pcid,jdbcType=VARCHAR}
@@ -108,10 +113,8 @@
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.oliveoa.pojo.Position" >
     update tb_position
-    <set >
-      <if test="ppid != null" >
+    <set>
         ppid = #{ppid,jdbcType=VARCHAR},
-      </if>
       <if test="name != null" >
         `name` = #{name,jdbcType=VARCHAR},
       </if>

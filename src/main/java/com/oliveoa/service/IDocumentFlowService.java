@@ -3,6 +3,7 @@ package com.oliveoa.service;
 import com.oliveoa.common.ServerResponse;
 import com.oliveoa.pojo.File;
 import com.oliveoa.pojo.OfficialDocument;
+import com.oliveoa.pojo.OfficialDocumentCirculread;
 import com.oliveoa.pojo.OfficialDocumentIssued;
 
 import java.util.List;
@@ -20,4 +21,12 @@ public interface IDocumentFlowService {
     ServerResponse getDocumentNeedIssue(String eid);
     ServerResponse getDocumentDoneIssue(String eid);
     ServerResponse issue(OfficialDocument officialDocument, List<OfficialDocumentIssued> officialDocumentIssueds);
+    ServerResponse getDocumentNeedReceive(String eid);
+    ServerResponse getDocumentReceived(String eid);
+    ServerResponse receive(String eid,OfficialDocumentIssued officialDocumentIssued,List<OfficialDocumentCirculread> officialDocumentCirculreads);
+    ServerResponse getDocumentNeedRead(String eid);
+    ServerResponse getDocumentHaveRead(String eid);
+    ServerResponse read(OfficialDocumentCirculread officialDocumentCirculread);
+    ServerResponse getDocumentDetails(String odid);
+    ServerResponse getDocumentList();
 }

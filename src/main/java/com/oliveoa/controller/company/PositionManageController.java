@@ -45,10 +45,6 @@ public class PositionManageController {
     @RequestMapping(value = "get_position.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse get_position(HttpSession session,String dcid){
-        CompanyInfo companyInfo = (CompanyInfo) session.getAttribute(Const.CURRENT_COMPANY);
-        if (companyInfo == null) {
-            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
-        }
         return iPositionService.get_position(dcid);
     }
     @RequestMapping(value = "update_position.do", method = RequestMethod.POST)
@@ -60,9 +56,10 @@ public class PositionManageController {
         }
         Position position = new Position();
         position.setPcid(pcid);
-        if(!ppid.equals("")) {
-            position.setPpid(ppid);
+        if(ppid.equals("")) {
+            ppid = null;
         }
+        position.setPpid(ppid);
         if(!name.equals("")) {
             position.setName(name);
         }
@@ -92,4 +89,5 @@ public class PositionManageController {
         }
         return iPositionService.get_position_dateils(pcid);
     }
+
 }

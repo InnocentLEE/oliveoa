@@ -2,43 +2,70 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0b37147d-b82e-4764-a0a6-7957758e27d5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/oliveoa/controller/employees/DocumentFlowController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/oliveoa/service/IDocumentFlowService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/oliveoa/service/impl/DocumentFlowServiceImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/oliveoa/vo/MeetingApplicationDetails.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/oliveoa/controller/employees/ApplicaitionController.class" afterPath="$PROJECT_DIR$/target/classes/com/oliveoa/controller/employees/ApplicaitionController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/oliveoa/dao/MeetingApplicationMapper.class" afterPath="$PROJECT_DIR$/target/classes/com/oliveoa/dao/MeetingApplicationMapper.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/oliveoa/dao/MeetingMemberMapper.class" afterPath="$PROJECT_DIR$/target/classes/com/oliveoa/dao/MeetingMemberMapper.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/oliveoa/pojo/MeetingApplication.class" afterPath="$PROJECT_DIR$/target/classes/com/oliveoa/pojo/MeetingApplication.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/oliveoa/service/IApplicationService.class" afterPath="$PROJECT_DIR$/target/classes/com/oliveoa/service/IApplicationService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/oliveoa/service/impl/ApplicationServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/oliveoa/service/impl/ApplicationServiceImpl.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/oliveoa/vo/ODocument.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/oliveoa/controller/company/PositionManageController.class" afterPath="$PROJECT_DIR$/target/classes/com/oliveoa/controller/company/PositionManageController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/oliveoa/controller/employees/DocumentFlowController.class" afterPath="$PROJECT_DIR$/target/classes/com/oliveoa/controller/employees/DocumentFlowController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/oliveoa/controller/employees/WorkController.class" afterPath="$PROJECT_DIR$/target/classes/com/oliveoa/controller/employees/WorkController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/oliveoa/dao/EmployeesMapper.class" afterPath="$PROJECT_DIR$/target/classes/com/oliveoa/dao/EmployeesMapper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/oliveoa/dao/OfficialDocumentCirculreadMapper.class" afterPath="$PROJECT_DIR$/target/classes/com/oliveoa/dao/OfficialDocumentCirculreadMapper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/oliveoa/dao/OfficialDocumentIssuedMapper.class" afterPath="$PROJECT_DIR$/target/classes/com/oliveoa/dao/OfficialDocumentIssuedMapper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/oliveoa/dao/OfficialDocumentMapper.class" afterPath="$PROJECT_DIR$/target/classes/com/oliveoa/dao/OfficialDocumentMapper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/oliveoa/dao/PositionMapper.class" afterPath="$PROJECT_DIR$/target/classes/com/oliveoa/dao/PositionMapper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/oliveoa/dao/SubmitWorkMapper.class" afterPath="$PROJECT_DIR$/target/classes/com/oliveoa/dao/SubmitWorkMapper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/oliveoa/service/IDocumentFlowService.class" afterPath="$PROJECT_DIR$/target/classes/com/oliveoa/service/IDocumentFlowService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/oliveoa/service/IWorkService.class" afterPath="$PROJECT_DIR$/target/classes/com/oliveoa/service/IWorkService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/oliveoa/service/impl/DocumentFlowServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/oliveoa/service/impl/DocumentFlowServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/oliveoa/service/impl/WorkServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/oliveoa/service/impl/WorkServiceImpl.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/oliveoa.war" afterPath="$PROJECT_DIR$/target/oliveoa.war" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/controller/employees/ApplicaitionController.class" afterPath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/controller/employees/ApplicaitionController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/dao/MeetingApplicationMapper.class" afterPath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/dao/MeetingApplicationMapper.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/dao/MeetingMemberMapper.class" afterPath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/dao/MeetingMemberMapper.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/pojo/MeetingApplication.class" afterPath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/pojo/MeetingApplication.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/service/IApplicationService.class" afterPath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/service/IApplicationService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/service/impl/ApplicationServiceImpl.class" afterPath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/service/impl/ApplicationServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/controller/company/PositionManageController.class" afterPath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/controller/company/PositionManageController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/controller/employees/DocumentFlowController.class" afterPath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/controller/employees/DocumentFlowController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/controller/employees/WorkController.class" afterPath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/controller/employees/WorkController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/dao/EmployeesMapper.class" afterPath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/dao/EmployeesMapper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/dao/OfficialDocumentCirculreadMapper.class" afterPath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/dao/OfficialDocumentCirculreadMapper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/dao/OfficialDocumentIssuedMapper.class" afterPath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/dao/OfficialDocumentIssuedMapper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/dao/OfficialDocumentMapper.class" afterPath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/dao/OfficialDocumentMapper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/dao/PositionMapper.class" afterPath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/dao/PositionMapper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/dao/SubmitWorkMapper.class" afterPath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/dao/SubmitWorkMapper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/service/IDocumentFlowService.class" afterPath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/service/IDocumentFlowService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/service/IWorkService.class" afterPath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/service/IWorkService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/service/impl/DocumentFlowServiceImpl.class" afterPath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/service/impl/DocumentFlowServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/service/impl/WorkServiceImpl.class" afterPath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/com/oliveoa/service/impl/WorkServiceImpl.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oliveoa/controller/employees/ApplicaitionController.java" afterPath="$PROJECT_DIR$/src/main/java/com/oliveoa/controller/employees/ApplicaitionController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oliveoa/dao/MeetingApplicationMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/oliveoa/dao/MeetingApplicationMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oliveoa/dao/MeetingMemberMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/oliveoa/dao/MeetingMemberMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oliveoa/controller/company/PositionManageController.java" afterPath="$PROJECT_DIR$/src/main/java/com/oliveoa/controller/company/PositionManageController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oliveoa/controller/employees/DocumentFlowController.java" afterPath="$PROJECT_DIR$/src/main/java/com/oliveoa/controller/employees/DocumentFlowController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oliveoa/controller/employees/WorkController.java" afterPath="$PROJECT_DIR$/src/main/java/com/oliveoa/controller/employees/WorkController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oliveoa/dao/EmployeesMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/oliveoa/dao/EmployeesMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oliveoa/dao/OfficialDocumentCirculreadMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/oliveoa/dao/OfficialDocumentCirculreadMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oliveoa/dao/OfficialDocumentIssuedMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/oliveoa/dao/OfficialDocumentIssuedMapper.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oliveoa/dao/OfficialDocumentMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/oliveoa/dao/OfficialDocumentMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oliveoa/pojo/MeetingApplication.java" afterPath="$PROJECT_DIR$/src/main/java/com/oliveoa/pojo/MeetingApplication.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oliveoa/service/IApplicationService.java" afterPath="$PROJECT_DIR$/src/main/java/com/oliveoa/service/IApplicationService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oliveoa/service/impl/ApplicationServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/oliveoa/service/impl/ApplicationServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mappers/MeetingApplicationMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mappers/MeetingApplicationMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mappers/MeetingMemberMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mappers/MeetingMemberMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oliveoa/dao/PositionMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/oliveoa/dao/PositionMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oliveoa/dao/SubmitWorkMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/oliveoa/dao/SubmitWorkMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oliveoa/service/IDocumentFlowService.java" afterPath="$PROJECT_DIR$/src/main/java/com/oliveoa/service/IDocumentFlowService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oliveoa/service/IWorkService.java" afterPath="$PROJECT_DIR$/src/main/java/com/oliveoa/service/IWorkService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oliveoa/service/impl/DocumentFlowServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/oliveoa/service/impl/DocumentFlowServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oliveoa/service/impl/WorkServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/oliveoa/service/impl/WorkServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mappers/AnnouncementMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mappers/AnnouncementMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mappers/EmployeesMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mappers/EmployeesMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mappers/OfficialDocumentCirculreadMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mappers/OfficialDocumentCirculreadMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mappers/OfficialDocumentIssuedMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mappers/OfficialDocumentIssuedMapper.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mappers/OfficialDocumentMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mappers/OfficialDocumentMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/dispatcher-servlet.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/dispatcher-servlet.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mappers/MeetingApplicationMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mappers/MeetingApplicationMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mappers/MeetingMemberMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mappers/MeetingMemberMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mappers/PositionMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mappers/PositionMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mappers/SubmitWorkMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mappers/SubmitWorkMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mappers/AnnouncementMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mappers/AnnouncementMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mappers/EmployeesMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mappers/EmployeesMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mappers/OfficialDocumentCirculreadMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mappers/OfficialDocumentCirculreadMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mappers/OfficialDocumentIssuedMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mappers/OfficialDocumentIssuedMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mappers/OfficialDocumentMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mappers/OfficialDocumentMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mappers/PositionMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mappers/PositionMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mappers/SubmitWorkMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mappers/SubmitWorkMapper.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/mappers/MeetingApplicationMapper.xml" afterPath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/mappers/MeetingApplicationMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/mappers/MeetingMemberMapper.xml" afterPath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/mappers/MeetingMemberMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/oliveoa/WEB-INF/dispatcher-servlet.xml" afterPath="$PROJECT_DIR$/target/oliveoa/WEB-INF/dispatcher-servlet.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/oliveoa/index.jsp" afterPath="$PROJECT_DIR$/target/oliveoa/index.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/mappers/AnnouncementMapper.xml" afterPath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/mappers/AnnouncementMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/mappers/EmployeesMapper.xml" afterPath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/mappers/EmployeesMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/mappers/OfficialDocumentCirculreadMapper.xml" afterPath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/mappers/OfficialDocumentCirculreadMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/mappers/OfficialDocumentIssuedMapper.xml" afterPath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/mappers/OfficialDocumentIssuedMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/mappers/OfficialDocumentMapper.xml" afterPath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/mappers/OfficialDocumentMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/mappers/PositionMapper.xml" afterPath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/mappers/PositionMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/mappers/SubmitWorkMapper.xml" afterPath="$PROJECT_DIR$/target/oliveoa/WEB-INF/classes/mappers/SubmitWorkMapper.xml" />
     </list>
     <ignored path="oliveoa.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -76,8 +103,9 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/controller/employees/ApplicaitionController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="806" column="9" selection-start-line="792" selection-start-column="8" selection-end-line="806" selection-end-column="9" />
+              <caret line="231" column="52" selection-start-line="231" selection-start-column="52" selection-end-line="231" selection-end-column="52" />
               <folding>
+                <element signature="method#add_overtime_application#0;class#ApplicaitionController#0" expanded="false" />
                 <element signature="method#get_overtime_application_need_approved#0;class#ApplicaitionController#0" expanded="false" />
                 <element signature="method#get_overtime_application_approved#0;class#ApplicaitionController#0" expanded="false" />
                 <element signature="method#get_overtime_application_Isubmit#0;class#ApplicaitionController#0" expanded="false" />
@@ -85,7 +113,6 @@
                 <element signature="method#approved_overtime_application#0;class#ApplicaitionController#0" expanded="false" />
                 <element signature="method#add_leave_application#0;class#ApplicaitionController#0" expanded="false" />
                 <element signature="method#get_leave_application_need_approved#0;class#ApplicaitionController#0" expanded="false" />
-                <element signature="method#get_leave_application_approved#0;class#ApplicaitionController#0" expanded="false" />
                 <element signature="method#get_leave_application_Isubmit#0;class#ApplicaitionController#0" expanded="false" />
                 <element signature="method#get_leave_application_details#0;class#ApplicaitionController#0" expanded="false" />
                 <element signature="method#approved_leave_application#0;class#ApplicaitionController#0" expanded="false" />
@@ -101,7 +128,6 @@
                 <element signature="method#get_job_transfer_application_Isubmit#0;class#ApplicaitionController#0" expanded="false" />
                 <element signature="method#get_job_transfer_application_details#0;class#ApplicaitionController#0" expanded="false" />
                 <element signature="method#approved_job_transfer_application#0;class#ApplicaitionController#0" expanded="false" />
-                <element signature="method#add_leave_office_applicatio#0;class#ApplicaitionController#0" expanded="false" />
                 <element signature="method#get_leave_office_application_need_approved#0;class#ApplicaitionController#0" expanded="false" />
                 <element signature="method#get_leave_office_application_approved#0;class#ApplicaitionController#0" expanded="false" />
                 <element signature="method#get_leave_office_application_Isubmit#0;class#ApplicaitionController#0" expanded="false" />
@@ -119,6 +145,7 @@
                 <element signature="method#get_recruitment_application_Isubmit#0;class#ApplicaitionController#0" expanded="false" />
                 <element signature="method#get_recruitment_application_details#0;class#ApplicaitionController#0" expanded="false" />
                 <element signature="method#approved_recruitment_application#0;class#ApplicaitionController#0" expanded="false" />
+                <element signature="method#add_meeting_application#0;class#ApplicaitionController#0" expanded="false" />
                 <element signature="method#get_meeting_application_need_approved#0;class#ApplicaitionController#0" expanded="false" />
                 <element signature="method#get_meeting_application_approved#0;class#ApplicaitionController#0" expanded="false" />
                 <element signature="method#get_meeting_application_Isubmit#0;class#ApplicaitionController#0" expanded="false" />
@@ -132,91 +159,111 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DocumentFlowController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/controller/employees/DocumentFlowController.java">
+      <file leaf-file-name="IApplicationService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/service/IApplicationService.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="197" column="51" selection-start-line="197" selection-start-column="51" selection-end-line="197" selection-end-column="51" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IDocumentFlowService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/service/IDocumentFlowService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="21" column="58" selection-start-line="21" selection-start-column="58" selection-end-line="21" selection-end-column="112" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DocumentFlowServiceImpl.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/service/impl/DocumentFlowServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.67994505">
-              <caret line="87" column="13" selection-start-line="87" selection-start-column="13" selection-end-line="87" selection-end-column="13" />
-              <folding>
-                <element signature="e#1384#1385#0" expanded="true" />
-                <element signature="e#1441#1442#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OfficialDocumentMapper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/dao/OfficialDocumentMapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="27" column="27" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OfficialDocumentMapper.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/OfficialDocumentMapper.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.6805556">
-              <caret line="57" column="105" selection-start-line="57" selection-start-column="105" selection-end-line="57" selection-end-column="105" />
-              <folding>
-                <marker date="1536140421767" expanded="true" signature="1833:1953" placeholder="select from tb_official_document" />
-                <marker date="1536140421767" expanded="true" signature="2053:2176" placeholder="SELECT * FRO... tb_official_document" />
-                <marker date="1536140421767" expanded="true" signature="2053:2194" placeholder="SELECT FROM tb_official_document" />
-                <marker date="1536140421767" expanded="true" signature="2053:2202" placeholder="SELECT FROM tb_official_document" />
-                <marker date="1536140421767" expanded="true" signature="2304:2381" placeholder="SELECT FROM tb_official_document" />
-                <marker date="1536140421767" expanded="true" signature="2304:2409" placeholder="SELECT FROM tb_official_document" />
-                <marker date="1536140421767" expanded="true" signature="2304:2435" placeholder="SELECT FROM tb_official_document" />
-                <marker date="1536140421767" expanded="true" signature="2304:2439" placeholder="SELECT FROM tb_official_document" />
-                <marker date="1536140421767" expanded="true" signature="2304:2468" placeholder="SELECT FROM tb_official_document" />
-                <marker date="1536140421767" expanded="true" signature="2304:2489" placeholder="SELECT FROM tb_official_document" />
-                <marker date="1536140421767" expanded="true" signature="2599:2824" placeholder="SELECT FROM tb_official_document" />
-                <marker date="1536140421767" expanded="true" signature="2924:3128" placeholder="SELECT FROM tb_official_document" />
-                <marker date="1536140421767" expanded="true" signature="3236:3435" placeholder="SELECT FROM tb_official_document" />
-                <marker date="1536140421767" expanded="true" signature="3521:3595" placeholder="delete from " />
-                <marker date="1536140421767" expanded="true" signature="3686:4393" placeholder="insert into tb_official_document... " />
-                <marker date="1536140421767" expanded="true" signature="7008:8467" placeholder="update tb_of... " />
-                <marker date="1536140421767" expanded="true" signature="8570:9318" placeholder="update tb_of... " />
-                <marker date="1536140421767" expanded="true" signature="9418:9722" placeholder="update tb_of... " />
-                <marker date="1536140421767" expanded="true" signature="9821:10086" placeholder="update tb_of... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.642858">
-              <caret line="11" column="14" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
+              <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ApplicationServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/service/impl/ApplicationServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="158" column="85" selection-start-line="158" selection-start-column="85" selection-end-line="158" selection-end-column="85" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LeaveApplicationMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/dao/LeaveApplicationMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="21" column="27" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LeaveApplicationMapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/LeaveApplicationMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-8.523809">
+              <caret line="41" column="148" selection-start-line="41" selection-start-column="114" selection-end-line="41" selection-end-column="148" />
+              <folding>
+                <marker date="1536021338274" expanded="true" signature="1631:1751" placeholder="select from tb_leave_application" />
+                <marker date="1536021338274" expanded="true" signature="1856:1999" placeholder="select from tb_leave_application" />
+                <marker date="1536021338274" expanded="true" signature="2112:2365" placeholder="select from tb_leave_application" />
+                <marker date="1536021338274" expanded="true" signature="2209:2338" placeholder="SELECT laid tb_leave_application_approved_opinion" />
+                <marker date="1536021338274" expanded="true" signature="2451:2525" placeholder="delete from " />
+                <marker date="1536021338274" expanded="true" signature="2616:3234" placeholder="insert into tb_leave_application... " />
+                <marker date="1536021338274" expanded="true" signature="5587:6850" placeholder="update tb_le... " />
+                <marker date="1536021338274" expanded="true" signature="6953:7593" placeholder="update tb_le... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WorkController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/controller/employees/WorkController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.57363015">
+              <caret line="80" column="106" selection-start-line="80" selection-start-column="106" selection-end-line="80" selection-end-column="106" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IWorkService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/service/IWorkService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="19" column="4" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WorkServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/service/impl/WorkServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="54" column="70" selection-start-line="54" selection-start-column="70" selection-end-line="54" selection-end-column="70" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SubmitWorkMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/dao/SubmitWorkMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="26" column="41" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SubmitWorkMapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/SubmitWorkMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-10.071428">
+              <caret line="47" column="29" selection-start-line="47" selection-start-column="29" selection-end-line="47" selection-end-column="29" />
+              <folding>
+                <marker date="1537431278108" expanded="true" signature="1508:1632" placeholder="select from tb_submit_work" />
+                <marker date="1537431278108" expanded="true" signature="1722:1937" placeholder="SELECT FROM tb_submit_work" />
+                <marker date="1537431278108" expanded="true" signature="2017:2213" placeholder="SELECT FROM tb_submit_work" />
+                <marker date="1537431278108" expanded="true" signature="2301:2494" placeholder="SELECT FROM tb_submit_work" />
+                <marker date="1537431278108" expanded="true" signature="2574:2770" placeholder="SELECT FROM tb_submit_work" />
+                <marker date="1537431278108" expanded="true" signature="2859:2927" placeholder="delete from " />
+                <marker date="1537431278108" expanded="true" signature="3013:3470" placeholder="insert into tb_submit_work... " />
+                <marker date="1537431278108" expanded="true" signature="5869:7091" placeholder="update tb_su... " />
+                <marker date="1537431278108" expanded="true" signature="7191:7696" placeholder="update tb_su... " />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -245,25 +292,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/oliveoa/service/impl/EmployeesServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mappers/AnnouncementMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/datasource.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/com/oliveoa/vo/JobTransferApplicationDetails.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/oliveoa/dao/JobTransferApplicationApprovedOpinionMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mappers/JobTransferApplicationApprovedOpinionMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/oliveoa/vo/LeaveOfficeApplicationDetails.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/oliveoa/dao/LeaveOfficeApplicationApprovedOpinionMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mappers/LeaveOfficeApplicationApprovedOpinionMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/oliveoa/service/IPositionService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/oliveoa/service/impl/PositionServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/oliveoa/controller/company/PositionManageController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/oliveoa/vo/FulltimeApplicationDetails.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/oliveoa/dao/FulltimeApplicationApprovedOpinionMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mappers/FulltimeApplicationApprovedOpinionMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/oliveoa/vo/RecruitmentApplicationDetails.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/oliveoa/dao/RecruitmentApplicationItemMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mappers/RecruitmentApplicationItemMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/oliveoa/dao/RecruitmentApplicationApprovedOpinionMapper.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mappers/RecruitmentApplicationApprovedOpinionMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/oliveoa/dao/OvertimeApplicationMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/oliveoa/dao/LeaveApplicationMapper.java" />
@@ -291,11 +319,30 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/dispatcher-servlet.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/applicationContext-datasource.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/index.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/com/oliveoa/dao/OfficialDocumentMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mappers/OfficialDocumentMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/mappers/PositionMapper.xml" />
+        <option value="$PROJECT_DIR$/src/test/java/Test.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/oliveoa/dao/EmployeesMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mappers/EmployeesMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/oliveoa/vo/ODocument.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/oliveoa/dao/OfficialDocumentIssuedMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mappers/OfficialDocumentIssuedMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/oliveoa/dao/OfficialDocumentCirculreadMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/oliveoa/service/IDocumentFlowService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/oliveoa/dao/OfficialDocumentMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/oliveoa/service/impl/DocumentFlowServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/oliveoa/controller/employees/DocumentFlowController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mappers/OfficialDocumentMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/mappers/OfficialDocumentCirculreadMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/oliveoa/dao/PositionMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/oliveoa/service/impl/PositionServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/oliveoa/service/IPositionService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/oliveoa/controller/company/PositionManageController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mappers/AnnouncementMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/oliveoa/service/IWorkService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/oliveoa/dao/SubmitWorkMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mappers/SubmitWorkMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/oliveoa/service/impl/WorkServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/oliveoa/controller/employees/WorkController.java" />
       </list>
     </option>
   </component>
@@ -333,6 +380,20 @@
         <PATH_ELEMENT>
           <option name="myItemId" value="oliveoa Maven Webapp" />
           <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="oliveoa Maven Webapp" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Plugins" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$PluginsNode" />
         </PATH_ELEMENT>
       </PATH>
       <PATH>
@@ -431,9 +492,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -465,6 +524,10 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -484,51 +547,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oliveoa" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oliveoa" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WEB-INF" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oliveoa" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oliveoa" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -555,6 +574,70 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="oliveoa" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oliveoa" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oliveoa" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oliveoa" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oliveoa" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oliveoa" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oliveoa" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="impl" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -624,6 +707,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -635,7 +720,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="D:/Git/bin/git.exe" />
-    <property name="SearchEverywhereHistoryKey" value="olivaoa&#9;FILE&#9;file://D:/IdeaProjects/oliveoa/pom.xml" />
+    <property name="SearchEverywhereHistoryKey" value="get_anno&#9;PSI&#9;JAVA://com.oliveoa.service.IEmployeesService#get_announcement_details&#10;olivaoa&#9;FILE&#9;file://D:/IdeaProjects/oliveoa/pom.xml" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -647,6 +732,68 @@
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.tomcat">
+    <configuration default="false" name="DocumentFlowServiceImpl.getDocumentNeedReceive" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.oliveoa.service.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="oliveoa" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.oliveoa.service.impl" />
+      <option name="MAIN_CLASS_NAME" value="com.oliveoa.service.impl.DocumentFlowServiceImpl" />
+      <option name="METHOD_NAME" value="getDocumentNeedReceive" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="Test.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="oliveoa" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Test" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="Test" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="oliveoa" />
+      <envs />
+      <method />
+    </configuration>
     <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.0.9" ALTERNATIVE_JRE_ENABLED="false">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
@@ -1255,9 +1402,19 @@
         </option>
       </method>
     </configuration>
-    <list size="1">
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="Tomcat Server.tomcat" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.DocumentFlowServiceImpl.getDocumentNeedReceive" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.Test.test" />
+      <item index="3" class="java.lang.String" itemvalue="Application.Test" />
     </list>
+    <recent_temporary>
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Application.Test" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.Test.test" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.DocumentFlowServiceImpl.getDocumentNeedReceive" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
   <component name="SvnConfiguration">
@@ -1302,12 +1459,29 @@
       <workItem from="1535366051969" duration="5131000" />
       <workItem from="1535414880984" duration="12175000" />
       <workItem from="1535525367351" duration="6315000" />
-      <workItem from="1535587947182" duration="63991000" />
+      <workItem from="1535587947182" duration="79252000" />
+      <workItem from="1536280487495" duration="57000" />
+      <workItem from="1536287058971" duration="635000" />
+      <workItem from="1536291868293" duration="25000" />
+      <workItem from="1536827020439" duration="1217000" />
+      <workItem from="1536851413552" duration="93000" />
+      <workItem from="1537259610000" duration="2109000" />
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="DocumentFlowServiceImpl_getDocumentNeedReceive - 2018.09.06 at 09h 04m 33s.xml">
+      <configuration name="DocumentFlowServiceImpl.getDocumentNeedReceive" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Test_test - 2018.09.06 at 09h 07m 37s.xml">
+      <configuration name="Test.test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Test_test - 2018.09.06 at 09h 07m 55s.xml">
+      <configuration name="Test.test" configurationId="JUnit" />
+    </history-entry>
+  </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="365737000" />
+    <option name="totallyTimeSpent" value="385134000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1320,24 +1494,24 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="7" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919955" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32832617" sideWeight="0.49571735" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13528748" sideWeight="0.49571735" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32832617" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3686584" sideWeight="0.50588864" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32832617" sideWeight="0.49785867" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19507186" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2028908" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32832617" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14317925" sideWeight="0.49411136" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30552423" sideWeight="0.49411136" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919955" sideWeight="0.49785867" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29817986" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23875803" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32807216" sideWeight="0.49785867" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295688" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922912" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1420,12 +1594,24 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/oliveoa/controller/employees/DocumentFlowController.java</url>
-          <line>52</line>
+          <line>40</line>
           <properties class="com.oliveoa.controller.employees.DocumentFlowController" method="draft" />
           <option name="timeStamp" value="14" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/oliveoa/controller/employees/DocumentFlowController.java</url>
+          <line>96</line>
+          <properties class="com.oliveoa.controller.employees.DocumentFlowController" method="getDocumentIdraft" />
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/oliveoa/controller/employees/DocumentFlowController.java</url>
+          <line>137</line>
+          <properties class="com.oliveoa.controller.employees.DocumentFlowController" method="getDocumentNeedIssue" />
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="15" />
+      <option name="time" value="17" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1434,368 +1620,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/AnnouncementMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.785714">
-          <caret line="27" column="2" selection-start-line="27" selection-start-column="2" selection-end-line="27" selection-end-column="2" />
-          <folding>
-            <marker date="1535273074500" expanded="true" signature="1361:1474" placeholder="select from tb_announcement" />
-            <marker date="1535273074500" expanded="true" signature="1593:1788" placeholder="SELECT from tb_announcement" />
-            <marker date="1535273074500" expanded="true" signature="1593:1798" placeholder="SELECT from tb_announcement" />
-            <marker date="1535273074500" expanded="true" signature="1593:1809" placeholder="SELECT from tb_announcement" />
-            <marker date="1535273074500" expanded="true" signature="1593:1814" placeholder="SELECT from tb_announcement" />
-            <marker date="1535273074500" expanded="true" signature="1684:1727" placeholder="SELECT aid F... tb_announcement_approved_opp" />
-            <marker date="1535273074500" expanded="true" signature="1684:1732" placeholder="SELECT aid F... tb_announcement_approved_opinion" />
-            <marker date="1535273074500" expanded="true" signature="1684:1768" placeholder="SELECT aid F... tb_announcement_approved_opinion" />
-            <marker date="1535273074500" expanded="true" signature="1684:1787" placeholder="SELECT aid F... tb_announcement_approved_opinion" />
-            <marker date="1535273074500" expanded="true" signature="1925:2037" placeholder="SELECT from tb_announcement" />
-            <marker date="1535273074500" expanded="true" signature="1925:2050" placeholder="SELECT from tb_announcement" />
-            <marker date="1535273074500" expanded="true" signature="1925:2058" placeholder="SELECT from tb_announcement" />
-            <marker date="1535273074500" expanded="true" signature="1925:2063" placeholder="SELECT from tb_announcement" />
-            <marker date="1535273074500" expanded="true" signature="2156:2250" placeholder="SELECT from tb_announcement" />
-            <marker date="1535273074500" expanded="true" signature="2156:2272" placeholder="SELECT from tb_announcement" />
-            <marker date="1535273074500" expanded="true" signature="2156:2293" placeholder="SELECT from tb_announcement" />
-            <marker date="1535273074500" expanded="true" signature="2379:2446" placeholder="delete from " />
-            <marker date="1535273074500" expanded="true" signature="2533:2955" placeholder="insert into tb_announcement... " />
-            <marker date="1535273074500" expanded="true" signature="4777:5713" placeholder="update tb_an... " />
-            <marker date="1535273074500" expanded="true" signature="5812:6277" placeholder="update tb_an... " />
-            <marker date="1535273074500" expanded="true" signature="6332:6446" placeholder="UPDATE tb_an... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/vo/FulltimeApplicationDetails.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="39" column="18" selection-start-line="39" selection-start-column="18" selection-end-line="39" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#807#808#0" expanded="false" />
-            <element signature="e#849#850#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/dao/FulltimeApplicationApprovedOpinionMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="39" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/FulltimeApplicationApprovedOpinionMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.6266665">
-          <caret line="165" column="4" selection-start-line="165" selection-start-column="4" selection-end-line="165" selection-end-column="4" />
-          <folding>
-            <marker date="1535875202357" expanded="true" signature="1307:1453" placeholder="select from tb_fulltime_application_approved_opinion" />
-            <marker date="1535875202357" expanded="true" signature="1600:1740" placeholder="SELECT faaop... tb_fulltime_application_approved_opinion" />
-            <marker date="1535875202357" expanded="true" signature="1846:2006" placeholder="select from tb_fulltime_application_approved_opinion" />
-            <marker date="1535875202357" expanded="true" signature="2092:2192" placeholder="delete from " />
-            <marker date="1535875202357" expanded="true" signature="2301:2704" placeholder="insert into tb_fulltime_application_approved_opinion... " />
-            <marker date="1535875202357" expanded="true" signature="4433:5285" placeholder="update tb_fu... " />
-            <marker date="1535875202357" expanded="true" signature="5406:5843" placeholder="update tb_fu... " />
-            <marker date="1535875202357" expanded="true" signature="5964:6210" placeholder="update tb_fu... " />
-            <marker date="1535875202357" expanded="true" signature="6298:6442" placeholder="UPDATE tb_fu... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/vo/RecruitmentApplicationDetails.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0013157895">
-          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1096#1097#0" expanded="false" />
-            <element signature="e#1141#1142#0" expanded="false" />
-            <element signature="e#1374#1375#0" expanded="false" />
-            <element signature="e#1423#1424#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/dao/RecruitmentApplicationItemMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/RecruitmentApplicationItemMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.7733335">
-          <caret line="31" column="24" selection-start-line="31" selection-start-column="24" selection-end-line="31" selection-end-column="24" />
-          <folding>
-            <marker date="1535958246348" expanded="true" signature="1409:1542" placeholder="select from tb_recruitment_application_item" />
-            <marker date="1535958246348" expanded="true" signature="1648:1779" placeholder="select from tb_recruitment_application_item" />
-            <marker date="1535958246348" expanded="true" signature="1865:1952" placeholder="delete from " />
-            <marker date="1535958246348" expanded="true" signature="2053:2508" placeholder="insert into tb_recruitment_application_item... " />
-            <marker date="1535958246348" expanded="true" signature="4406:5380" placeholder="update tb_re... " />
-            <marker date="1535958246348" expanded="true" signature="5493:5990" placeholder="update tb_re... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/dao/RecruitmentApplicationApprovedOpinionMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="39" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/RecruitmentApplicationApprovedOpinionMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.4">
-          <caret line="165" column="4" selection-start-line="165" selection-start-column="4" selection-end-line="165" selection-end-column="4" />
-          <folding>
-            <marker date="1535959300681" expanded="true" signature="1313:1462" placeholder="select from tb_recruitment_application_approved_opinion" />
-            <marker date="1535959300681" expanded="true" signature="1612:1755" placeholder="SELECT raaop... tb_recruitment_application_approved_opinion" />
-            <marker date="1535959300681" expanded="true" signature="1861:2024" placeholder="select from tb_recruitment_application_approved_opinion" />
-            <marker date="1535959300681" expanded="true" signature="2110:2213" placeholder="delete from " />
-            <marker date="1535959300681" expanded="true" signature="2325:2731" placeholder="insert into tb_recruitment_application_approved_opinion... " />
-            <marker date="1535959300681" expanded="true" signature="4469:5324" placeholder="update tb_re... " />
-            <marker date="1535959300681" expanded="true" signature="5448:5888" placeholder="update tb_re... " />
-            <marker date="1535959300681" expanded="true" signature="6012:6062" placeholder="update tb_re... " />
-            <marker date="1535959300681" expanded="true" signature="6012:6185" placeholder="update tb_re... " />
-            <marker date="1535959300681" expanded="true" signature="6012:6261" placeholder="update tb_re... " />
-            <marker date="1535959300681" expanded="true" signature="6349:6496" placeholder="update tb_re... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/dao/LeaveApplicationMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="46" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/LeaveApplicationMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.693333">
-          <caret line="42" column="25" selection-start-line="42" selection-start-column="25" selection-end-line="42" selection-end-column="25" />
-          <folding>
-            <marker date="1536021338274" expanded="true" signature="1631:1751" placeholder="select from tb_leave_application" />
-            <marker date="1536021338274" expanded="true" signature="1856:1999" placeholder="select from tb_leave_application" />
-            <marker date="1536021338274" expanded="true" signature="2112:2365" placeholder="select from tb_leave_application" />
-            <marker date="1536021338274" expanded="true" signature="2209:2338" placeholder="SELECT laid tb_leave_application_approved_opinion" />
-            <marker date="1536021338274" expanded="true" signature="2451:2525" placeholder="delete from " />
-            <marker date="1536021338274" expanded="true" signature="2616:3234" placeholder="insert into tb_leave_application... " />
-            <marker date="1536021338274" expanded="true" signature="5587:6850" placeholder="update tb_le... " />
-            <marker date="1536021338274" expanded="true" signature="6953:7593" placeholder="update tb_le... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/OvertimeApplicationMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6011994">
-          <caret line="36" column="25" selection-start-line="36" selection-start-column="25" selection-end-line="36" selection-end-column="25" />
-          <folding>
-            <marker date="1536021354688" expanded="true" signature="1185:1308" placeholder="select from tb_overtime_application" />
-            <marker date="1536021354688" expanded="true" signature="1413:1559" placeholder="select from tb_overtime_application" />
-            <marker date="1536021354688" expanded="true" signature="1672:1762" placeholder="select from tb_overtime_application" />
-            <marker date="1536021354688" expanded="true" signature="1672:1767" placeholder="select from tb_overtime_application" />
-            <marker date="1536021354688" expanded="true" signature="1672:1918" placeholder="select from tb_overtime_application" />
-            <marker date="1536021354688" expanded="true" signature="1672:1926" placeholder="select from tb_overtime_application" />
-            <marker date="1536021354688" expanded="true" signature="1672:1931" placeholder="select from tb_overtime_application" />
-            <marker date="1536021354688" expanded="true" signature="1772:1904" placeholder="SELECT oaid tb_overtime_application_approved_opinion" />
-            <marker date="1536021354688" expanded="true" signature="2017:2094" placeholder="delete from " />
-            <marker date="1536021354688" expanded="true" signature="2188:2522" placeholder="insert into tb_overtime_application... " />
-            <marker date="1536021354688" expanded="true" signature="4052:4794" placeholder="update tb_ov... " />
-            <marker date="1536021354688" expanded="true" signature="4900:5275" placeholder="update tb_ov... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/dao/OvertimeApplicationMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18617772">
-          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/dao/JobTransferApplicationMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="52" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/LeaveOfficeApplicationMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.76363635">
-          <caret line="40" column="40" selection-start-line="40" selection-start-column="40" selection-end-line="40" selection-end-column="40" />
-          <folding>
-            <marker date="1536022170620" expanded="true" signature="1211:1340" placeholder="select from tb_leave_office_application" />
-            <marker date="1536022170620" expanded="true" signature="1420:1518" placeholder="select from tb_leave_office_application" />
-            <marker date="1536022170620" expanded="true" signature="1420:1643" placeholder="select from tb_leave_office_application" />
-            <marker date="1536022170620" expanded="true" signature="1420:1653" placeholder="select from tb_leave_office_application" />
-            <marker date="1536022170620" expanded="true" signature="1420:1656" placeholder="select from tb_leave_office_application" />
-            <marker date="1536022170620" expanded="true" signature="1420:1664" placeholder="select from tb_leave_office_application" />
-            <marker date="1536022170620" expanded="true" signature="1420:1669" placeholder="select from tb_leave_office_application" />
-            <marker date="1536022170620" expanded="true" signature="1525:1542" placeholder="SELECT * FRO... " />
-            <marker date="1536022170620" expanded="true" signature="1525:1623" placeholder="SELECT loaid... tb_leave_office_application_approved_opinion" />
-            <marker date="1536022170620" expanded="true" signature="1525:1642" placeholder="SELECT loaid... tb_leave_office_application_approved_opinion" />
-            <marker date="1536022170620" expanded="true" signature="1749:2018" placeholder="select from tb_leave_office_application" />
-            <marker date="1536022170620" expanded="true" signature="1854:1991" placeholder="SELECT loaid... tb_leave_office_application_approved_opinion" />
-            <marker date="1536022170620" expanded="true" signature="2090:2235" placeholder="select from tb_leave_office_application" />
-            <marker date="1536022170620" expanded="true" signature="2321:2404" placeholder="delete from " />
-            <marker date="1536022170620" expanded="true" signature="2501:2856" placeholder="insert into tb_leave_office_application... " />
-            <marker date="1536022170620" expanded="true" signature="4431:5202" placeholder="update tb_le... " />
-            <marker date="1536022170620" expanded="true" signature="5311:5707" placeholder="update tb_le... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/dao/LeaveOfficeApplicationMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8066667">
-          <caret line="22" column="52" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/JobTransferApplicationMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28848484">
-          <caret line="36" column="122" selection-start-line="36" selection-start-column="122" selection-end-line="36" selection-end-column="122" />
-          <folding>
-            <marker date="1536021959877" expanded="true" signature="1270:1399" placeholder="select from tb_job_transfer_application" />
-            <marker date="1536021959877" expanded="true" signature="1512:1609" placeholder="SELECT from tb_job_transfer_application" />
-            <marker date="1536021959877" expanded="true" signature="1512:1612" placeholder="SELECT from tb_job_transfer_application" />
-            <marker date="1536021959877" expanded="true" signature="1512:1733" placeholder="SELECT from tb_job_transfer_application" />
-            <marker date="1536021959877" expanded="true" signature="1512:1746" placeholder="SELECT from tb_job_transfer_application" />
-            <marker date="1536021959877" expanded="true" signature="1512:1754" placeholder="SELECT from tb_job_transfer_application" />
-            <marker date="1536021959877" expanded="true" signature="1512:1759" placeholder="SELECT from tb_job_transfer_application" />
-            <marker date="1536021959877" expanded="true" signature="1617:1716" placeholder="SELECT jtaid... tb_job_transfer_application_approved_opinion" />
-            <marker date="1536021959877" expanded="true" signature="1617:1730" placeholder="SELECT jtaid... tb_job_transfer_application_approved_opinion" />
-            <marker date="1536021959877" expanded="true" signature="1617:1732" placeholder="SELECT jtaid... tb_job_transfer_application_approved_opinion" />
-            <marker date="1536021959877" expanded="true" signature="1872:2141" placeholder="SELECT from tb_job_transfer_application" />
-            <marker date="1536021959877" expanded="true" signature="1977:2114" placeholder="SELECT jtaid... tb_job_transfer_application_approved_opinion" />
-            <marker date="1536021959877" expanded="true" signature="2247:2373" placeholder="SELECT from tb_job_transfer_application" />
-            <marker date="1536021959877" expanded="true" signature="2247:2374" placeholder="SELECT from tb_job_transfer_application" />
-            <marker date="1536021959877" expanded="true" signature="2247:2399" placeholder="SELECT from tb_job_transfer_application" />
-            <marker date="1536021959877" expanded="true" signature="2485:2568" placeholder="delete from " />
-            <marker date="1536021959877" expanded="true" signature="2665:3043" placeholder="insert into tb_job_transfer_application... " />
-            <marker date="1536021959877" expanded="true" signature="4711:5534" placeholder="update tb_jo... " />
-            <marker date="1536021959877" expanded="true" signature="5643:6055" placeholder="update tb_jo... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/dao/BusinessTripApplicationMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.69666666">
-          <caret line="21" column="53" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/BusinessTripApplicationMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6460606">
-          <caret line="37" column="20" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="20" />
-          <folding>
-            <marker date="1536021699199" expanded="true" signature="1274:1404" placeholder="select from tb_business_trip_application" />
-            <marker date="1536021699199" expanded="true" signature="1509:1660" placeholder="select from tb_business_trip_application" />
-            <marker date="1536021699199" expanded="true" signature="1773:2018" placeholder="select from tb_business_trip_application" />
-            <marker date="1536021699199" expanded="true" signature="1773:2039" placeholder="select from tb_business_trip_application" />
-            <marker date="1536021699199" expanded="true" signature="1879:2017" placeholder="SELECT btaid... tb_business_trip_application_approved_opinion" />
-            <marker date="1536021699199" expanded="true" signature="2125:2209" placeholder="delete from " />
-            <marker date="1536021699199" expanded="true" signature="2307:2692" placeholder="insert into tb_business_trip_application... " />
-            <marker date="1536021699199" expanded="true" signature="4371:5202" placeholder="update tb_bu... " />
-            <marker date="1536021699199" expanded="true" signature="5312:5731" placeholder="update tb_bu... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/dao/FulltimeApplicationMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="49" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/FulltimeApplicationMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.88">
-          <caret line="35" column="35" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="35" />
-          <folding>
-            <marker date="1536022372777" expanded="true" signature="1195:1318" placeholder="select from tb_fulltime_application" />
-            <marker date="1536022372777" expanded="true" signature="1431:1665" placeholder="select from tb_fulltime_application" />
-            <marker date="1536022372777" expanded="true" signature="1531:1643" placeholder="SELECT faid tb_fulltime_application_approved_opinion" />
-            <marker date="1536022372777" expanded="true" signature="1778:2032" placeholder="select from tb_fulltime_application" />
-            <marker date="1536022372777" expanded="true" signature="1878:2010" placeholder="SELECT faid tb_fulltime_application_approved_opinion" />
-            <marker date="1536022372777" expanded="true" signature="2137:2278" placeholder="select from tb_fulltime_application" />
-            <marker date="1536022372777" expanded="true" signature="2364:2441" placeholder="delete from " />
-            <marker date="1536022372777" expanded="true" signature="2535:2878" placeholder="insert into tb_fulltime_application... " />
-            <marker date="1536022372777" expanded="true" signature="4435:5195" placeholder="update tb_fu... " />
-            <marker date="1536022372777" expanded="true" signature="5301:5685" placeholder="update tb_fu... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/dao/RecruitmentApplicationMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="52" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/RecruitmentApplicationMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.84">
-          <caret line="33" column="154" selection-start-line="33" selection-start-column="154" selection-end-line="33" selection-end-column="154" />
-          <folding>
-            <marker date="1536022535042" expanded="true" signature="1009:1135" placeholder="select from tb_recruitment_application" />
-            <marker date="1536022535042" expanded="true" signature="1248:1467" placeholder="select from tb_recruitment_application" />
-            <marker date="1536022535042" expanded="true" signature="1248:1480" placeholder="select from tb_recruitment_application" />
-            <marker date="1536022535042" expanded="true" signature="1248:1481" placeholder="select from tb_recruitment_application" />
-            <marker date="1536022535042" expanded="true" signature="1248:1488" placeholder="select from tb_recruitment_application" />
-            <marker date="1536022535042" expanded="true" signature="1351:1466" placeholder="SELECT raid tb_recruitment_application_approved_opinion" />
-            <marker date="1536022535042" expanded="true" signature="1601:1861" placeholder="select from tb_recruitment_application" />
-            <marker date="1536022535042" expanded="true" signature="1704:1839" placeholder="SELECT raid tb_recruitment_application_approved_opinion" />
-            <marker date="1536022535042" expanded="true" signature="1966:1972" placeholder="select * fro... " />
-            <marker date="1536022535042" expanded="true" signature="1966:2099" placeholder="select from tb_recruitment_application" />
-            <marker date="1536022535042" expanded="true" signature="1966:2100" placeholder="select from tb_recruitment_application" />
-            <marker date="1536022535042" expanded="true" signature="1966:2115" placeholder="select from tb_recruitment_application" />
-            <marker date="1536022535042" expanded="true" signature="2201:2281" placeholder="delete from " />
-            <marker date="1536022535042" expanded="true" signature="2378:2627" placeholder="insert into tb_recruitment_application... " />
-            <marker date="1536022535042" expanded="true" signature="3850:4391" placeholder="update tb_re... " />
-            <marker date="1536022535042" expanded="true" signature="4500:4776" placeholder="update tb_re... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/dao/MeetingMemberMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1803,15 +1631,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="39" column="18" selection-start-line="39" selection-start-column="18" selection-end-line="39" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#633#634#0" expanded="false" />
-            <element signature="e#670#671#0" expanded="false" />
-            <element signature="e#743#744#0" expanded="false" />
-            <element signature="e#795#796#0" expanded="false" />
-            <element signature="e#852#853#0" expanded="false" />
-            <element signature="e#893#894#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1819,13 +1638,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4369085">
           <caret line="15" column="26" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
-          <folding>
-            <marker date="1536026710723" expanded="true" signature="904:1021" placeholder="select from tb_meeting_member" />
-            <marker date="1536026710723" expanded="true" signature="1107:1178" placeholder="delete from " />
-            <marker date="1536026710723" expanded="true" signature="1266:1460" placeholder="insert into tb_meeting_member... " />
-            <marker date="1536026710723" expanded="true" signature="2520:2967" placeholder="update tb_me... " />
-            <marker date="1536026710723" expanded="true" signature="3067:3295" placeholder="update tb_me... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1833,7 +1645,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334">
           <caret line="146" column="18" selection-start-line="146" selection-start-column="18" selection-end-line="146" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1841,38 +1652,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.11636364">
           <caret line="54" column="106" selection-start-line="54" selection-start-column="106" selection-end-line="54" selection-end-column="106" />
-          <folding>
-            <marker date="1536046711160" expanded="true" signature="1530:1652" placeholder="select from tb_meeting_application" />
-            <marker date="1536046711160" expanded="true" signature="1758:1879" placeholder="select from tb_meeting_application" />
-            <marker date="1536046711160" expanded="true" signature="1758:1919" placeholder="select from tb_meeting_application" />
-            <marker date="1536046711160" expanded="true" signature="2033:2211" placeholder="select from tb_meeting_application" />
-            <marker date="1536046711160" expanded="true" signature="2033:2216" placeholder="select from tb_meeting_application" />
-            <marker date="1536046711160" expanded="true" signature="2321:2461" placeholder="select from tb_meeting_application" />
-            <marker date="1536046711160" expanded="true" signature="2321:2466" placeholder="select from tb_meeting_application" />
-            <marker date="1536046711160" expanded="true" signature="2581:2751" placeholder="SELECT from tb_meeting_application" />
-            <marker date="1536046711160" expanded="true" signature="2581:2795" placeholder="SELECT from tb_meeting_application" />
-            <marker date="1536046711160" expanded="true" signature="2581:2827" placeholder="SELECT from tb_meeting_application" />
-            <marker date="1536046711160" expanded="true" signature="2581:2835" placeholder="SELECT from tb_meeting_application" />
-            <marker date="1536046711160" expanded="true" signature="2581:2840" placeholder="SELECT from tb_meeting_application" />
-            <marker date="1536046711160" expanded="true" signature="2680:2714" placeholder="SELECT maid tb_meeting_member" />
-            <marker date="1536046711160" expanded="true" signature="2680:2750" placeholder="SELECT maid tb_meeting_member" />
-            <marker date="1536046711160" expanded="true" signature="2954:3185" placeholder="SELECT from tb_meeting_application" />
-            <marker date="1536046711160" expanded="true" signature="2954:3190" placeholder="SELECT from tb_meeting_application" />
-            <marker date="1536046711160" expanded="true" signature="3053:3123" placeholder="SELECT maid tb_meeting_member" />
-            <marker date="1536046711160" expanded="true" signature="3304:3542" placeholder="SELECT from tb_meeting_application" />
-            <marker date="1536046711160" expanded="true" signature="3403:3473" placeholder="SELECT maid tb_meeting_member" />
-            <marker date="1536046711160" expanded="true" signature="3628:3704" placeholder="delete from " />
-            <marker date="1536046711160" expanded="true" signature="3797:4287" placeholder="insert into tb_meeting_application... " />
-            <marker date="1536046711160" expanded="true" signature="6394:7501" placeholder="update tb_me... " />
-            <marker date="1536046711160" expanded="true" signature="7606:8154" placeholder="update tb_me... " />
-            <marker date="1536046711160" expanded="true" signature="8255:8382" placeholder="UPDATE tb_me... " />
-            <marker date="1536046711160" expanded="true" signature="8255:8407" placeholder="UPDATE tb_me... " />
-            <marker date="1536046711160" expanded="true" signature="8255:8414" placeholder="UPDATE tb_me... " />
-            <marker date="1536046711160" expanded="true" signature="8255:8417" placeholder="UPDATE tb_me... " />
-            <marker date="1536046711160" expanded="true" signature="8255:8449" placeholder="UPDATE tb_me... " />
-            <marker date="1536046711160" expanded="true" signature="8255:8453" placeholder="UPDATE tb_me... " />
-            <marker date="1536046711160" expanded="true" signature="8255:8485" placeholder="UPDATE tb_me... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1880,25 +1659,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5233333">
           <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/service/IApplicationService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5966667">
-          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/controller/employees/WorkController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29333332">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1906,40 +1666,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.25666666">
           <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/service/IEmployeesService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25666666">
-          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/service/impl/ApplicationServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="578" column="59" selection-start-line="578" selection-start-column="59" selection-end-line="578" selection-end-column="59" />
-          <folding>
-            <element signature="method#add_job_transfer_application#0;class#ApplicationServiceImpl#0" expanded="false" />
-            <element signature="method#approved_leave_office_application#0;class#ApplicationServiceImpl#0" expanded="false" />
-            <element signature="method#get_fulltime_application_Isubmit#0;class#ApplicationServiceImpl#0" expanded="false" />
-            <element signature="method#get_fulltime_application_details#0;class#ApplicationServiceImpl#0" expanded="false" />
-            <element signature="method#get_recruitment_application_need_approved#0;class#ApplicationServiceImpl#0" expanded="false" />
-            <element signature="method#get_recruitment_application_approved#0;class#ApplicationServiceImpl#0" expanded="false" />
-            <element signature="method#get_recruitment_application_Isubmit#0;class#ApplicationServiceImpl#0" expanded="false" />
-            <element signature="method#get_recruitment_application_details#0;class#ApplicationServiceImpl#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-76.21429">
-          <caret line="262" column="32" selection-start-line="262" selection-start-column="32" selection-end-line="262" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1947,39 +1673,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.46153846">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/applicationContext.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.48">
-          <caret line="17" column="51" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/datasource.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/generatorConfig.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26923078">
-          <caret line="7" column="47" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/applicationContext-datasource.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.48">
-          <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1987,7 +1680,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.84">
           <caret line="36" column="67" selection-start-line="36" selection-start-column="67" selection-end-line="36" selection-end-column="67" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1998,7 +1690,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2006,15 +1697,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="58" column="8" selection-start-line="58" selection-start-column="8" selection-end-line="60" selection-end-column="106" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/service/impl/EmployeesServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.03801843">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2022,44 +1704,249 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.642858">
           <caret line="11" column="14" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/PositionMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.7733335">
+          <caret line="41" column="29" selection-start-line="41" selection-start-column="29" selection-end-line="41" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/EmployeesMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.746667">
+          <caret line="53" column="21" selection-start-line="53" selection-start-column="21" selection-end-line="53" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/dao/EmployeesMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="26" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/vo/ODocument.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33222592">
+          <caret line="50" column="18" selection-start-line="50" selection-start-column="18" selection-end-line="50" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/OfficialDocumentIssuedMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.87476283">
+          <caret line="27" column="20" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/dao/OfficialDocumentIssuedMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8903654">
+          <caret line="21" column="45" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/common/ResponseCode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/common/Const.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/dao/OfficialDocumentMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="27" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <caret line="37" column="27" selection-start-line="37" selection-start-column="27" selection-end-line="37" selection-end-column="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/OfficialDocumentMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.6805556">
-          <caret line="57" column="105" selection-start-line="57" selection-start-column="105" selection-end-line="57" selection-end-column="105" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="92" column="118" selection-start-line="92" selection-start-column="118" selection-end-line="92" selection-end-column="118" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/service/IDocumentFlowService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.80487806">
+          <caret line="28" column="19" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/service/impl/DocumentFlowServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="4.6463413">
+          <caret line="143" column="56" selection-start-line="143" selection-start-column="56" selection-end-line="143" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/dao/OfficialDocumentCirculreadMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6219512">
+          <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/OfficialDocumentCirculreadMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="5.372093">
+          <caret line="140" column="21" selection-start-line="140" selection-start-column="21" selection-end-line="140" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/controller/employees/DocumentFlowController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="267" column="47" selection-start-line="267" selection-start-column="27" selection-end-line="267" selection-end-column="47" />
           <folding>
-            <marker date="1536140421767" expanded="true" signature="1833:1953" placeholder="select from tb_official_document" />
-            <marker date="1536140421767" expanded="true" signature="2053:2176" placeholder="SELECT * FRO... tb_official_document" />
-            <marker date="1536140421767" expanded="true" signature="2053:2194" placeholder="SELECT FROM tb_official_document" />
-            <marker date="1536140421767" expanded="true" signature="2053:2202" placeholder="SELECT FROM tb_official_document" />
-            <marker date="1536140421767" expanded="true" signature="2304:2381" placeholder="SELECT FROM tb_official_document" />
-            <marker date="1536140421767" expanded="true" signature="2304:2409" placeholder="SELECT FROM tb_official_document" />
-            <marker date="1536140421767" expanded="true" signature="2304:2435" placeholder="SELECT FROM tb_official_document" />
-            <marker date="1536140421767" expanded="true" signature="2304:2439" placeholder="SELECT FROM tb_official_document" />
-            <marker date="1536140421767" expanded="true" signature="2304:2468" placeholder="SELECT FROM tb_official_document" />
-            <marker date="1536140421767" expanded="true" signature="2304:2489" placeholder="SELECT FROM tb_official_document" />
-            <marker date="1536140421767" expanded="true" signature="2599:2824" placeholder="SELECT FROM tb_official_document" />
-            <marker date="1536140421767" expanded="true" signature="2924:3128" placeholder="SELECT FROM tb_official_document" />
-            <marker date="1536140421767" expanded="true" signature="3236:3435" placeholder="SELECT FROM tb_official_document" />
-            <marker date="1536140421767" expanded="true" signature="3521:3595" placeholder="delete from " />
-            <marker date="1536140421767" expanded="true" signature="3686:4393" placeholder="insert into tb_official_document... " />
-            <marker date="1536140421767" expanded="true" signature="7008:8467" placeholder="update tb_of... " />
-            <marker date="1536140421767" expanded="true" signature="8570:9318" placeholder="update tb_of... " />
-            <marker date="1536140421767" expanded="true" signature="9418:9722" placeholder="update tb_of... " />
-            <marker date="1536140421767" expanded="true" signature="9821:10086" placeholder="update tb_of... " />
+            <element signature="imports" expanded="false" />
+            <element signature="method#draft#0;class#DocumentFlowController#0" expanded="false" />
+            <element signature="method#download#0;class#DocumentFlowController#0" expanded="false" />
+            <element signature="method#getDocumentIdraft#0;class#DocumentFlowController#0" expanded="false" />
+            <element signature="method#getDocumentNeedNuclear#0;class#DocumentFlowController#0" expanded="false" />
+            <element signature="method#getDocumentDoneNuclear#0;class#DocumentFlowController#0" expanded="false" />
+            <element signature="method#nuclear#0;class#DocumentFlowController#0" expanded="false" />
+            <element signature="method#getDocumentNeedIssue#0;class#DocumentFlowController#0" expanded="false" />
+            <element signature="method#getDocumentDoneIssue#0;class#DocumentFlowController#0" expanded="false" />
+            <element signature="method#issue#0;class#DocumentFlowController#0" expanded="false" />
+            <element signature="method#getDocumentNeedReceive#0;class#DocumentFlowController#0" expanded="false" />
+            <element signature="method#getDocumentReceived#0;class#DocumentFlowController#0" expanded="false" />
+            <element signature="method#receive#0;class#DocumentFlowController#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="270" column="6" selection-start-line="270" selection-start-column="6" selection-end-line="281" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/applicationContext.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="51" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/applicationContext-datasource.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/datasource.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/generatorConfig.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.038372092">
+          <caret line="7" column="47" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/dao/PositionMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8414634">
+          <caret line="25" column="36" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/service/impl/PositionServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.487805">
+          <caret line="77" column="5" selection-start-line="77" selection-start-column="5" selection-end-line="77" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/service/IPositionService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4390244">
+          <caret line="13" column="53" selection-start-line="13" selection-start-column="53" selection-end-line="13" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/controller/company/DepartmentManageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3292683">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/controller/company/PositionManageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.70953435">
+          <caret line="46" column="72" selection-start-line="46" selection-start-column="72" selection-end-line="46" selection-end-column="72" />
+          <folding>
+            <element signature="e#1881#1882#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/service/IEmployeesService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="17" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/service/impl/EmployeesServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="231" column="73" selection-start-line="231" selection-start-column="73" selection-end-line="231" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/dao/AnnouncementMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/AnnouncementMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.357143">
+          <caret line="45" column="52" selection-start-line="45" selection-start-column="52" selection-end-line="45" selection-end-column="52" />
+          <folding>
+            <marker date="1537259720016" expanded="true" signature="1361:1474" placeholder="select from tb_announcement" />
+            <marker date="1537259720016" expanded="true" signature="1593:1814" placeholder="SELECT from tb_announcement" />
+            <marker date="1537259720016" expanded="true" signature="1684:1787" placeholder="SELECT aid F... tb_announcement_approved_opinion" />
+            <marker date="1537259720016" expanded="true" signature="1925:2063" placeholder="SELECT from tb_announcement" />
+            <marker date="1537259720016" expanded="true" signature="2156:2312" placeholder="SELECT from tb_announcement" />
+            <marker date="1537259720016" expanded="true" signature="2398:2465" placeholder="delete from " />
+            <marker date="1537259720016" expanded="true" signature="2552:2974" placeholder="insert into tb_announcement... " />
+            <marker date="1537259720016" expanded="true" signature="4796:5732" placeholder="update tb_an... " />
+            <marker date="1537259720016" expanded="true" signature="5831:6296" placeholder="update tb_an... " />
+            <marker date="1537259720016" expanded="true" signature="6351:6465" placeholder="UPDATE tb_an... " />
           </folding>
         </state>
       </provider>
@@ -2067,8 +1954,9 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/controller/employees/ApplicaitionController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="806" column="9" selection-start-line="792" selection-start-column="8" selection-end-line="806" selection-end-column="9" />
+          <caret line="231" column="52" selection-start-line="231" selection-start-column="52" selection-end-line="231" selection-end-column="52" />
           <folding>
+            <element signature="method#add_overtime_application#0;class#ApplicaitionController#0" expanded="false" />
             <element signature="method#get_overtime_application_need_approved#0;class#ApplicaitionController#0" expanded="false" />
             <element signature="method#get_overtime_application_approved#0;class#ApplicaitionController#0" expanded="false" />
             <element signature="method#get_overtime_application_Isubmit#0;class#ApplicaitionController#0" expanded="false" />
@@ -2076,7 +1964,6 @@
             <element signature="method#approved_overtime_application#0;class#ApplicaitionController#0" expanded="false" />
             <element signature="method#add_leave_application#0;class#ApplicaitionController#0" expanded="false" />
             <element signature="method#get_leave_application_need_approved#0;class#ApplicaitionController#0" expanded="false" />
-            <element signature="method#get_leave_application_approved#0;class#ApplicaitionController#0" expanded="false" />
             <element signature="method#get_leave_application_Isubmit#0;class#ApplicaitionController#0" expanded="false" />
             <element signature="method#get_leave_application_details#0;class#ApplicaitionController#0" expanded="false" />
             <element signature="method#approved_leave_application#0;class#ApplicaitionController#0" expanded="false" />
@@ -2092,7 +1979,6 @@
             <element signature="method#get_job_transfer_application_Isubmit#0;class#ApplicaitionController#0" expanded="false" />
             <element signature="method#get_job_transfer_application_details#0;class#ApplicaitionController#0" expanded="false" />
             <element signature="method#approved_job_transfer_application#0;class#ApplicaitionController#0" expanded="false" />
-            <element signature="method#add_leave_office_applicatio#0;class#ApplicaitionController#0" expanded="false" />
             <element signature="method#get_leave_office_application_need_approved#0;class#ApplicaitionController#0" expanded="false" />
             <element signature="method#get_leave_office_application_approved#0;class#ApplicaitionController#0" expanded="false" />
             <element signature="method#get_leave_office_application_Isubmit#0;class#ApplicaitionController#0" expanded="false" />
@@ -2110,6 +1996,7 @@
             <element signature="method#get_recruitment_application_Isubmit#0;class#ApplicaitionController#0" expanded="false" />
             <element signature="method#get_recruitment_application_details#0;class#ApplicaitionController#0" expanded="false" />
             <element signature="method#approved_recruitment_application#0;class#ApplicaitionController#0" expanded="false" />
+            <element signature="method#add_meeting_application#0;class#ApplicaitionController#0" expanded="false" />
             <element signature="method#get_meeting_application_need_approved#0;class#ApplicaitionController#0" expanded="false" />
             <element signature="method#get_meeting_application_approved#0;class#ApplicaitionController#0" expanded="false" />
             <element signature="method#get_meeting_application_Isubmit#0;class#ApplicaitionController#0" expanded="false" />
@@ -2122,34 +2009,94 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/service/IDocumentFlowService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/service/IApplicationService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="58" selection-start-line="21" selection-start-column="58" selection-end-line="21" selection-end-column="112" />
+          <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/service/impl/ApplicationServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="158" column="85" selection-start-line="158" selection-start-column="85" selection-end-line="158" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/dao/LeaveApplicationMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="27" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/service/IWorkService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="4" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/dao/SubmitWorkMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="26" column="41" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/LeaveApplicationMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.523809">
+          <caret line="41" column="148" selection-start-line="41" selection-start-column="114" selection-end-line="41" selection-end-column="148" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <marker date="1536021338274" expanded="true" signature="1631:1751" placeholder="select from tb_leave_application" />
+            <marker date="1536021338274" expanded="true" signature="1856:1999" placeholder="select from tb_leave_application" />
+            <marker date="1536021338274" expanded="true" signature="2112:2365" placeholder="select from tb_leave_application" />
+            <marker date="1536021338274" expanded="true" signature="2209:2338" placeholder="SELECT laid tb_leave_application_approved_opinion" />
+            <marker date="1536021338274" expanded="true" signature="2451:2525" placeholder="delete from " />
+            <marker date="1536021338274" expanded="true" signature="2616:3234" placeholder="insert into tb_leave_application... " />
+            <marker date="1536021338274" expanded="true" signature="5587:6850" placeholder="update tb_le... " />
+            <marker date="1536021338274" expanded="true" signature="6953:7593" placeholder="update tb_le... " />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/controller/employees/DocumentFlowController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/SubmitWorkMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="197" column="51" selection-start-line="197" selection-start-column="51" selection-end-line="197" selection-end-column="51" />
+        <state vertical-scroll-proportion="-10.071428">
+          <caret line="47" column="29" selection-start-line="47" selection-start-column="29" selection-end-line="47" selection-end-column="29" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <marker date="1537431278108" expanded="true" signature="1508:1632" placeholder="select from tb_submit_work" />
+            <marker date="1537431278108" expanded="true" signature="1722:1937" placeholder="SELECT FROM tb_submit_work" />
+            <marker date="1537431278108" expanded="true" signature="2017:2213" placeholder="SELECT FROM tb_submit_work" />
+            <marker date="1537431278108" expanded="true" signature="2301:2494" placeholder="SELECT FROM tb_submit_work" />
+            <marker date="1537431278108" expanded="true" signature="2574:2770" placeholder="SELECT FROM tb_submit_work" />
+            <marker date="1537431278108" expanded="true" signature="2859:2927" placeholder="delete from " />
+            <marker date="1537431278108" expanded="true" signature="3013:3470" placeholder="insert into tb_submit_work... " />
+            <marker date="1537431278108" expanded="true" signature="5869:7091" placeholder="update tb_su... " />
+            <marker date="1537431278108" expanded="true" signature="7191:7696" placeholder="update tb_su... " />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/service/impl/DocumentFlowServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/service/impl/WorkServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.67994505">
-          <caret line="87" column="13" selection-start-line="87" selection-start-column="13" selection-end-line="87" selection-end-column="13" />
-          <folding>
-            <element signature="e#1384#1385#0" expanded="true" />
-            <element signature="e#1441#1442#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0">
+          <caret line="54" column="70" selection-start-line="54" selection-start-column="70" selection-end-line="54" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/oliveoa/controller/employees/WorkController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.57363015">
+          <caret line="80" column="106" selection-start-line="80" selection-start-column="106" selection-end-line="80" selection-end-column="106" />
+          <folding />
         </state>
       </provider>
     </entry>

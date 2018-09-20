@@ -40,6 +40,13 @@
         WHERE aeid = #{aeid,jdbcType=VARCHAR} and orderBy > #{orderBy,jdbcType=INTEGER}
         order by orderBy desc
     </select>
+    <select id="selectApprovedByAeid" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM tb_submit_work
+        WHERE aeid = #{aeid,jdbcType=VARCHAR} and (isApproved= -1 OR isApproved = 1)
+        order by orderBy desc
+    </select>
     <select id="selectBySeid" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>

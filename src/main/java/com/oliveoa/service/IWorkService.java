@@ -17,6 +17,8 @@ public interface IWorkService {
 
     ServerResponse get_work_unapproved(String aeid, int orderBy);
 
+    ServerResponse get_work_approved(String eid);
+
     ServerResponse get_approved_work(String aeid, int orderBy);
 
     ServerResponse get_work_detail(String swid);

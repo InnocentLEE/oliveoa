@@ -43,7 +43,7 @@
     SELECT
     <include refid="Base_Column_List" />
     from tb_announcement
-    WHERE publishtime &lt;= now()
+    WHERE publishtime &lt;= now() and isApproved = 1
     ORDER  BY publishtime DESC
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
