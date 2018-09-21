@@ -113,4 +113,10 @@ public class WorkServiceImpl implements IWorkService {
         }
         return ServerResponse.createBySuccess("查询成功",issueWorkAndMemberList);
     }
+
+    @Override
+    public ServerResponse get_work_tome(String eid, int orderBy){
+        List<IssueWork> list = issueWorkMapper.selectByIwmid(eid,orderBy);
+        return ServerResponse.createBySuccess(list);
+    }
 }

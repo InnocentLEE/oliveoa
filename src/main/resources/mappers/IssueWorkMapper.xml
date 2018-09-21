@@ -29,6 +29,13 @@
     where eid = #{eid,jdbcType=VARCHAR}
     order by orderBy desc
   </select>
+  <select id="selectByIwmid" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_issue_work
+    where iwid IN(SELECT iwid FROM tb_issue_work_member WHERE eid = #{eid,jdbcType=VARCHAR}) and orderBy > #{orderby,jdbcType=INTEGER}
+    order by orderBy
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from tb_issue_work
     where iwid = #{iwid,jdbcType=VARCHAR}

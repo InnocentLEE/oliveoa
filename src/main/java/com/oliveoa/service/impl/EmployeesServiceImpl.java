@@ -193,6 +193,12 @@ public class EmployeesServiceImpl implements IEmployeesService {
     }
 
     @Override
+    public ServerResponse get_announcement_approved(String eid){
+        List<Announcement> list = announcementMapper.selectApprovedByEid(eid);
+        return ServerResponse.createBySuccess(list);
+    }
+
+    @Override
     public ServerResponse get_announcement_Isubmit(String eid){
         List<Announcement> list = announcementMapper.selectByEid(eid);
         return ServerResponse.createBySuccess(list);

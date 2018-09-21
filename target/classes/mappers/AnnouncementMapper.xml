@@ -32,6 +32,13 @@
     WHERE aid IN (SELECT aid FROM tb_announcement_approved_opinion WHERE eid = #{eid,jdbcType=VARCHAR} and isApproved = 0)
     order by orderBy desc
   </select>
+  <select id="selectApprovedByEid" resultType="com.oliveoa.pojo.Announcement" parameterType="string">
+    SELECT
+    <include refid="Base_Column_List" />
+    from tb_announcement
+    WHERE aid IN (SELECT aid FROM tb_announcement_approved_opinion WHERE eid = #{eid,jdbcType=VARCHAR} and (isApproved = 1 or isApproved=-1))
+    order by orderBy desc
+  </select>
   <select id="selectByEid" resultType="com.oliveoa.pojo.Announcement" parameterType="string">
     SELECT
     <include refid="Base_Column_List" />

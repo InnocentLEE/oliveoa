@@ -75,7 +75,7 @@ public class WorkController {
 
     @RequestMapping(value = "get_work_approved.do", method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse get_work_approved(HttpSession session, String orderBy) {
+    public ServerResponse get_work_approved(HttpSession session) {
         Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
         if (employees == null)
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
@@ -177,4 +177,15 @@ public class WorkController {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
         return iWorkService.get_work_IIssue(employees.getEid());
     }
+
+    @RequestMapping(value = "get_work_tome.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_work_tome(HttpSession session, String orderBy){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        Integer orderby = Integer.parseInt(orderBy);
+        return iWorkService.get_work_tome(employees.getEid(),orderby);
+    }
+
 }

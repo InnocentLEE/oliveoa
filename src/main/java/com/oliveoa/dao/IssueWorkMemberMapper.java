@@ -1,6 +1,7 @@
 package com.oliveoa.dao;
 
 import com.oliveoa.pojo.IssueWorkMember;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -18,4 +19,5 @@ public interface IssueWorkMemberMapper {
     int updateByPrimaryKey(IssueWorkMember record);
 
     List<IssueWorkMember> selectByIwid(String iwid);
+
 }

@@ -22,6 +22,8 @@ public interface AnnouncementMapper {
 
     List<Announcement> selectByApprovedEid(String eid);
 
+    List<Announcement> selectApprovedByEid(String eid);
+
     List<Announcement> selectByEid(String eid);
 
     List<Announcement> selectPublished();

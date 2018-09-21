@@ -209,6 +209,15 @@ public class EmployeeController {
         return iEmployeesService.get_announcement_need_approved(employees.getEid());
     }
 
+    @RequestMapping(value = "get_announcement_approved.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse get_announcement_approved(HttpSession session){
+        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
+        if (employees == null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
+        return iEmployeesService.get_announcement_approved(employees.getEid());
+    }
+
     @RequestMapping(value = "get_announcement_Isubmit.do",method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse get_announcement_Isubmit(HttpSession session){

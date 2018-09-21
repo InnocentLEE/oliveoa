@@ -29,4 +29,6 @@ public interface IWorkService {
 
     ServerResponse get_work_IIssue(String eid);
 
+    ServerResponse get_work_tome(String eid, int orderBy);
+
 }
