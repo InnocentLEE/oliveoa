@@ -3,11 +3,9 @@ package com.oliveoa.service.impl;
 import com.github.pagehelper.MSUtils;
 import com.oliveoa.common.ServerResponse;
 import com.oliveoa.dao.*;
-import com.oliveoa.pojo.File;
-import com.oliveoa.pojo.OfficialDocument;
-import com.oliveoa.pojo.OfficialDocumentCirculread;
-import com.oliveoa.pojo.OfficialDocumentIssued;
+import com.oliveoa.pojo.*;
 import com.oliveoa.service.IDocumentFlowService;
+import com.oliveoa.util.CommonUtils;
 import com.oliveoa.vo.ODocument;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,13 +32,22 @@ public class DocumentFlowServiceImpl implements IDocumentFlowService {
     private PositionMapper positionMapper;
     @Autowired
     private EmployeesMapper employeesMapper;
+    @Autowired
+    private MessageMapper messageMapper;
 
     @Override
     public ServerResponse draft(File file, OfficialDocument officialDocument){
         boolean result1 = fileMapper.insertSelective(file)>0;
         boolean result2 = officialDocumentMapper.insertSelective(officialDocument)>0;
-        if(result1 && result2)
+        if(result1 && result2){
+            Message message = new Message();
+            message.setMid(CommonUtils.uuid());
+            message.setSeid("system_message");
+            message.setEid(officialDocument.getNuclearDraftEid());
+            message.setMsg("有一条公文正在等待您核稿，请尽快处理。");
+            messageMapper.insertSelective(message);
             return ServerResponse.createBySuccessMessage("拟稿发送成功");
+        }
         else
             return ServerResponse.createByErrorMessage("拟稿发送失败");
     }
@@ -71,6 +78,20 @@ public class DocumentFlowServiceImpl implements IDocumentFlowService {
     @Override
     public ServerResponse nuclear(OfficialDocument officialDocument){
         officialDocumentMapper.updateByNuclear(officialDocument);
+        Message message = new Message();
+        message.setMid(CommonUtils.uuid());
+        message.setSeid("system_message");
+        message.setEid(officialDocumentMapper.selectByPrimaryKey(officialDocument.getOdid()).getNuclearDraftEid());
+        message.setMsg("您有一条公文已经更新核稿状态，请注意查看。");
+        messageMapper.insertSelective(message);
+        if(officialDocument.getNuclearDraftIsapproved()==1){
+            Message message1 = new Message();
+            message1.setMid(CommonUtils.uuid());
+            message1.setSeid("system_message");
+            message1.setEid(officialDocument.getIssuedEid());
+            message1.setMsg("有一条公文已经通过核稿正等您签发，请尽快处理。");
+            messageMapper.insertSelective(message1);
+        }
         return ServerResponse.createBySuccessMessage("核稿成功");
     }
 
@@ -93,6 +114,13 @@ public class DocumentFlowServiceImpl implements IDocumentFlowService {
             int size = officialDocumentIssueds.size();
             for(int i=0;i<size;i++){
                 officialDocumentIssuedMapper.insertSelective(officialDocumentIssueds.get(i));
+                Message message = new Message();
+                message.setMid(CommonUtils.uuid());
+                message.setSeid("system_message");
+                String dcid = officialDocumentIssueds.get(i).getDcid();
+                message.setEid(employeesMapper.selectDocumentBossByDcid(dcid));
+                message.setMsg("有一条公文正等待您签收，请尽快处理。");
+                messageMapper.insertSelective(message);
             }
         }
         return ServerResponse.createBySuccessMessage("签发成功");
@@ -123,7 +151,19 @@ public class DocumentFlowServiceImpl implements IDocumentFlowService {
         int size = officialDocumentCirculreads.size();
         for (int i = 0; i < size; i++) {
             officialDocumentCirculreadMapper.insertSelective(officialDocumentCirculreads.get(i));
+            Message message = new Message();
+            message.setMid(CommonUtils.uuid());
+            message.setSeid("system_message");
+            message.setEid(officialDocumentCirculreads.get(i).getEid());
+            message.setMsg("有一条公文正等待您办理，请尽快处理。");
+            messageMapper.insertSelective(message);
         }
+        Message message = new Message();
+        message.setMid(CommonUtils.uuid());
+        message.setSeid("system_message");
+        message.setEid(officialDocumentMapper.selectByPrimaryKey(officialDocumentIssued.getOiid()).getIssuedEid());
+        message.setMsg("有一条公文已经被签收，请注意查看。");
+        messageMapper.insertSelective(message);
         return ServerResponse.createBySuccessMessage("签收成功");
     }
 
@@ -142,6 +182,12 @@ public class DocumentFlowServiceImpl implements IDocumentFlowService {
     @Override
     public ServerResponse read(OfficialDocumentCirculread officialDocumentCirculread){
         officialDocumentCirculreadMapper.updateByOiidAndEid(officialDocumentCirculread);
+        Message message = new Message();
+        message.setMid(CommonUtils.uuid());
+        message.setSeid("system_message");
+        message.setEid(officialDocumentMapper.selectByPrimaryKey(officialDocumentCirculread.getOiid()).getIssuedEid());
+        message.setMsg("有一条公文的办理状态有所更新，请注意查看。");
+        messageMapper.insertSelective(message);
         return ServerResponse.createBySuccessMessage("报告成功");
     }
 

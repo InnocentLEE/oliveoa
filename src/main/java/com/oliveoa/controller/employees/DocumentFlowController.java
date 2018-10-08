@@ -80,8 +80,10 @@ public class DocumentFlowController {
         String filename = URLEncoder.encode(file.getFname(),"UTF-8");
         //设置文件下载头
         response.addHeader("Content-Disposition", "attachment;filename=" + filename);
+        String fileLength = String.valueOf(bis.available());
         //设置文件ContentType类型，这样设置，会自动判断下载文件类型
         response.setContentType("multipart/form-data");
+        response.addHeader("Content-Length",fileLength);
         BufferedOutputStream out = new BufferedOutputStream(response.getOutputStream());
         int len = 0;
         while((len = bis.read()) != -1){
@@ -268,18 +270,12 @@ public class DocumentFlowController {
     @RequestMapping(value="get_document_details.do",method= RequestMethod.POST)
     @ResponseBody
     public ServerResponse getDocumentDetails(HttpSession session,String odid){
-        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
-        if (employees == null)
-            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
         return iDocumentFlowService.getDocumentDetails(odid);
     }
 
     @RequestMapping(value="get_document_list.do",method= RequestMethod.POST)
     @ResponseBody
     public ServerResponse getDocumentList(HttpSession session){
-        Employees employees = (Employees) session.getAttribute(Const.CURRENT_USER);
-        if (employees == null)
-            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,请先登录");
         return iDocumentFlowService.getDocumentList();
     }
 

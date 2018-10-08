@@ -53,6 +53,11 @@
     FROM tb_employees
     WHERE eid = #{eid,jdbcType=VARCHAR}
   </select>
+  <select id="selectDocumentBossByDcid" resultType="string" parameterType="string" >
+    SELECT eid
+    FROM tb_employees
+    WHERE pcid = (SELECT pcid FROM tb_position WHERE ppid IS NULL AND dcid = #{dcid,jdbcType=VARCHAR})
+  </select>
   <select id="selectCountById" resultType="int" parameterType="java.lang.String">
     SELECT COUNT(1)
     FROM tb_employees
@@ -222,6 +227,13 @@
       address = #{address,jdbcType=VARCHAR},
       orderBy = #{orderby,jdbcType=INTEGER},
       createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = now()
+    where eid = #{eid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateDocumentAndPositionByPrimaryKey" parameterType="com.oliveoa.pojo.Employees" >
+    update tb_employees
+    set dcid = #{dcid,jdbcType=VARCHAR},
+      pcid = #{pcid,jdbcType=VARCHAR},
       updatetime = now()
     where eid = #{eid,jdbcType=VARCHAR}
   </update>

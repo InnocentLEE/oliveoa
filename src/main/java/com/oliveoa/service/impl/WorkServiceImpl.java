@@ -1,15 +1,10 @@
 package com.oliveoa.service.impl;
 
 import com.oliveoa.common.ServerResponse;
-import com.oliveoa.dao.EmployeesMapper;
-import com.oliveoa.dao.IssueWorkMapper;
-import com.oliveoa.dao.IssueWorkMemberMapper;
-import com.oliveoa.dao.SubmitWorkMapper;
-import com.oliveoa.pojo.Employees;
-import com.oliveoa.pojo.IssueWork;
-import com.oliveoa.pojo.IssueWorkMember;
-import com.oliveoa.pojo.SubmitWork;
+import com.oliveoa.dao.*;
+import com.oliveoa.pojo.*;
 import com.oliveoa.service.IWorkService;
+import com.oliveoa.util.CommonUtils;
 import com.oliveoa.vo.IssueWorkAndMember;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,11 +29,20 @@ public class WorkServiceImpl implements IWorkService {
 
     @Autowired
     private EmployeesMapper employeesMapper;
+    @Autowired
+    private MessageMapper messageMapper;
     @Override
     public ServerResponse submit_work(SubmitWork submitWork) {
         int result = submitWorkMapper.insert(submitWork);
-        if (result > 0)
+        if (result > 0){
+            Message message = new Message();
+            message.setMid(CommonUtils.uuid());
+            message.setSeid("system_message");
+            message.setEid(submitWork.getAeid());
+            message.setMsg("有一项工作提交给你正在等待您审阅，请尽快处理。");
+            messageMapper.insertSelective(message);
             return ServerResponse.createBySuccessMessage("提交工作成功");
+        }
         else
             return ServerResponse.createByErrorMessage("提交工作失败");
     }
@@ -76,8 +80,15 @@ public class WorkServiceImpl implements IWorkService {
     @Override
     public ServerResponse approved_work(SubmitWork submitWork) {
         int result = submitWorkMapper.updateByPrimaryKeySelective(submitWork);
-        if (result > 0)
+        if (result > 0){
+            Message message = new Message();
+            message.setMid(CommonUtils.uuid());
+            message.setSeid("system_message");
+            message.setEid(submitWork.getSeid());
+            message.setMsg("有一项工作已经审阅，请尽快查看。");
+            messageMapper.insertSelective(message);
             return ServerResponse.createBySuccessMessage("批阅成功");
+        }
         else
             return ServerResponse.createByErrorMessage("批阅失败");
     }
@@ -88,6 +99,12 @@ public class WorkServiceImpl implements IWorkService {
         int memberSize = issueWorkMemberList.size();
         for (int i = 0; i < memberSize; i++) {
             issueWorkMemberMapper.insertSelective(issueWorkMemberList.get(i));
+            Message message = new Message();
+            message.setMid(CommonUtils.uuid());
+            message.setSeid("system_message");
+            message.setEid(issueWorkMemberList.get(i).getEid());
+            message.setMsg("有一项工作发布给你，请尽快查看。");
+            messageMapper.insertSelective(message);
         }
         return ServerResponse.createBySuccessMessage("发布工作成功");
     }

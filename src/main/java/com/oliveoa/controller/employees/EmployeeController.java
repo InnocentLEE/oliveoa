@@ -41,6 +41,7 @@ public class EmployeeController {
         Empwd empwd = new Empwd(id, password);
         ServerResponse response = iEmployeesService.login(empwd);
         if (response.isSuccess()) {
+            session.removeAttribute(Const.CURRENT_USER);
             session.setAttribute(Const.CURRENT_USER, response.getData());
         }
         return response;

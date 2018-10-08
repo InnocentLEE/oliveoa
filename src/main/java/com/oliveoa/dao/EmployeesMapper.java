@@ -23,6 +23,8 @@ public interface EmployeesMapper {
 
     int updateByPrimaryKey(Employees record);
 
+    int updateDocumentAndPositionByPrimaryKey(Employees record);
+
     int selectCountById(String id);
 
     int selectCountByPcid(String pcid);
@@ -30,4 +32,6 @@ public interface EmployeesMapper {
     int selectCountByDcid(String dcid);
 
     String selectDcidByEid(String eid);
+
+    String selectDocumentBossByDcid(String dcid);
 }

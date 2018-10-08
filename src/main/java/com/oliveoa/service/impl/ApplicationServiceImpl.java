@@ -4,6 +4,7 @@ import com.oliveoa.common.ServerResponse;
 import com.oliveoa.dao.*;
 import com.oliveoa.pojo.*;
 import com.oliveoa.service.IApplicationService;
+import com.oliveoa.util.CommonUtils;
 import com.oliveoa.vo.*;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,10 @@ public class ApplicationServiceImpl implements IApplicationService {
     private MeetingApplicationMapper meetingApplicationMapper;
     @Autowired
     private MeetingMemberMapper meetingMemberMapper;
+    @Autowired
+    private MessageMapper messageMapper;
+    @Autowired
+    private EmployeesMapper employeesMapper;
 
     @Override
     @Transactional
@@ -65,6 +70,12 @@ public class ApplicationServiceImpl implements IApplicationService {
             if (ir == 0)
                 result2 = false;
         }
+        Message message = new Message();
+        message.setMid(CommonUtils.uuid());
+        message.setSeid("system_message");
+        message.setEid(overtimeApplicationApprovedOpinionList.get(0).getEid());
+        message.setMsg("有一条加班申请正在等待您审核，请尽快处理。");
+        messageMapper.insertSelective(message);
         if (result1 && result2)
             return ServerResponse.createBySuccessMessage("添加加班申请成功");
         else
@@ -110,10 +121,24 @@ public class ApplicationServiceImpl implements IApplicationService {
     @Transactional
     public ServerResponse approved_overtime_application(OvertimeApplicationApprovedOpinion overtimeApplicationApprovedOpinion) {
         int result1 = overtimeApplicationApprovedOpinionMapper.updateByOaidAndEid(overtimeApplicationApprovedOpinion);
+        String eid1 = overtimeApplicationMapper.selectByPrimaryKey(overtimeApplicationApprovedOpinion.getOaid()).getEid();
+        Message message1 = new Message();
+        message1.setMid(CommonUtils.uuid());
+        message1.setSeid("system_message");
+        message1.setEid(eid1);
+        message1.setMsg("您有一条加班申请的审核状态已经更新，请注意查看。");
+        messageMapper.insertSelective(message1);
         if (overtimeApplicationApprovedOpinion.getIsapproved() == 1) {
             String oaaocid = overtimeApplicationApprovedOpinionMapper.selectOaaopidByOaidAndEid(overtimeApplicationApprovedOpinion);
             if (oaaocid != null) {
                 int result2 = overtimeApplicationApprovedOpinionMapper.updateIsApprovedToZeroByOaaocid(oaaocid);
+                String eid2 = overtimeApplicationApprovedOpinionMapper.selectByPrimaryKey(oaaocid).getEid();
+                Message message2 = new Message();
+                message2.setMid(CommonUtils.uuid());
+                message2.setSeid("system_message");
+                message2.setEid(eid2);
+                message2.setMsg("有一条加班申请正在等待您审核，请尽快处理。");
+                messageMapper.insertSelective(message2);
                 if (result2 <= 0)
                     result1 = 0;
             }
@@ -135,6 +160,12 @@ public class ApplicationServiceImpl implements IApplicationService {
             if (ir == 0)
                 result2 = false;
         }
+        Message message = new Message();
+        message.setMid(CommonUtils.uuid());
+        message.setSeid("system_message");
+        message.setEid(leaveApplicationApprovedOpinionList.get(0).getEid());
+        message.setMsg("有一条请假申请正在等待您审核，请尽快处理。");
+        messageMapper.insertSelective(message);
         if (result1 && result2)
             return ServerResponse.createBySuccessMessage("添加请假申请成功");
         else
@@ -180,10 +211,24 @@ public class ApplicationServiceImpl implements IApplicationService {
     @Transactional
     public ServerResponse approved_leave_application(LeaveApplicationApprovedOpinion leaveApplicationApprovedOpinion) {
         int result1 = leaveApplicationApprovedOpinionMapper.updateByLaidAndEid(leaveApplicationApprovedOpinion);
+        String eid1 = leaveApplicationMapper.selectByPrimaryKey(leaveApplicationApprovedOpinion.getLaid()).getEid();
+        Message message1 = new Message();
+        message1.setMid(CommonUtils.uuid());
+        message1.setSeid("system_message");
+        message1.setEid(eid1);
+        message1.setMsg("您有一条请假申请的审核状态已经更新，请注意查看。");
+        messageMapper.insertSelective(message1);
         if (leaveApplicationApprovedOpinion.getIsapproved() == 1) {
             String laaocid = leaveApplicationApprovedOpinionMapper.selectLaaopidByLaidAndEid(leaveApplicationApprovedOpinion);
             if (laaocid != null) {
                 int result2 = leaveApplicationApprovedOpinionMapper.updateIsApprovedToZeroByLaaocid(laaocid);
+                String eid2 = leaveApplicationApprovedOpinionMapper.selectByPrimaryKey(laaocid).getEid();
+                Message message2 = new Message();
+                message2.setMid(CommonUtils.uuid());
+                message2.setSeid("system_message");
+                message2.setEid(eid2);
+                message2.setMsg("有一条请假申请正在等待您审核，请尽快处理。");
+                messageMapper.insertSelective(message2);
                 if (result2 <= 0)
                     result1 = 0;
             }
@@ -205,6 +250,12 @@ public class ApplicationServiceImpl implements IApplicationService {
             if (ir == 0)
                 result2 = false;
         }
+        Message message = new Message();
+        message.setMid(CommonUtils.uuid());
+        message.setSeid("system_message");
+        message.setEid(businessTripApplicationApprovedOpinionList.get(0).getEid());
+        message.setMsg("有一条出差申请正在等待您审核，请尽快处理。");
+        messageMapper.insertSelective(message);
         if (result1 && result2)
             return ServerResponse.createBySuccessMessage("添加出差申请成功");
         else
@@ -250,10 +301,24 @@ public class ApplicationServiceImpl implements IApplicationService {
     @Transactional
     public ServerResponse approved_business_trip_application(BusinessTripApplicationApprovedOpinion businessTripApplicationApprovedOpinion) {
         int result1 = businessTripApplicationApprovedOpinionMapper.updateByBtaidAndEid(businessTripApplicationApprovedOpinion);
+        String eid1 = businessTripApplicationMapper.selectByPrimaryKey(businessTripApplicationApprovedOpinion.getBtaid()).getEid();
+        Message message1 = new Message();
+        message1.setMid(CommonUtils.uuid());
+        message1.setSeid("system_message");
+        message1.setEid(eid1);
+        message1.setMsg("您有一条出差申请的审核状态已经更新，请注意查看。");
+        messageMapper.insertSelective(message1);
         if (businessTripApplicationApprovedOpinion.getIsapproved() == 1) {
             String btaaocid = businessTripApplicationApprovedOpinionMapper.selectBtaaopidByBtaidAndEid(businessTripApplicationApprovedOpinion);
             if (btaaocid != null) {
                 int result2 = businessTripApplicationApprovedOpinionMapper.updateIsApprovedToZeroByBtaaocid(btaaocid);
+                String eid2 = businessTripApplicationApprovedOpinionMapper.selectByPrimaryKey(btaaocid).getEid();
+                Message message2 = new Message();
+                message2.setMid(CommonUtils.uuid());
+                message2.setSeid("system_message");
+                message2.setEid(eid2);
+                message2.setMsg("有一条出差申请正在等待您审核，请尽快处理。");
+                messageMapper.insertSelective(message2);
                 if (result2 <= 0)
                     result1 = 0;
             }
@@ -275,6 +340,12 @@ public class ApplicationServiceImpl implements IApplicationService {
             if (ir == 0)
                 result2 = false;
         }
+        Message message = new Message();
+        message.setMid(CommonUtils.uuid());
+        message.setSeid("system_message");
+        message.setEid(jobTransferApplicationApprovedOpinionList.get(0).getEid());
+        message.setMsg("有一条岗位调动申请正在等待您审核，请尽快处理。");
+        messageMapper.insertSelective(message);
         if (result1 && result2)
             return ServerResponse.createBySuccessMessage("添加岗位调动申请成功");
         else
@@ -315,12 +386,42 @@ public class ApplicationServiceImpl implements IApplicationService {
     @Transactional
     public ServerResponse approved_job_transfer_application(JobTransferApplicationApprovedOpinion jobTransferApplicationApprovedOpinion) {
         int result1 = jobTransferApplicationApprovedOpinionMapper.updateByJtaidAndEid(jobTransferApplicationApprovedOpinion);
+        String eid1 = jobTransferApplicationMapper.selectByPrimaryKey(jobTransferApplicationApprovedOpinion.getJtaid()).getEid();
+        Message message1 = new Message();
+        message1.setMid(CommonUtils.uuid());
+        message1.setSeid("system_message");
+        message1.setEid(eid1);
+        message1.setMsg("您有一条岗位调动申请的审核状态已经更新，请注意查看。");
+        messageMapper.insertSelective(message1);
         if (jobTransferApplicationApprovedOpinion.getIsapproved() == 1) {
             String jtaaocid = jobTransferApplicationApprovedOpinionMapper.selectJtaaopidByBtaidAndEid(jobTransferApplicationApprovedOpinion);
             if (jtaaocid != null) {
                 int result2 = jobTransferApplicationApprovedOpinionMapper.updateIsApprovedToZeroByJtaaocid(jtaaocid);
+                String eid2 = jobTransferApplicationApprovedOpinionMapper.selectByPrimaryKey(jtaaocid).getEid();
+                Message message2 = new Message();
+                message2.setMid(CommonUtils.uuid());
+                message2.setSeid("system_message");
+                message2.setEid(eid2);
+                message2.setMsg("有一条岗位调动申请正在等待您审核，请尽快处理。");
+                messageMapper.insertSelective(message2);
                 if (result2 <= 0)
                     result1 = 0;
+            }else{
+                JobTransferApplication jobTransferApplication = jobTransferApplicationMapper.selectByPrimaryKey(jobTransferApplicationApprovedOpinion.getJtaid());
+                String eid = jobTransferApplication.getEid();
+                String aimDcid = jobTransferApplication.getAimdcid();
+                String aimPcid = jobTransferApplication.getAimpcid();
+                Employees employees = new Employees();
+                employees.setEid(eid);
+                employees.setDcid(aimDcid);
+                employees.setPcid(aimPcid);
+                employeesMapper.updateDocumentAndPositionByPrimaryKey(employees);
+                Message message3 = new Message();
+                message3.setMid(CommonUtils.uuid());
+                message3.setSeid("system_message");
+                message3.setEid(eid);
+                message3.setMsg("您的岗位被调动，请注意查看");
+                messageMapper.insertSelective(message3);
             }
         }
         if (result1 > 0)
@@ -340,6 +441,12 @@ public class ApplicationServiceImpl implements IApplicationService {
             if(ir==0)
                 result2 = false;
         }
+        Message message = new Message();
+        message.setMid(CommonUtils.uuid());
+        message.setSeid("system_message");
+        message.setEid(leaveOfficeApplicationApprovedOpinionList.get(0).getEid());
+        message.setMsg("有一条离职申请正在等待您审核，请尽快处理。");
+        messageMapper.insertSelective(message);
         if (result1 && result2)
             return ServerResponse.createBySuccessMessage("添加离职申请成功");
         else
@@ -380,10 +487,24 @@ public class ApplicationServiceImpl implements IApplicationService {
     @Transactional
     public ServerResponse approved_leave_office_application(LeaveOfficeApplicationApprovedOpinion leaveOfficeApplicationApprovedOpinion){
         int result1 = leaveOfficeApplicationApprovedOpinionMapper.updateByLoaidAndEid(leaveOfficeApplicationApprovedOpinion);
+        String eid1 = leaveOfficeApplicationMapper.selectByPrimaryKey(leaveOfficeApplicationApprovedOpinion.getLoaid()).getEid();
+        Message message1 = new Message();
+        message1.setMid(CommonUtils.uuid());
+        message1.setSeid("system_message");
+        message1.setEid(eid1);
+        message1.setMsg("您有一条离职申请的审核状态已经更新，请注意查看。");
+        messageMapper.insertSelective(message1);
         if(leaveOfficeApplicationApprovedOpinion.getIsapproved()==1){
             String loaaocid = leaveOfficeApplicationApprovedOpinionMapper.selectLoaaopidByLoaidAndEid(leaveOfficeApplicationApprovedOpinion);
             if(loaaocid != null){
                 int result2 = leaveOfficeApplicationApprovedOpinionMapper.updateIsApprovedToZeroByLoaaocid(loaaocid);
+                String eid2 = leaveOfficeApplicationApprovedOpinionMapper.selectByPrimaryKey(loaaocid).getEid();
+                Message message2 = new Message();
+                message2.setMid(CommonUtils.uuid());
+                message2.setSeid("system_message");
+                message2.setEid(eid2);
+                message2.setMsg("有一条离职申请正在等待您审核，请尽快处理。");
+                messageMapper.insertSelective(message2);
                 if(result2 <= 0)
                     result1 = 0;
             }
@@ -405,6 +526,12 @@ public class ApplicationServiceImpl implements IApplicationService {
             if(ir == 0)
                 result2 = false;
         }
+        Message message = new Message();
+        message.setMid(CommonUtils.uuid());
+        message.setSeid("system_message");
+        message.setEid(fulltimeApplicationApprovedOpinions.get(0).getEid());
+        message.setMsg("有一条转正申请正在等待您审核，请尽快处理。");
+        messageMapper.insertSelective(message);
         if (result1 && result2)
             return ServerResponse.createBySuccessMessage("添加转正申请成功");
         else
@@ -445,10 +572,24 @@ public class ApplicationServiceImpl implements IApplicationService {
     @Transactional
     public ServerResponse approved_fulltime_application(FulltimeApplicationApprovedOpinion fulltimeApplicationApprovedOpinion){
         int result1 = fulltimeApplicationApprovedOpinionMapper.updateByFaidAndEid(fulltimeApplicationApprovedOpinion);
+        String eid1 = fulltimeApplicationMapper.selectByPrimaryKey(fulltimeApplicationApprovedOpinion.getFaid()).getEid();
+        Message message1 = new Message();
+        message1.setMid(CommonUtils.uuid());
+        message1.setSeid("system_message");
+        message1.setEid(eid1);
+        message1.setMsg("您有一条转正申请的审核状态已经更新，请注意查看。");
+        messageMapper.insertSelective(message1);
         if(fulltimeApplicationApprovedOpinion.getIsapproved() == 1){
             String faaocid = fulltimeApplicationApprovedOpinionMapper.selectFaaopidByFaidAndEid(fulltimeApplicationApprovedOpinion);
             if(faaocid != null){
                 int result2 = fulltimeApplicationApprovedOpinionMapper.updateIsApprovedToZeroByFaaocid(faaocid);
+                String eid2 = fulltimeApplicationApprovedOpinionMapper.selectByPrimaryKey(faaocid).getEid();
+                Message message2 = new Message();
+                message2.setMid(CommonUtils.uuid());
+                message2.setSeid("system_message");
+                message2.setEid(eid2);
+                message2.setMsg("有一条转正申请正在等待您审核，请尽快处理。");
+                messageMapper.insertSelective(message2);
                 if(result2 <= 0)
                     result1 = 0;
             }
@@ -471,8 +612,14 @@ public class ApplicationServiceImpl implements IApplicationService {
             if(ir == 0)
                 result3 = false;
         }
+        Message message = new Message();
+        message.setMid(CommonUtils.uuid());
+        message.setSeid("system_message");
+        message.setEid(recruitmentApplicationApprovedOpinionList.get(0).getEid());
+        message.setMsg("有一条招聘申请正在等待您审核，请尽快处理。");
+        messageMapper.insertSelective(message);
         if (result1 && result2 && result3)
-            return ServerResponse.createBySuccessMessage("添加招聘请成功");
+            return ServerResponse.createBySuccessMessage("添加招聘申请成功");
         else
             return ServerResponse.createByErrorMessage("添加申请失败");
     }
@@ -512,10 +659,24 @@ public class ApplicationServiceImpl implements IApplicationService {
     @Transactional
     public ServerResponse approved_recruitment_application(RecruitmentApplicationApprovedOpinion recruitmentApplicationApprovedOpinion){
         int result1 = recruitmentApplicationApprovedOpinionMapper.updateByRaidAndEid(recruitmentApplicationApprovedOpinion);
+        String eid1 = recruitmentApplicationMapper.selectByPrimaryKey(recruitmentApplicationApprovedOpinion.getRaid()).getEid();
+        Message message1 = new Message();
+        message1.setMid(CommonUtils.uuid());
+        message1.setSeid("system_message");
+        message1.setEid(eid1);
+        message1.setMsg("您有一条招聘申请的审核状态已经更新，请注意查看。");
+        messageMapper.insertSelective(message1);
         if(recruitmentApplicationApprovedOpinion.getIsapproved() == 1){
             String raaocid = recruitmentApplicationApprovedOpinionMapper.selectRaaopidByRaidAndEid(recruitmentApplicationApprovedOpinion);
             if(raaocid != null){
                 int result2 = recruitmentApplicationApprovedOpinionMapper.updateIsApprovedToZeroByRaaocid(raaocid);
+                String eid2 = recruitmentApplicationApprovedOpinionMapper.selectByPrimaryKey(raaocid).getEid();
+                Message message2 = new Message();
+                message2.setMid(CommonUtils.uuid());
+                message2.setSeid("system_message");
+                message2.setEid(eid2);
+                message2.setMsg("有一条招聘申请正在等待您审核，请尽快处理。");
+                messageMapper.insertSelective(message2);
                 if(result2 <= 0)
                     result1 = 0;
             }
@@ -537,8 +698,14 @@ public class ApplicationServiceImpl implements IApplicationService {
             if(ir == 0)
                 result2 = false;
         }
+        Message message = new Message();
+        message.setMid(CommonUtils.uuid());
+        message.setSeid("system_message");
+        message.setEid(meetingApplication.getAeid());
+        message.setMsg("有一条会议申请正在等待您审核，请尽快处理。");
+        messageMapper.insertSelective(message);
         if (result1 && result2)
-            return ServerResponse.createBySuccessMessage("添加会议请成功");
+            return ServerResponse.createBySuccessMessage("添加会议申请成功");
         else
             return ServerResponse.createByErrorMessage("添加申请失败");
     }
@@ -577,8 +744,20 @@ public class ApplicationServiceImpl implements IApplicationService {
     @Transactional
     public ServerResponse approved_meeting_application(MeetingApplication meetingApplication){
         boolean result = meetingApplicationMapper.updateApproved(meetingApplication) > 0;
-        if(result)
+        if(result){
+            String maid = meetingApplication.getMaid();
+            List<MeetingMember> meetingMembers = meetingMemberMapper.selectByMaid(maid);
+            int size = meetingMembers.size();
+            for (int i = 0; i < size; i++) {
+                Message message = new Message();
+                message.setMid(CommonUtils.uuid());
+                message.setSeid("system_message");
+                message.setEid(meetingMembers.get(i).getEid());
+                message.setMsg("您有一个新会议，请注意查看");
+                messageMapper.insertSelective(message);
+            }
             return ServerResponse.createBySuccess("审核成功");
+        }
         else
             return ServerResponse.createByErrorMessage("审核失败");
     }

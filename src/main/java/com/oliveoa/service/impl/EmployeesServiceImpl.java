@@ -4,6 +4,7 @@ import com.oliveoa.common.ServerResponse;
 import com.oliveoa.dao.*;
 import com.oliveoa.pojo.*;
 import com.oliveoa.service.IEmployeesService;
+import com.oliveoa.util.CommonUtils;
 import com.oliveoa.vo.AnnouncementDetails;
 import com.oliveoa.vo.DepContact;
 import com.oliveoa.vo.EmpContact;
@@ -181,6 +182,12 @@ public class EmployeesServiceImpl implements IEmployeesService {
             if (ir == 0)
                 result2 = false;
         }
+        Message message = new Message();
+        message.setMid(CommonUtils.uuid());
+        message.setSeid("system_message");
+        message.setEid(announcementApprovedOpinionList.get(0).getEid());
+        message.setMsg("有一条公告申请正在等待您审核，请尽快处理。");
+        messageMapper.insertSelective(message);
         if (result1 && result2)
             return ServerResponse.createBySuccessMessage("提交公告成功");
         else
@@ -208,12 +215,26 @@ public class EmployeesServiceImpl implements IEmployeesService {
     @Transactional
     public ServerResponse approved_announcement(AnnouncementApprovedOpinion announcementApprovedOpinion){
         int result1 = announcementApprovedOpinionMapper.updateByAidAndEid(announcementApprovedOpinion);
+        String eid1 = announcementMapper.selectByPrimaryKey(announcementApprovedOpinion.getAid()).getEid();
+        Message message1 = new Message();
+        message1.setMid(CommonUtils.uuid());
+        message1.setSeid("system_message");
+        message1.setEid(eid1);
+        message1.setMsg("您有一条公告申请的审核状态已经更新，请注意查看。");
+        messageMapper.insertSelective(message1);
         if(announcementApprovedOpinion.getIsapproved()==1){
             String aaocid = announcementApprovedOpinionMapper.selectAaopidByAidAndEid(announcementApprovedOpinion);
             if(aaocid!=null){
                 int result2 = announcementApprovedOpinionMapper.updateIsApprovedToZeroByAaocid(aaocid);
                 if (result2 <= 0)
                     result1 = 0;
+                String eid2 = announcementApprovedOpinionMapper.selectByPrimaryKey(aaocid).getEid();
+                Message message2 = new Message();
+                message2.setMid(CommonUtils.uuid());
+                message2.setSeid("system_message");
+                message2.setEid(eid2);
+                message2.setMsg("有一条公告申请正在等待您审核，请尽快处理。");
+                messageMapper.insertSelective(message2);
             }else {
                 announcementMapper.updateisApprovedByAid(announcementApprovedOpinion.getAid(),1);
             }
